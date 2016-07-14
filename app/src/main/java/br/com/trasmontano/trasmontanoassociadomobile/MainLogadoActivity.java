@@ -105,6 +105,7 @@ public class MainLogadoActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+    
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
