@@ -33,6 +33,7 @@ public class MainLogadoActivity extends AppCompatActivity
     private Button btCarteirinha;
     private CircularImageView circularImageView;
     private RevealTextView revealTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +41,12 @@ public class MainLogadoActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        circularImageView = (CircularImageView)findViewById(R.id.ivAssociadoCard);
+        circularImageView = (CircularImageView) findViewById(R.id.ivAssociadoCard);
         spotsDialog = new SpotsDialog(this, R.style.LoaderCustom);
         SharedPreferences prefs = getSharedPreferences("DADOS_LOGIN", MODE_PRIVATE);
-        String nome =  prefs.getString("NomeUsuario","");
+        String nome = prefs.getString("NomeUsuario", "");
         String mat = prefs.getString("CodigoUsuario", "");
+        String redirecionarPara = prefs.getString("redirecionarPara", "");
 
         Associado a = Query.one(Associado.class, "select * from associado where usuario=?", mat).get();
 
@@ -55,7 +57,7 @@ public class MainLogadoActivity extends AppCompatActivity
             }
         }
 
-        btCarteirinha = (Button)findViewById(R.id.btCarteirinha);
+        btCarteirinha = (Button) findViewById(R.id.btCarteirinha);
 
         btCarteirinha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +67,7 @@ public class MainLogadoActivity extends AppCompatActivity
             }
         });
 
-        revealTextView = (RevealTextView)findViewById(R.id.rtvLabel);
+        revealTextView = (RevealTextView) findViewById(R.id.rtvLabel);
 
         revealTextView.setAnimatedText("Bem vindo, " + nome + "!");
 
@@ -86,6 +88,12 @@ public class MainLogadoActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        if (redirecionarPara.equalsIgnoreCase("CarteirinhaTemporaria")) {
+            Intent i = new Intent(this, CarteirinhaActivity.class);
+            startActivity(i);
+        }
+
     }
 
     @Override

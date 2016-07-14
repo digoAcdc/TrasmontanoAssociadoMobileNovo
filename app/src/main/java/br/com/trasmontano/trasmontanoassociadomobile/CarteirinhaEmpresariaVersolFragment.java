@@ -64,7 +64,7 @@ public class CarteirinhaEmpresariaVersolFragment extends Fragment {
 
         configureInformacaoAssociadoCallback();
 
-        new APIClient().getRestService().getDadosCarteirinhaTemporaria(Matricula,
+        new APIClient().getRestService().getDadosCarteirinhaTemporaria(Matricula.substring(0,6),
                 Dependente, callbackCarteirinhaTemporaria);
 
 

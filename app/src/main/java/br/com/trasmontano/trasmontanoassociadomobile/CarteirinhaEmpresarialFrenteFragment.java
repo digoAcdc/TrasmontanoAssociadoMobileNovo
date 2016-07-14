@@ -69,7 +69,7 @@ public class CarteirinhaEmpresarialFrenteFragment extends Fragment {
 
         configureInformacaoAssociadoCallback();
 
-        new APIClient().getRestService().getDadosCarteirinhaTemporaria(Matricula,
+        new APIClient().getRestService().getDadosCarteirinhaTemporaria(Matricula.substring(0,6),
                 Dependente, callbackCarteirinhaTemporaria);
 
         return view;
@@ -93,7 +93,7 @@ public class CarteirinhaEmpresarialFrenteFragment extends Fragment {
                 tvDtNascimento.setText(nascParts[2] + "/" + nascParts[1] + "/" + nascParts[0]);
                 tvPlano.setText(c.getDsCategoria() + "/Reg. " + c.getNumRegAns());
                 tvEmpresa.setText(c.getRazaoSocial());
-                tvMatricula.setText(Matricula + "." + Dependente);
+                tvMatricula.setText(Matricula.substring(0,6) + "." + Dependente);
             }
 
             public void failure(RetrofitError error) {
@@ -102,33 +102,6 @@ public class CarteirinhaEmpresarialFrenteFragment extends Fragment {
                 //spotsDialog.dismiss();
                 //spotsDialog.dismiss();
             }
-
-           /* @Override
-            public void success(Login login, Response response) {
-
-                if (login.UsuarioValido == true & login.SenhaValida == true & login.getBloqueado() == 0) {
-                    if (login.getSituacao() != "A" & login.getSituacao() != "S") {
-
-                        Associado a = Query.one(Associado.class, "select * from associado where usuario=?", login.getCodigoUsuario()).get();
-                        if (a == null) {
-                            a = new Associado();
-                            a.setUsuario(login.getCodigoUsuario());
-                            a.save();
-                        }
-                        GuardarDadosLoginAssociado(login);
-                        finish();
-                        Intent intent = new Intent(LoginActivity.this, MainLogadoActivity.class);
-                        startActivity(intent);
-                    }
-                    else
-                    {
-                        Toast.makeText(LoginActivity.this, "Usuario invalido", Toast.LENGTH_LONG).show();
-                    }
-                    spotsDialog.dismiss();
-                } else {
-                    Toast.makeText(LoginActivity.this, "Usuario invalido", Toast.LENGTH_LONG).show();
-                }
-                spotsDialog.dismiss();*/
 
         };
     }

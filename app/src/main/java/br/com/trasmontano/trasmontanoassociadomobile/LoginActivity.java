@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements NavigationView.O
     private Button btCadastrar;
     private TextInputLayout tiUsuario;
     private TextInputLayout tisenha;
+    private String redirecionarPara;
     SpotsDialog spotsDialog;
 
     private Callback<Login> callbackUsuario;
@@ -42,6 +43,16 @@ public class LoginActivity extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        Intent intent = getIntent();
+
+        Bundle params = intent.getExtras();
+
+        if(params!=null)
+        {
+            redirecionarPara = params.getString("redirecionarPara");
+        }
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -165,7 +176,8 @@ public class LoginActivity extends AppCompatActivity implements NavigationView.O
                             a.setUsuario(login.getCodigoUsuario());
                             a.save();
                         }
-                        GuardarDadosLoginAssociado(login);
+
+                        GuardarDadosLoginAssociado(login, redirecionarPara);
                         finish();
                         Intent intent = new Intent(LoginActivity.this, MainLogadoActivity.class);
                         startActivity(intent);
@@ -192,7 +204,7 @@ public class LoginActivity extends AppCompatActivity implements NavigationView.O
         };
     }
 
-    public void GuardarDadosLoginAssociado(Login login) {
+    public void GuardarDadosLoginAssociado(Login login, String redirecionarPara) {
         SharedPreferences.Editor editor = getSharedPreferences("DADOS_LOGIN", MODE_PRIVATE).edit();
         editor.putString("Bloqueado", Integer.toString(login.getBloqueado()));
         editor.putString("ExpiraEm", Integer.toString(login.getExpiraEm()));
@@ -203,6 +215,9 @@ public class LoginActivity extends AppCompatActivity implements NavigationView.O
         editor.putString("Email", login.getEmail());
         editor.putString("PerfilUsuario", login.getPerfilUsuario());
         editor.putString("TipoPlano", login.getTipoPlano());
+
+        if(redirecionarPara != "")
+            editor.putString("redirecionarPara", redirecionarPara);
 
         editor.commit();
     }

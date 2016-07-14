@@ -21,6 +21,7 @@ import com.synnapps.carouselview.ImageListener;
 import java.util.List;
 
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Associado;
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.Login;
 import dmax.dialog.SpotsDialog;
 import se.emilsjolander.sprinkles.Query;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Button btLogar;
+    private Button btCarteirinhaSemLogin;
     SpotsDialog spotsDialog;
 
     CarouselView carouselView;
@@ -45,6 +47,19 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         btLogar = (Button) findViewById(R.id.btLogar);
+        btCarteirinhaSemLogin = (Button) findViewById(R.id.btCarteirinhaSemLogin);
+
+        btCarteirinhaSemLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Bundle params = new Bundle();
+
+                params.putString("redirecionarPara", "CarteirinhaTemporaria");
+                intent.putExtras(params);
+                startActivity(intent);
+            }
+        });
 
 
         carouselView = (CarouselView) findViewById(R.id.carouselView);

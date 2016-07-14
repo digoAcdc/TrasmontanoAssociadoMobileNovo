@@ -68,14 +68,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:gravity="center"
+            android:gravity="left"
             android:orientation="horizontal"
             android:paddingTop="20dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="left"
                 android:orientation="vertical">
 
                 <Button
@@ -84,9 +84,9 @@
                     android:layout_height="85dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="@drawable/circle"
+                    android:background="@drawable/style_button_azul"
                     android:drawableTop="@android:drawable/ic_menu_crop"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:paddingTop="20dp"
                     android:textColor="#fff" />
 
