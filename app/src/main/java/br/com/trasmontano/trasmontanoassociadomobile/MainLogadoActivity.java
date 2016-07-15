@@ -36,6 +36,8 @@ public class MainLogadoActivity extends AppCompatActivity
     private Button btCarteirinha;
     private CircularImageView circularImageView;
     private RevealTextView revealTextView;
+    private RevealTextView revealTextViewNome;
+    private String TipoPlano;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class MainLogadoActivity extends AppCompatActivity
         String nome = prefs.getString("NomeUsuario", "");
         String mat = prefs.getString("CodigoUsuario", "");
         String redirecionarPara = prefs.getString("redirecionarPara", "");
+        TipoPlano = prefs.getString("PerfilUsuario", "");
 
         Associado a = Query.one(Associado.class, "select * from associado where usuario=?", mat).get();
 
@@ -65,14 +68,15 @@ public class MainLogadoActivity extends AppCompatActivity
         btCarteirinha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainLogadoActivity.this, CarteirinhaActivity.class);
-                startActivity(i);
+                CarteirinhaVirtual();
             }
         });
 
-        revealTextView = (RevealTextView) findViewById(R.id.rtvLabel);
+        revealTextView = (RevealTextView) findViewById(R.id.rtvLabelNome);
+        revealTextViewNome = (RevealTextView) findViewById(R.id.rtvLabelMatricula);
 
         revealTextView.setAnimatedText("Bem vindo, " + nome + "!");
+        revealTextViewNome.setAnimatedText("Matrícula, " + mat + "");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -93,15 +97,19 @@ public class MainLogadoActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         if (redirecionarPara.equalsIgnoreCase("CarteirinhaTemporaria")) {
-            Intent i = new Intent(this, CarteirinhaActivity.class);
-            startActivity(i);
 
+            CarteirinhaVirtual();
         }
 
     }
     public void Encerrar()
     {
         super.onBackPressed();
+    }
+    public void CarteirinhaVirtual()
+    {
+        Intent i = new Intent(this, CarteirinhaActivity.class);
+        startActivity(i);
     }
 
     @Override
@@ -162,7 +170,7 @@ public class MainLogadoActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_carteirinha_virtual) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 

@@ -39,6 +39,6 @@ ImageView imageView;
                startActivity(intent);
 
             }
-        }, 13000);
+        }, 7000);
     }
 }

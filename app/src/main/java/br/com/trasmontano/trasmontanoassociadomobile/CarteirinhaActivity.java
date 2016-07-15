@@ -1,6 +1,7 @@
 package br.com.trasmontano.trasmontanoassociadomobile;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -26,6 +27,7 @@ import se.emilsjolander.sprinkles.Query;
 public class CarteirinhaActivity extends AppCompatActivity {
     private Button btFrenteVerso;
     //private Callback<List<DadosCarteirinha>> callbackCarteirinhaTemporaria;
+    String TipoPlano;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +35,28 @@ public class CarteirinhaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carteirinha);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        SharedPreferences prefs = getSharedPreferences("DADOS_LOGIN", MODE_PRIVATE);
+        String nome = prefs.getString("NomeUsuario", "");
+        String mat = prefs.getString("CodigoUsuario", "");
+        String redirecionarPara = prefs.getString("redirecionarPara", "");
+        TipoPlano = prefs.getString("PerfilUsuario", "");
+
         if (savedInstanceState == null) {
-            CarteirinhaEmpresarialFrenteFragment cf = new CarteirinhaEmpresarialFrenteFragment();
+            if(TipoPlano.equalsIgnoreCase("associado"))
+            {
+                CarteirinhaAssociadoPFisica();
+            }
+            else
+            {
+                CarteirinhaEmpresarial();
+            }
+            /*CarteirinhaEmpresarialFrenteFragment cf = new CarteirinhaEmpresarialFrenteFragment();
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             //transaction.setCustomAnimations(R.anim.fade_in ,R.anim.fade_out);
             transaction.setCustomAnimations(R.anim.slide_esquerda, R.anim.slide_direita);
             transaction.replace(R.id.maincontainer, cf);
-            transaction.commit();
+            transaction.commit();*/
         }
 
         btFrenteVerso = (Button) findViewById(R.id.btFrenteVerso);
@@ -60,16 +76,38 @@ public class CarteirinhaActivity extends AppCompatActivity {
 
                 } else {
                     btFrenteVerso.setText("Verso");
-                    CarteirinhaEmpresarialFrenteFragment cf = new CarteirinhaEmpresarialFrenteFragment();
-                    FragmentManager manager = getSupportFragmentManager();
-                    FragmentTransaction transaction = manager.beginTransaction();
-                    transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-                    transaction.replace(R.id.maincontainer, cf);
-                    transaction.commit();
+                    if(TipoPlano.equalsIgnoreCase("associado"))
+                    {
+                        CarteirinhaAssociadoPFisica();
+                    }
+                    else
+                    {
+                        CarteirinhaEmpresarial();
+                    }
+
                 }
 
             }
         });
+    }
+
+    public void CarteirinhaAssociadoPFisica()
+    {
+        CarteirinhaPessoaFisicaFrenteFragment cf = new CarteirinhaPessoaFisicaFrenteFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+        transaction.replace(R.id.maincontainer, cf);
+        transaction.commit();
+    }
+    public void CarteirinhaEmpresarial()
+    {
+        CarteirinhaEmpresarialFrenteFragment cf = new CarteirinhaEmpresarialFrenteFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+        transaction.replace(R.id.maincontainer, cf);
+        transaction.commit();
     }
 
 }

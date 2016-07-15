@@ -9,15 +9,15 @@
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Rede Credenciada" />
+            android:title="Unidades" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Calculo Online" />
+            android:title="Agendamento de Consulta" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Dicas de Saúde" />
+            android:title="Orientador Médico" />
     </group>
 
     <item android:title="Trasmontano">
@@ -25,11 +25,11 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Nossa História" />
+                android:title="Alarme de Medicamentos" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Farmacia" />
+                android:title="Carteirinha Virtual" />
         </menu>
     </item>
 

@@ -11,58 +11,115 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         android:paddingTop="30dp"
-        android:layout_marginTop="20dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="br.com.trasmontano.trasmontanoassociadomobile.MainLogadoActivity"
         tools:showIn="@layout/app_bar_main_logado">
 
-
-        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view"
+        <FrameLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/fundo_vermelho" />
+
+
+            </FrameLayout>
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/ivAssociadoCard"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:gravity="left"
+                android:src="@drawable/avatar"
+                app:civ_border_color="#EEEEEE"
+                app:civ_border_width="8dp"
+                app:civ_shadow="true"
+                app:civ_shadow_color="#8BC34A"
+                app:civ_shadow_radius="20" />
+        </FrameLayout>
+
+       <!-- <fragment
+            android:id="@+id/listFragment"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+           class="br.com.trasmontano.trasmontanoassociadomobile.HeaderFragment"
+            tools:layout="@layout/fragment_header">
+        </fragment>-->
+        <com.antonionicolaspina.revealtextview.RevealTextView
+            android:id="@+id/rtvLabelNome"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingTop="30dp"
-            card_view:cardCornerRadius="8dp"
-            card_view:cardElevation="10dp">
+            android:text=""
+            app:rtv_duration="3000" />
 
-            <ImageView
-                android:id="@+id/thumbnail"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_alignParentTop="true"
-                android:alpha="0.4"
-                android:scaleType="centerCrop"
-                android:src="@drawable/recepcaologado" />
+        <com.antonionicolaspina.revealtextview.RevealTextView
+            android:id="@+id/rtvLabelMatricula"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:rtv_duration="3000" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/primary_text_dark" />
 
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:id="@+id/ivAssociadoCard"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:gravity="left"
-                    android:src="@drawable/avatar"
-                    app:civ_border_color="#EEEEEE"
-                    app:civ_border_width="8dp"
-                    app:civ_shadow="true"
-                    app:civ_shadow_color="#8BC34A"
-                    app:civ_shadow_radius="20" />
+        <!-- <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/card_view"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:paddingTop="30dp"
+             card_view:cardCornerRadius="8dp"
+             card_view:cardElevation="10dp">
 
-                <com.antonionicolaspina.revealtextview.RevealTextView
-                    android:id="@+id/rtvLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    app:rtv_duration="3000" />
-            </LinearLayout>
+             <ImageView
+                 android:id="@+id/thumbnail"
+                 android:layout_width="match_parent"
+                 android:layout_height="250dp"
+                 android:layout_alignParentTop="true"
+                 android:alpha="0.4"
+                 android:scaleType="centerCrop"
+                 android:src="@drawable/recepcaologado" />
 
-        </android.support.v7.widget.CardView>
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+
+                 <com.mikhaellopez.circularimageview.CircularImageView
+                     android:id="@+id/ivAssociadoCard"
+                     android:layout_width="120dp"
+                     android:layout_height="120dp"
+                     android:gravity="left"
+                     android:src="@drawable/avatar"
+                     app:civ_border_color="#EEEEEE"
+                     app:civ_border_width="8dp"
+                     app:civ_shadow="true"
+                     app:civ_shadow_color="#8BC34A"
+                     app:civ_shadow_radius="20" />
+
+                 <com.antonionicolaspina.revealtextview.RevealTextView
+                     android:id="@+id/rtvLabel"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text=""
+                     app:rtv_duration="3000" />
+             </LinearLayout>
+
+         </android.support.v7.widget.CardView>-->
 
         <LinearLayout
             android:layout_width="match_parent"

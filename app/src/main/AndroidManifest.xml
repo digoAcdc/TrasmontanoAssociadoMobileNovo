@@ -35,7 +35,9 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ActivitySplash" android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".ActivitySplash"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -65,7 +67,9 @@
         <activity
             android:name=".CarteirinhaEmpresariaVersolFragment"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".HeaderFragment" />
+        <activity android:name=".CarteirinhaPessoaFisicaFrenteFragment"></activity>
     </application>
 
 </manifest>
