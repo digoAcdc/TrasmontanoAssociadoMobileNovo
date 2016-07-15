@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,6 +22,7 @@ import java.util.Locale;
 
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.DadosCarteirinha;
 import br.com.trasmontano.trasmontanoassociadomobile.network.APIClient;
+import dmax.dialog.SpotsDialog;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -39,6 +41,7 @@ public class CarteirinhaEmpresarialFrenteFragment extends Fragment {
 
     private static String Matricula;
     private static String Dependente;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
@@ -59,7 +62,7 @@ public class CarteirinhaEmpresarialFrenteFragment extends Fragment {
 
             if(Matricula.length() > 6)
             {
-                Dependente = Matricula.substring(5,2);
+                Dependente = Matricula.substring(6,2);
             }
             else
             {
@@ -94,13 +97,12 @@ public class CarteirinhaEmpresarialFrenteFragment extends Fragment {
                 tvPlano.setText(c.getDsCategoria() + "/Reg. " + c.getNumRegAns());
                 tvEmpresa.setText(c.getRazaoSocial());
                 tvMatricula.setText(Matricula.substring(0,6) + "." + Dependente);
+
             }
 
             public void failure(RetrofitError error) {
                 Log.d("ERRO-------->", error.getMessage().toString());
-                //Toast.makeText(LoginActivity.this, "Falha ao conectar no servidor", Toast.LENGTH_LONG).show();
-                //spotsDialog.dismiss();
-                //spotsDialog.dismiss();
+                Toast.makeText(getContext(), "Falha ao conectar no servidor", Toast.LENGTH_LONG).show();
             }
 
         };

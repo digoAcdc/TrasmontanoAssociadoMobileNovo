@@ -1,11 +1,13 @@
 package br.com.trasmontano.trasmontanoassociadomobile;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.antonionicolaspina.revealtextview.RevealTextView;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -92,8 +95,13 @@ public class MainLogadoActivity extends AppCompatActivity
         if (redirecionarPara.equalsIgnoreCase("CarteirinhaTemporaria")) {
             Intent i = new Intent(this, CarteirinhaActivity.class);
             startActivity(i);
+
         }
 
+    }
+    public void Encerrar()
+    {
+        super.onBackPressed();
     }
 
     @Override
@@ -102,7 +110,26 @@ public class MainLogadoActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+
+
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which){
+                        case DialogInterface.BUTTON_POSITIVE:
+                            Encerrar();
+                            break;
+
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            break;
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Deseja encerrar o aplicativo?").setPositiveButton("Sim", dialogClickListener)
+                    .setNegativeButton("Não", dialogClickListener).show();
         }
     }
 

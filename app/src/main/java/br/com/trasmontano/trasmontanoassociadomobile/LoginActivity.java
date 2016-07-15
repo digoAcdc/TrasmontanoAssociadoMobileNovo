@@ -49,8 +49,7 @@ public class LoginActivity extends AppCompatActivity implements NavigationView.O
 
         Bundle params = intent.getExtras();
 
-        if(params!=null)
-        {
+        if (params != null) {
             redirecionarPara = params.getString("redirecionarPara");
         }
 
@@ -168,7 +167,7 @@ public class LoginActivity extends AppCompatActivity implements NavigationView.O
             public void success(Login login, Response response) {
 
                 if (login.UsuarioValido == true & login.SenhaValida == true & login.getBloqueado() == 0) {
-                    if (login.getSituacao() != "A" & login.getSituacao() != "S") {
+                    if (login.getSituacao().equalsIgnoreCase("A") | login.getSituacao().equalsIgnoreCase("S")) {
 
                         Associado a = Query.one(Associado.class, "select * from associado where usuario=?", login.getCodigoUsuario()).get();
                         if (a == null) {
@@ -181,14 +180,30 @@ public class LoginActivity extends AppCompatActivity implements NavigationView.O
                         finish();
                         Intent intent = new Intent(LoginActivity.this, MainLogadoActivity.class);
                         startActivity(intent);
-                    }
-                    else
-                    {
-                        Toast.makeText(LoginActivity.this, "Usuario invalido", Toast.LENGTH_LONG).show();
+                    } else {
+                        if (login.UsuarioValido == false) {
+                            Toast.makeText(LoginActivity.this, "Usuario Inválido", Toast.LENGTH_LONG).show();
+                            tiUsuario.setError("Usuário Inválido");
+                        } else if (login.SenhaValida == false) {
+                            Toast.makeText(LoginActivity.this, "Senha Inválida", Toast.LENGTH_LONG).show();
+                            tisenha.setError("Senha Inválida");
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Login/Senha Inválidos", Toast.LENGTH_LONG).show();
+                            tisenha.setError("Usuario/Senha Inválidos");
+                        }
                     }
                     spotsDialog.dismiss();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Usuario invalido", Toast.LENGTH_LONG).show();
+                    if (login.UsuarioValido == false) {
+                        Toast.makeText(LoginActivity.this, "Usuario Inválido", Toast.LENGTH_LONG).show();
+                        tiUsuario.setError("Usuário Inválido");
+                    } else if (login.SenhaValida == false) {
+                        Toast.makeText(LoginActivity.this, "Senha Inválida", Toast.LENGTH_LONG).show();
+                        tisenha.setError("Senha Inválida");
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Login/Senha Inválidos", Toast.LENGTH_LONG).show();
+                        tisenha.setError("Usuario/Senha Inválidos");
+                    }
                 }
                 spotsDialog.dismiss();
 
@@ -216,7 +231,7 @@ public class LoginActivity extends AppCompatActivity implements NavigationView.O
         editor.putString("PerfilUsuario", login.getPerfilUsuario());
         editor.putString("TipoPlano", login.getTipoPlano());
 
-        if(redirecionarPara != "")
+        if (redirecionarPara != "")
             editor.putString("redirecionarPara", redirecionarPara);
 
         editor.commit();

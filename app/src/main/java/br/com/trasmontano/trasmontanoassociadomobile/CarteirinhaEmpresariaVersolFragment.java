@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +26,7 @@ import br.com.trasmontano.trasmontanoassociadomobile.DTO.DadosCarteirinha;
 import br.com.trasmontano.trasmontanoassociadomobile.adapter.AssociadoLoginAdapter;
 import br.com.trasmontano.trasmontanoassociadomobile.adapter.CarenciaAdapter;
 import br.com.trasmontano.trasmontanoassociadomobile.network.APIClient;
+import dmax.dialog.SpotsDialog;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -37,10 +39,11 @@ public class CarteirinhaEmpresariaVersolFragment extends Fragment {
     private  String Dependente;
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_carteirinha_empresarial_verso, container, false);
-
 
         rvCarencia = (RecyclerView)view.findViewById(R.id.rvCarencias);
         rvCarencia.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -80,12 +83,13 @@ public class CarteirinhaEmpresariaVersolFragment extends Fragment {
                 rvCarencia.setAdapter(new CarenciaAdapter(getContext(), dadosCarteirinha));
                 rvCarencia.setItemAnimator(new DefaultItemAnimator());
 
+
             }
 
 
             public void failure(RetrofitError error) {
                 Log.d("ERRO-------->", error.getMessage().toString());
-
+                Toast.makeText(getContext(), "Falha ao conectar no servidor", Toast.LENGTH_LONG).show();
             }
 
 
