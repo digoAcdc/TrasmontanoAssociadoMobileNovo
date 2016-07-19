@@ -53,11 +53,9 @@ public class CarteirinhaEmpresariaVersolFragment extends Fragment {
         SharedPreferences prefs = this.getActivity().getSharedPreferences("DADOS_LOGIN", Context.MODE_PRIVATE);
         if (prefs.contains("CodigoUsuario")) {
             Matricula =  prefs.getString("CodigoUsuario", "");
-
-
             if(Matricula.length() > 6)
             {
-                Dependente = Matricula.substring(5,2);
+                Dependente = Matricula.substring(6,8);
             }
             else
             {

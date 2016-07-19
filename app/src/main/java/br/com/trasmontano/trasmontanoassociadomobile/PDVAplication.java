@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import se.emilsjolander.sprinkles.Migration;
 import se.emilsjolander.sprinkles.Sprinkles;
+import se.emilsjolander.sprinkles.annotations.Column;
 
 /**
  * Created by rbarbosa on 08/07/2016.
@@ -33,6 +34,23 @@ public class PDVAplication extends Application {
                                 "nome TEXT, " +
                                 "caminhoImagem TEXT " +
                          ")"
+                );
+
+                db.execSQL(
+
+                "CREATE TABLE alarme (" +
+                                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                "segunda INTEGER, " +
+                                "terca INTEGER, " +
+                                "quarta INTEGER, " +
+                                "quinta INTEGER, " +
+                                "sexta INTEGER, " +
+                                "sabado INTEGER, " +
+                                "domingo INTEGER, " +
+                                "todos INTEGER, " +
+                                "ativo INTEGER, " +
+                                "hora TEXT " +
+                                ")"
                 );
 
             }

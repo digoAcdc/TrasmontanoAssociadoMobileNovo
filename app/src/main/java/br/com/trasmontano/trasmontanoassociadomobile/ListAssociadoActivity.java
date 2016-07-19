@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,11 +30,14 @@ import dmax.dialog.SpotsDialog;
 import se.emilsjolander.sprinkles.Model;
 import se.emilsjolander.sprinkles.Query;
 
-public class ListAssociadoActivity extends AppCompatActivity {
+public class ListAssociadoActivity extends AppCompatActivity  {
 
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     SpotsDialog spotsDialog;
+    private ImageButton fab;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +46,24 @@ public class ListAssociadoActivity extends AppCompatActivity {
         spotsDialog = new SpotsDialog(this, R.style.LoaderCustom);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
 
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         recyclerView = (RecyclerView) findViewById(R.id.rvAssociados);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-
-
         CarregaLista(this );
+
+        fab = (ImageButton)findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ListAssociadoActivity.this, LoginActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
     }
 
@@ -86,7 +100,8 @@ public class ListAssociadoActivity extends AppCompatActivity {
 
     private void showFilterPopup(View v, long id) {
 
-        PopupMenu popup = new PopupMenu(this, v);
+        PopupMenu popup;
+        popup = new PopupMenu(ListAssociadoActivity.this,v);
         final String idMenu = Long.toString(id);
         TextView t  =  (TextView) v.findViewById(R.id.tvMatricula);
         final String mat = t.getText().toString();
@@ -148,7 +163,7 @@ public class ListAssociadoActivity extends AppCompatActivity {
         popup.show();
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.mn_voltar, menu);
@@ -173,5 +188,5 @@ public class ListAssociadoActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+*/
 }

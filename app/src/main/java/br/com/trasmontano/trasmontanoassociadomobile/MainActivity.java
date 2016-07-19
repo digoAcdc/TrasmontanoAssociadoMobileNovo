@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity
 
     private Button btLogar;
     private Button btCarteirinhaSemLogin;
+    private Button btAlarmeMedicamentos;
     SpotsDialog spotsDialog;
 
     CarouselView carouselView;
@@ -52,12 +53,18 @@ public class MainActivity extends AppCompatActivity
         btCarteirinhaSemLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                Bundle params = new Bundle();
+                CarteirinhaSemLogin();
 
-                params.putString("redirecionarPara", "CarteirinhaTemporaria");
-                intent.putExtras(params);
-                startActivity(intent);
+            }
+        });
+
+        btAlarmeMedicamentos = (Button)findViewById(R.id.btAlarmeMedicamentos);
+
+        btAlarmeMedicamentos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, AlarmeActivity.class);
+                startActivity(i);
             }
         });
 
@@ -134,15 +141,16 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_login) {
             Logar();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_carteirinha_sem_logar) {
+            CarteirinhaSemLogin();
+        } else if (id == R.id.nav_home) {
 
-        } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_carteirinha_sem_logar) {
 
         }
 
@@ -169,4 +177,14 @@ public class MainActivity extends AppCompatActivity
             spotsDialog.dismiss();
         }
     }
+    public void CarteirinhaSemLogin()
+    {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        Bundle params = new Bundle();
+
+        params.putString("redirecionarPara", "CarteirinhaTemporaria");
+        intent.putExtras(params);
+        startActivity(intent);
+    }
+
 }

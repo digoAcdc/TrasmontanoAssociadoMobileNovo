@@ -42,7 +42,7 @@ public class CarteirinhaActivity extends AppCompatActivity {
         TipoPlano = prefs.getString("PerfilUsuario", "");
 
         if (savedInstanceState == null) {
-            if(TipoPlano.equalsIgnoreCase("associado"))
+            if(TipoPlano.equalsIgnoreCase("associado") || TipoPlano.equalsIgnoreCase("Associado Dependente"))
             {
                 CarteirinhaAssociadoPFisica();
             }
@@ -76,7 +76,7 @@ public class CarteirinhaActivity extends AppCompatActivity {
 
                 } else {
                     btFrenteVerso.setText("Verso");
-                    if(TipoPlano.equalsIgnoreCase("associado"))
+                    if(TipoPlano.equalsIgnoreCase("associado") || TipoPlano.equalsIgnoreCase("Associado Dependente"))
                     {
                         CarteirinhaAssociadoPFisica();
                     }

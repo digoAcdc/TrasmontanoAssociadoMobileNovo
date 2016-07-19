@@ -27,7 +27,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import se.emilsjolander.sprinkles.Query;
 
-public class LoginActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class LoginActivity extends AppCompatActivity  {
     private Button btEntrar;
 
     private Button btCadastrar;
@@ -96,27 +96,11 @@ public class LoginActivity extends AppCompatActivity implements NavigationView.O
                 Intent i = new Intent(LoginActivity.this, CadastarActivity.class);
                 startActivity(i);
                 spotsDialog.dismiss();
-                //Toast.makeText(MainActivity.this, "cadastrar", Toast.LENGTH_LONG).show();
+
             }
         });
 
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        tisenha.requestFocus();
     }
 
     @Override
@@ -136,29 +120,6 @@ public class LoginActivity extends AppCompatActivity implements NavigationView.O
         }
     }
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_carteirinha_virtual) {
-
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
     private void configureInformacaoAssociadoCallback() {
         callbackUsuario = new Callback<Login>() {
@@ -214,7 +175,6 @@ public class LoginActivity extends AppCompatActivity implements NavigationView.O
                 Log.d("ERRO-------->", error.getMessage().toString());
                 Toast.makeText(LoginActivity.this, "Falha ao conectar no servidor", Toast.LENGTH_LONG).show();
                 spotsDialog.dismiss();
-                //spotsDialog.dismiss();
             }
         };
     }

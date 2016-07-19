@@ -25,5 +25,19 @@
         <item name="DialogSpotCount">4</item>
     </style>
 
+    <style name="StyleCardTitle" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/cardview_light_background</item>
+    </style>
+
 
 </resources>

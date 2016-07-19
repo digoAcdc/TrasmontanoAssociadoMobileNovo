@@ -11,6 +11,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -62,6 +63,7 @@ public class CadastarActivity extends AppCompatActivity {
         btCadastrar = (Button) findViewById(R.id.btCadastrarAssociado);
 
         tiMatricula = (TextInputLayout) findViewById(R.id.tiMatricula);
+
         tiCPF = (TextInputLayout) findViewById(R.id.tiCPF);
         tiDataNascimento = (TextInputLayout) findViewById(R.id.tiDataNascimento);
         tiEmail = (TextInputLayout) findViewById(R.id.tiEmail);
@@ -140,6 +142,8 @@ public class CadastarActivity extends AppCompatActivity {
             file = (File) savedInstanceState.getSerializable("file");
             showImage(file);
         }
+
+        imageView.requestFocus();
 
     }
 

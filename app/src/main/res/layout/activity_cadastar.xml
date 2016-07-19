@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:background="@color/white"
+        android:paddingBottom="30dp"
         android:orientation="vertical"
         tools:context="br.com.trasmontano.trasmontanoassociadomobile.CadastarActivity">
 
@@ -187,6 +189,7 @@
                 android:id="@+id/etLembrarSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
                 android:hint="@string/txtLembrarSenha" />
         </android.support.design.widget.TextInputLayout>
 
@@ -195,10 +198,11 @@
             android:id="@+id/btCadastrarAssociado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary_light"
+            android:background="@drawable/style_button_azul"
+            android:paddingTop="30dp"
             android:paddingBottom="30dp"
             android:text="@string/txtCadastrar"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/abc_secondary_text_material_dark" />
 
 
     </LinearLayout>

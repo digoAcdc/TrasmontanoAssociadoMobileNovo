@@ -32,9 +32,9 @@ public class AssociadoLoginAdapter extends RecyclerView.Adapter<AssociadoLoginAd
         public void OnClickMenu(View view, int index);
     }
 
-    public AssociadoLoginAdapter(Context context, List<Associado> lstRestaurante, AssociadoOnClickListener onClickListener) {
+    public AssociadoLoginAdapter(Context context, List<Associado> lstAssociado, AssociadoOnClickListener onClickListener) {
         this.context = context;
-        this.lstAssociado = lstRestaurante;
+        this.lstAssociado = lstAssociado;
         this.onClickListener = onClickListener;
     }
 

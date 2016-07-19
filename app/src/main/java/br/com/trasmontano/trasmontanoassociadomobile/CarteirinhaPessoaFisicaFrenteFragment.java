@@ -34,8 +34,9 @@ public class CarteirinhaPessoaFisicaFrenteFragment extends Fragment {
     private TextView tvInvidualOuFamiliar;
 
 
-    private static String Matricula;
-    private static String Dependente;
+    private  String Matricula;
+    private  String Dependente;
+
 
     @Nullable
     @Override
@@ -57,11 +58,13 @@ public class CarteirinhaPessoaFisicaFrenteFragment extends Fragment {
             Matricula = prefs.getString("CodigoUsuario", "");
 
             if (Matricula.length() > 6) {
-                Dependente = Matricula.substring(6, 2);
+
+                Dependente = Matricula.substring(6, 8);
             } else {
                 Dependente = "00";
             }
         }
+
 
         configureInformacaoAssociadoCallback();
 

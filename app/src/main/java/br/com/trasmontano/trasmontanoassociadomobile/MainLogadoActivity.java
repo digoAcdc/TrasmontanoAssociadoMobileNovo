@@ -53,6 +53,7 @@ public class MainLogadoActivity extends AppCompatActivity
         String mat = prefs.getString("CodigoUsuario", "");
         String redirecionarPara = prefs.getString("redirecionarPara", "");
         TipoPlano = prefs.getString("PerfilUsuario", "");
+        prefs.edit().remove("redirecionarPara").commit();
 
         Associado a = Query.one(Associado.class, "select * from associado where usuario=?", mat).get();
 
@@ -97,7 +98,6 @@ public class MainLogadoActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         if (redirecionarPara.equalsIgnoreCase("CarteirinhaTemporaria")) {
-
             CarteirinhaVirtual();
         }
 
@@ -120,8 +120,8 @@ public class MainLogadoActivity extends AppCompatActivity
         } else {
             //super.onBackPressed();
 
-
-            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            OpcaoEncerrarApp();
+           /* DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which){
@@ -137,7 +137,7 @@ public class MainLogadoActivity extends AppCompatActivity
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Deseja encerrar o aplicativo?").setPositiveButton("Sim", dialogClickListener)
-                    .setNegativeButton("Não", dialogClickListener).show();
+                    .setNegativeButton("Não", dialogClickListener).show();*/
         }
     }
 
@@ -171,21 +171,42 @@ public class MainLogadoActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_carteirinha_virtual) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
+            CarteirinhaVirtual();
+        } else if (id == R.id.nav_encerrar) {
+            OpcaoEncerrarApp();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        }/* else if (id == R.id.nav_send) {
 
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void OpcaoEncerrarApp()
+    {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        Encerrar();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Deseja encerrar o aplicativo?").setPositiveButton("Sim", dialogClickListener)
+                .setNegativeButton("Não", dialogClickListener).show();
     }
 }

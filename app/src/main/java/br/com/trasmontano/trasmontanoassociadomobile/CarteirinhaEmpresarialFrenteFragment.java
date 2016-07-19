@@ -62,7 +62,7 @@ public class CarteirinhaEmpresarialFrenteFragment extends Fragment {
 
             if(Matricula.length() > 6)
             {
-                Dependente = Matricula.substring(6,2);
+                Dependente = Matricula.substring(6,8);
             }
             else
             {

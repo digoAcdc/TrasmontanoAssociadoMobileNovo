@@ -2,9 +2,12 @@ package br.com.trasmontano.trasmontanoassociadomobile.DTO;
 
 import java.util.Date;
 
+import se.emilsjolander.sprinkles.annotations.Table;
+
 /**
  * Created by rbarbosa on 11/07/2016.
  */
+@Table("login")
 public class Login {
     public int Bloqueado;
     public int TentativasAcesso;
