@@ -49,6 +49,7 @@ public class PDVAplication extends Application {
                                 "domingo INTEGER, " +
                                 "todos INTEGER, " +
                                 "ativo INTEGER, " +
+                                 "nomeAlarme TEXT, " +
                                 "hora TEXT " +
                                 ")"
                 );
