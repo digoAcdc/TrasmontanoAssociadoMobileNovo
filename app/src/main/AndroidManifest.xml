@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <permission android:name="android.permission.INTERNET" />
 
@@ -63,6 +64,7 @@
             android:name=".CarteirinhaActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
+        <!--
         <activity
             android:name=".CarteirinhaEmpresarialFrenteFragment"
             android:screenOrientation="landscape"
@@ -71,9 +73,26 @@
             android:name=".CarteirinhaEmpresariaVersolFragment"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".HeaderFragment" />
+
         <activity android:name=".CarteirinhaPessoaFisicaFrenteFragment" />
-        <activity android:name=".AlarmeActivity"></activity>
+        -->
+        <activity android:name=".ListAlarmeActivity" />
+
+        <!--
+        <receiver android:name=".AlarmeBroadcastReceiver" >
+        </receiver>
+        -->
+
+        <receiver android:name=".AlarmeBroadcastReceiver">
+            <intent-filter>
+                <action android:name="br.com.trasmontano.trasmontanoassociadomobile.ALARME" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".CadastrarAlarmeActivity" />
+        <activity android:name=".MensagemActivity"></activity>
     </application>
 
 </manifest>

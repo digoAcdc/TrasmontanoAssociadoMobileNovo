@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import se.emilsjolander.sprinkles.Migration;
 import se.emilsjolander.sprinkles.Sprinkles;
+import se.emilsjolander.sprinkles.annotations.AutoIncrement;
 import se.emilsjolander.sprinkles.annotations.Column;
 
 /**
@@ -33,24 +34,24 @@ public class PDVAplication extends Application {
                                 "cpf TEXT, " +
                                 "nome TEXT, " +
                                 "caminhoImagem TEXT " +
-                         ")"
+                                ")"
                 );
 
                 db.execSQL(
 
-                "CREATE TABLE alarme (" +
+                        "CREATE TABLE alarme (" +
                                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                "segunda INTEGER, " +
-                                "terca INTEGER, " +
-                                "quarta INTEGER, " +
-                                "quinta INTEGER, " +
-                                "sexta INTEGER, " +
-                                "sabado INTEGER, " +
-                                "domingo INTEGER, " +
-                                "todos INTEGER, " +
+                                "nomeMedicamento TEXT, " +
+                                "nomePaciente TEXT, " +
+                                "nomeMusica TEXT, " +
+                                "descricaoMedicamento TEXT, " +
+                                "dosagem TEXT, " +
+                                "quantidade TEXT, " +
+                                "dataInicio TEXT, " +
+                                "horaInicio TEXT, " +
+                                "intervaloDe TEXT, " +
                                 "ativo INTEGER, " +
-                                 "nomeAlarme TEXT, " +
-                                "hora TEXT " +
+                                "vibrar INTEGER " +
                                 ")"
                 );
 
