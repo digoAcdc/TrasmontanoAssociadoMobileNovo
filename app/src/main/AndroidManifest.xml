@@ -90,6 +90,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+        <service android:name=".AlarmeService"
+            android:enabled="false">
+
+        </service>
 
         <activity android:name=".CadastrarAlarmeActivity" />
         <activity android:name=".MensagemActivity"></activity>

@@ -41,12 +41,15 @@ public class AlarmeBroadcastReceiver extends BroadcastReceiver {
 
 
         //funciona
-        Intent notifIntent = new Intent(context,MainActivity.class);
+        /*Intent notifIntent = new Intent(context,MainActivity.class);
 
         NotificationUtil.create(context, 1, notifIntent, R.mipmap.ic_launcher,"Alarme de Medicamentos!!!","Apirina");
         Log.d("TESTE", "BroadCast.");
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(4000);
+        vibrator.vibrate(4000);*/
+        Log.d("TESTE", "BroadCast.");
+        Intent newIntent = new Intent(context, AlarmeService.class);
+        context.startService(newIntent);
 
 
 
