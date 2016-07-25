@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -47,8 +48,21 @@ public class AlarmeBroadcastReceiver extends BroadcastReceiver {
         Log.d("TESTE", "BroadCast.");
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(4000);*/
+
+
+
+
+        Bundle b = intent.getExtras();
+
         Log.d("TESTE", "BroadCast.");
         Intent newIntent = new Intent(context, AlarmeService.class);
+        if(b != null)
+        {
+            newIntent.putExtra("id", b.getInt("id"));
+            newIntent.putExtra("paciente", b.getString("paciente"));
+            newIntent.putExtra("medicamento", b.getString("medicamento"));
+        }
+
         context.startService(newIntent);
 
 

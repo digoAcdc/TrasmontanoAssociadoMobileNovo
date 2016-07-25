@@ -79,7 +79,7 @@ public class NotificationUtil {
         // Cria a notificação
         NotificationCompat.Builder b = new NotificationCompat.Builder(context);
         b.setDefaults(Notification.DEFAULT_ALL); // Ativa configurações padrão
-        b.setSmallIcon(R.drawable.ic_notification_icon); // Ícone
+        b.setSmallIcon(R.mipmap.ic_launcher); // Ícone
         b.setContentTitle(contentTitle); // Título
         b.setContentText(contentText); // Mensagem
         b.setContentIntent(p); // Intent que será chamada ao clicar na notificação.
