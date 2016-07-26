@@ -45,25 +45,22 @@ public class AlarmeService extends Service {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setTicker("Ticker Texto");
-        builder.setContentTitle(paciente);
-        builder.setContentText(medicacao);
+        builder.setContentTitle("Paciente:" + paciente);
+        builder.setContentText("Medicação: " + medicacao);
         builder.setSmallIcon(R.mipmap.ic_launcher);
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
         builder.setContentIntent(p);
 
         Notification n = builder.build();
 
-        n.vibrate = new long[]{150, 1000, 500, 000};
+        n.vibrate = new long[]{150, 4000, 150, 4000};
         n.flags = Notification.FLAG_NO_CLEAR;
         nm.notify(id, n);
 
 
         mMediaPlayer = new MediaPlayer();
         try {
-            //String filename = "android.resource://" + this.getPackageName() + "/raw/highway_to_hell.mp3";
             String filename = "android.resource://br.com.trasmontano.trasmontanoassociadomobile/raw/highway_to_hell";
-
-
 
             if (mp3.equalsIgnoreCase(""))
                 mMediaPlayer.setDataSource(this, Uri.parse(filename));

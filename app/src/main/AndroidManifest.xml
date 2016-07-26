@@ -92,12 +92,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
-        <service android:name=".AlarmeService"
-            android:enabled="true">
-        </service>
+        <service
+            android:name=".AlarmeService"
+            android:enabled="true"></service>
 
-        <activity android:name=".CadastrarAlarmeActivity" />
-        <activity android:name=".MensagemActivity"></activity>
+        <activity
+            android:name=".CadastrarAlarmeActivity"
+            android:label="Alarme de Medicamento" />
+        <activity
+            android:name=".MensagemActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

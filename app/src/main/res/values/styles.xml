@@ -38,6 +38,36 @@
         <item name="android:background">@color/colorPrimaryDark</item>
         <item name="android:textColor">@color/cardview_light_background</item>
     </style>
+    <!--<style name="StyleAlarmeTitle" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">#607D8B</item>
+        <item name="android:textColor">@color/cardview_light_background</item>
+    </style>-->
+
+    <style name="StyleAlarmeTitle" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:alpha">0.7</item>
+        <item name="android:background">#741D1D</item>
+        <item name="android:textColor">@color/cardview_light_background</item>
+
+    </style>
+
+    <style name="StyleTextViewMensagem">
+        <item name="android:textSize">18dp</item>
+    </style>
+
 
 
 
