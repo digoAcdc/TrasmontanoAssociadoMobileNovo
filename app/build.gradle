@@ -39,4 +39,5 @@ dependencies {
     compile 'com.antonionicolaspina:revealtextview:2.0'
     compile 'com.jaredrummler:material-spinner:1.0.9'
 
+
 }

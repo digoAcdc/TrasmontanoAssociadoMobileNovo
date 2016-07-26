@@ -4,82 +4,36 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.drm.DrmStore;
 import android.graphics.BitmapFactory;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Binder;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.Vibrator;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 import livroandroid.lib.utils.NotificationUtil;
 
 /**
  * Created by rbarbosa on 22/07/2016.
  */
-public class AlarmeService extends IntentService {
+public class AlarmeService extends Service {
+    MediaPlayer mMediaPlayer;
 
-    public AlarmeService() {
-        super(AlarmeService.class.getName());
-
-
-    }
-
-    @Override
-    protected void onHandleIntent(Intent intent) {
-/*        Intent notifIntent = new Intent(this,MainActivity.class);
-
-        NotificationUtil.create(this, 1, notifIntent, R.mipmap.ic_launcher,"Alarme de Medicamentos!!!","Apirina");
-
-        Vibrator vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-       // long[] pattern = {0, 100, 1000};
-        vibrator.vibrate(3000);*/
-        Log.d("TESTE", "service.");
-       // Toast.makeText(this, "service", Toast.LENGTH_LONG).show();
-
-
-        Bundle b = intent.getExtras();
-
-        int id = 0;
-        String paciente = "";
-        String medicamento = "";
-
-
-        if(b != null)
-        {
-            id = b.getInt("id");
-            paciente = b.getString("paciente");
-            medicamento = b.getString("medicamento");
-        }
-
-
-       //funcionando
-       /* Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(4000);
-
-        Intent notificationIntent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-        NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(this).setContentTitle(paciente).setContentText(medicamento).setSmallIcon(R.mipmap.ic_launcher).setContentIntent(pendingIntent);
-
-        Notification notification = builder.build();
-
-        // Hide the notification after it's selected
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification);*/
-
-
-        gerarNotificacao(paciente, medicamento, id);
-
-
-    }
-    public void gerarNotificacao(String paciente, String medicacao, int id){
+    public void gerarNotificacao(String paciente, String medicacao, int id, String mp3) {
 
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Intent i = new Intent(this, MensagemActivity.class);
@@ -99,26 +53,70 @@ public class AlarmeService extends IntentService {
 
         Notification n = builder.build();
 
-        n.vibrate = new long[]{150, 300, 150, 600};
+        n.vibrate = new long[]{150, 1000, 500, 000};
         n.flags = Notification.FLAG_NO_CLEAR;
         nm.notify(id, n);
 
-        try{
-            Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            Ringtone toque = RingtoneManager.getRingtone(this, som);
-            toque.play();
-        }
-        catch(Exception e){}
-    }
 
-   /* @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
-        return super.onStartCommand(intent, flags, startId);
+        mMediaPlayer = new MediaPlayer();
+        try {
+            //String filename = "android.resource://" + this.getPackageName() + "/raw/highway_to_hell.mp3";
+            String filename = "android.resource://br.com.trasmontano.trasmontanoassociadomobile/raw/highway_to_hell";
+
+
+
+            if (mp3.equalsIgnoreCase(""))
+                mMediaPlayer.setDataSource(this, Uri.parse(filename));
+            else
+                mMediaPlayer.setDataSource(this, Uri.parse(mp3));
+            final AudioManager audioManager = (AudioManager) this
+                    .getSystemService(Context.AUDIO_SERVICE);
+            if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
+                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+                mMediaPlayer.setLooping(true);
+                mMediaPlayer.prepare();
+
+                mMediaPlayer.start();
+            }
+        } catch (IOException e) {
+            System.out.println("OOPS");
+        }
     }
 
     @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    @Override
+    public void onCreate() {
+
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Bundle b = intent.getExtras();
+
+        int id = 0;
+        String paciente = "";
+        String medicamento = "";
+        String mp3 = "";
+
+        if (b != null) {
+            id = b.getInt("id");
+            paciente = b.getString("paciente");
+            medicamento = b.getString("medicamento");
+            mp3 = b.getString("mp3");
+
+        }
+        gerarNotificacao(paciente, medicamento, id, mp3);
+        return START_STICKY;
+    }
+
     public void onDestroy() {
-        super.onDestroy();
-    }*/
+        if (mMediaPlayer.isPlaying()) {
+            mMediaPlayer.stop();
+        }
+        mMediaPlayer.release();
+    }
 }

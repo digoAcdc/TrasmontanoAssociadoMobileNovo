@@ -61,6 +61,7 @@ public class AlarmeBroadcastReceiver extends BroadcastReceiver {
             newIntent.putExtra("id", b.getInt("id"));
             newIntent.putExtra("paciente", b.getString("paciente"));
             newIntent.putExtra("medicamento", b.getString("medicamento"));
+            newIntent.putExtra("mp3", b.getString("mp3"));
         }
 
         context.startService(newIntent);
