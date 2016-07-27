@@ -25,6 +25,8 @@ dependencies {
 
 
 
+
+
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
@@ -38,6 +40,5 @@ dependencies {
     compile 'com.github.d-max:spots-dialog:0.4@aar'
     compile 'com.antonionicolaspina:revealtextview:2.0'
     compile 'com.jaredrummler:material-spinner:1.0.9'
-
-
+    compile 'com.google.android.gms:play-services:9.2.0'
 }

@@ -45,15 +45,15 @@ public class AlarmeService extends Service {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setTicker("Ticker Texto");
-        builder.setContentTitle("Paciente:" + paciente);
-        builder.setContentText("Medicação: " + medicacao);
+        builder.setContentTitle(paciente);
+        builder.setContentText(medicacao);
         builder.setSmallIcon(R.mipmap.ic_launcher);
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
         builder.setContentIntent(p);
 
         Notification n = builder.build();
 
-        n.vibrate = new long[]{150, 4000, 150, 4000};
+        n.vibrate = new long[]{0, 4000, 150, 4000};
         n.flags = Notification.FLAG_NO_CLEAR;
         nm.notify(id, n);
 

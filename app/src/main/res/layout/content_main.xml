@@ -59,11 +59,6 @@
                 android:alpha="0.2"
                 android:background="@color/black" />-->
 
-            <!--<include layout="@layout/activity_maps_inicio"
-                android:layout_width="match_parent"
-                android:id="@+id/maps"
-                android:layout_height="250dp" />-->
-
 
 
             <View

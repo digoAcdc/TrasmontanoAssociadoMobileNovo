@@ -50,6 +50,7 @@ public class PDVAplication extends Application {
                                 "dataInicio TEXT, " +
                                 "horaInicio TEXT, " +
                                 "intervaloDe TEXT, " +
+                                "horarios TEXT, " +
                                 "ativo INTEGER, " +
                                 "vibrar INTEGER " +
                                 ")"
