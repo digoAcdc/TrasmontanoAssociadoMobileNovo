@@ -61,6 +61,7 @@ public class AlarmeService extends Service {
         mMediaPlayer = new MediaPlayer();
         try {
             String filename = "android.resource://br.com.trasmontano.trasmontanoassociadomobile/raw/highway_to_hell";
+           // String filename = "android.resource://br.com.trasmontano.trasmontanoassociadomobile/raw/palmeiras";
 
             if (mp3.equalsIgnoreCase(""))
                 mMediaPlayer.setDataSource(this, Uri.parse(filename));

@@ -131,17 +131,18 @@ public class ListAlarmeActivity extends AppCompatActivity {
 
             @Override
             public void OnClickView(View view, int index) {
-
+                showFilterPopupView(view, index);
             }
 
             @Override
             public void OnClickLixeira(View view, int index) {
-                showFilterPopup(view, index);
+                showFilterPopupLixeira(view, index);
             }
 
 
         };
     }
+
 
     public long retornaHoraMillisecond(int hora, int minuto) {
         Calendar calendar = Calendar.getInstance();
@@ -181,14 +182,14 @@ public class ListAlarmeActivity extends AppCompatActivity {
 
     }
 
-    private void showFilterPopup(View v, long index) {
+    private void showFilterPopupLixeira(View v, long index) {
 
         PopupMenu popup = new PopupMenu(ListAlarmeActivity.this, v);
 
         TextView t = (TextView) v.findViewById(R.id.tvId);
         final String id = t.getText().toString();
         // Inflate the menu from xml
-        popup.getMenuInflater().inflate(R.menu.menu_lista_login, popup.getMenu());
+        popup.getMenuInflater().inflate(R.menu.mn_excluir, popup.getMenu());
         // Setup menu item selection
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
@@ -243,102 +244,74 @@ public class ListAlarmeActivity extends AppCompatActivity {
         popup.show();
     }
 
+    private void showFilterPopupView(View v, long index) {
 
-   /* public static class TimePickerFragment extends DialogFragment
-            implements TimePickerDialog.OnTimeSetListener {
+        PopupMenu popup = new PopupMenu(ListAlarmeActivity.this, v);
 
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current time as the default values for the picker
-            final Calendar c = Calendar.getInstance();
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int minute = c.get(Calendar.MINUTE);
+        TextView t = (TextView) v.findViewById(R.id.tvId);
+        final int id = Integer.parseInt(t.getText().toString());
+        // Inflate the menu from xml
+        popup.getMenuInflater().inflate(R.menu.menu_lista_login, popup.getMenu());
+        // Setup menu item selection
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.mn_excluir:
 
-            // Create a new instance of TimePickerDialog and return it
-            return new TimePickerDialog(getActivity(), this, hour, minute,
-                    DateFormat.is24HourFormat(getActivity()));
-        }
+                        DialogInterface.OnClickListener dialiog = new DialogInterface.OnClickListener() {
+                            // RestauranteDAO dao = new RestauranteDAO(Lista_Restaurantes_Activity.this);
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            String minuto = String.valueOf(minute);
-            String padded = "00".substring(minuto.length()) + minuto;
-            tvHora.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(padded));
+                                switch (which) {
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        Alarme a = Query.one(Alarme.class, "select * from alarme where id=?", id).get();
 
-            Alarme a = Query.one(Alarme.class, "select * from alarme where id=?", idItemSelecionado).get();
+                                        Intent intent = new Intent(AlarmeBroadcastReceiver.ACTION);
+                                        String id = String.valueOf(a.getId());
+                                        AlarmUtil.cancel(ListAlarmeActivity.this, intent, Integer.parseInt(id));
 
-        }
-    }*/
+                                        if (a != null) {
+                                            a.deleteAsync(new Model.OnDeletedCallback() {
+                                                @Override
+                                                public void onDeleted() {
+                                                    CarregaLista();
+                                                    Toast.makeText(ListAlarmeActivity.this, "Excluído com sucesso! ", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                        }
+                                        break;
+                                    case DialogInterface.BUTTON_NEGATIVE:
 
-    /*public void showTimePickerDialog(View v) {
-        DialogFragment newFragment = new TimePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "timePicker");
-    }*/
+                                        break;
 
-   /* protected void showInputDialog() {
-
-        // get prompts.xml view
-        LayoutInflater layoutInflater = LayoutInflater.from(ListAlarmeActivity.this);
-        View promptView = layoutInflater.inflate(R.layout.input_dialog, null);
-        android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(ListAlarmeActivity.this);
-        alertDialogBuilder.setView(promptView);
-
-        final EditText editText = (EditText) promptView.findViewById(R.id.etMedicamento);
-
-        alertDialogBuilder.setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        String texto = editText.getText().toString();
-                        if (texto.equals(""))
-                            texto = "Alarme de Medicamentos";
-                        //CriaNovoAlarme(texto);
-
-                    }
-                })
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-
-                                dialog.cancel();
+                                }
                             }
-                        });
+                        };
 
-        // create an alert dialog
-        android.support.v7.app.AlertDialog alert = alertDialogBuilder.create();
-        alert.show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ListAlarmeActivity.this);
+                        builder.setMessage("Você realmente deseja excluir este Alarme?");
+                        builder.setPositiveButton("Sim", dialiog);
+                        builder.setNegativeButton("Não", dialiog);
+                        builder.show();
 
-
-    }
-*/
-   /* public void CriaNovoAlarme() {
-
-        Intent i = new Intent(this, CadastrarAlarmeActivity.class);
-        startActivity(i);
-        *//*Alarme a = new Alarme();
-        a.setNomeAlarme(nome);
-        a.setSegunda(0);
-        a.setTerca(0);
-        a.setQuarta(0);
-        a.setQuinta(0);
-        a.setSexta(0);
-        a.setSabado(0);
-        a.setDomingo(0);
-        a.setAtivo(0);
-        a.setHora("00:00");
-        a.setTodos(0);
-
-        try {
-
-            if (a.save()) {
-
-                CarregaLista();
-            } else {
-                Toast.makeText(ListAlarmeActivity.this, "Falha ao Incluir Alarme", Toast.LENGTH_LONG).show();
+                        return false;
+                    case R.id.mn_detalhes:
+                        Intent i = new Intent(ListAlarmeActivity.this, ListLogAlarmeActivity.class);
+                        i.putExtra("id", id);
+                        startActivity(i);
+                        return false;
+                    default:
+                        return false;
+                }
             }
-        } catch (Exception ex) {
-            Log.d("", ex.getMessage().toString());
-
-        }*//*
+        });
+        // Handle dismissal with: popup.setOnDismissListener(...);
+        // Show the menu
+        popup.show();
     }
-*/
+
+
+
 
 }

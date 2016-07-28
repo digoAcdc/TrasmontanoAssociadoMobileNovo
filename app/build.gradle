@@ -41,4 +41,5 @@ dependencies {
     compile 'com.antonionicolaspina:revealtextview:2.0'
     compile 'com.jaredrummler:material-spinner:1.0.9'
     compile 'com.google.android.gms:play-services:9.2.0'
+    compile 'com.sackcentury:shinebutton:0.1.4'
 }

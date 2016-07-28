@@ -3,14 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="br.com.trasmontano.trasmontanoassociadomobile.MensagemActivity">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/medicina"
-        android:alpha="0.2"/>
+        android:layout_height="400dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:alpha="0.09"
+        android:background="@drawable/medicina" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -156,18 +158,111 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="80dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/imbStop"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/imbStop"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/circle"
+                        android:elevation="5dp"
+                        android:src="@drawable/stop" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="Parar" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/circle"
-                    android:elevation="5dp"
-                    android:src="@drawable/stop" />
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/imbMaisDesz"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:gravity="center"
+                        android:background="@drawable/circle"
+                        android:elevation="5dp"
+                        android:src="@drawable/plus_dez"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="Mais dez" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="Minutos" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/imbTomeiMedicamento"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center_horizontal"
+
+                        android:background="@drawable/circle"
+                        android:elevation="5dp"
+                        android:src="@drawable/pencil" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Tomei o" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Medicamento" />
+
+                </LinearLayout>
 
 
             </LinearLayout>

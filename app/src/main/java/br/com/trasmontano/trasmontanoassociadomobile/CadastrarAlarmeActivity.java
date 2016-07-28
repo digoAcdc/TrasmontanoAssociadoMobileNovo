@@ -153,8 +153,9 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
                     Toast.makeText(CadastrarAlarmeActivity.this, "Voce esta agendando um alame com Data/Hora anterior a data atual", Toast.LENGTH_LONG).show();
                     return;
                 }
-
-                int quantidade = 24 / horaIntervalo;
+                int quantidade = 0;
+                if (horaIntervalo != 0)
+                    quantidade = 24 / horaIntervalo;
 
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(Calendar.HOUR_OF_DAY, horaInicio);
@@ -179,13 +180,13 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
                     calendar.add(Calendar.HOUR_OF_DAY, horaIntervalo);
                     calendar.add(Calendar.MINUTE, minutoIntervalo);
                 }
-
-                a.setHorarios(horarios.substring(0, horarios.length() - 3));
+                if (horaIntervalo != 0)
+                    a.setHorarios(horarios.substring(0, horarios.length() - 3));
 
                 if (a.save()) {
 
                     List<Alarme> lst = Query.all(Alarme.class).get().asList();
-                   // Alarme alarme = lst.get(lst.size() - 1);
+                    // Alarme alarme = lst.get(lst.size() - 1);
 
                     int id = (int) a.getId();
 

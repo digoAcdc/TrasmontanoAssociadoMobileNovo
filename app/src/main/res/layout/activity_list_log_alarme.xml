@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="br.com.trasmontano.trasmontanoassociadomobile.ListLogAlarmeActivity">
+
+
+
+        <TextView
+            style="@style/StyleCardTitle"
+            android:gravity="left"
+            android:maxLength="30"
+            android:text="Hístorico Medicamentos"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/tvNome"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rodrigo Silveira Barbosa"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@id/tvNomeMedicamento"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Omeprazol"
+            android:textSize="16dp" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvLogAlarme"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+
+</LinearLayout>

@@ -53,7 +53,19 @@ public class PDVAplication extends Application {
                                 "horarios TEXT, " +
                                 "ativo INTEGER, " +
                                 "vibrar INTEGER " +
-                                ")"
+                        ")"
+                );
+
+                db.execSQL(
+                        "CREATE TABLE logMedicamentosTomados (" +
+                                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                "idAlarme INTEGER, " +
+                                "tomei INTEGER, " +
+                                "usuario TEXT, " +
+                                "nomeMedicamento TEXT, " +
+                                "dataTomouMedicamento TEXT, " +
+                                "horaTomouMedicamento TEXT " +
+                        ")"
                 );
 
             }

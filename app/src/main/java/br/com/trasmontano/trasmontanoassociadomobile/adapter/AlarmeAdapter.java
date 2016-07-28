@@ -71,7 +71,7 @@ public class AlarmeAdapter extends RecyclerView.Adapter<AlarmeAdapter.AlarmeView
         holder.tvId.setText(String.valueOf(a.getId()));
         holder.tvDescricaoMedicamento.setText("Descrição: " + a.getDescricaoMedicamento());
         holder.tvFrequencia.setText("Frequencia " + a.getIntervaloDe() + " em " + a.getIntervaloDe() + " horas");
-        holder.tvHorarios.setText("Horários: " + a.getHorarios());
+        holder.tvHorarios.setText("Horários: verificar");
 
         if (onClickListener != null) {
             holder.swAtivo.setOnClickListener(new View.OnClickListener() {
