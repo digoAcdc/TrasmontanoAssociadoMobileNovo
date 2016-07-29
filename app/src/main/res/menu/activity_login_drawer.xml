@@ -24,7 +24,7 @@
     <item android:title="Trasmontano">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_alarme_medicamentos"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Alarme de Medicamentos" />
             <item

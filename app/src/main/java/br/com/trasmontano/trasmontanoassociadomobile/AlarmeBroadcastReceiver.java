@@ -28,30 +28,6 @@ public class AlarmeBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-
-     /*   final int id = 1;
-        final Intent intent2 = new Intent(context, MensagemActivity.class);
-        intent.putExtra("msg","Olá Leitor, como vai?");
-        final String contentTitle = "Nova mensagem privada";
-        final String contentText = "Você possui uma nova mensagem privada";
-
-        br.com.trasmontano.trasmontanoassociadomobile.Util.NotificationUtil.createPrivateNotification(context, intent2, contentTitle, contentText, id);*/
-
-
-
-
-
-        //funciona
-        /*Intent notifIntent = new Intent(context,MainActivity.class);
-
-        NotificationUtil.create(context, 1, notifIntent, R.mipmap.ic_launcher,"Alarme de Medicamentos!!!","Apirina");
-        Log.d("TESTE", "BroadCast.");
-        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(4000);*/
-
-
-
-
         Bundle b = intent.getExtras();
 
         Log.d("TESTE", "BroadCast.");
@@ -62,6 +38,8 @@ public class AlarmeBroadcastReceiver extends BroadcastReceiver {
             newIntent.putExtra("paciente", b.getString("paciente"));
             newIntent.putExtra("medicamento", b.getString("medicamento"));
             newIntent.putExtra("mp3", b.getString("mp3"));
+            newIntent.putExtra("vibrar", b.getInt("vibrar"));
+            newIntent.putExtra("tocar", b.getInt("tocar"));
         }
 
         context.startService(newIntent);

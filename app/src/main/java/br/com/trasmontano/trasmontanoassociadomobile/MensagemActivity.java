@@ -123,11 +123,14 @@ public class MensagemActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     id = 0;
                     if (params != null) {
-                        NotificationManager oldNoti = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                         id = params.getInt("id");
-                        oldNoti.cancel(id);
-
                     }
+                    NotificationManager oldNoti = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    oldNoti.cancel(id);
+
+                    NotificationManager oldNoti1 = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    oldNoti1.cancel(-1);
+
                    if(!InsereLogAlarme(0, false))
                    {
                        Toast.makeText(MensagemActivity.this, "falha", Toast.LENGTH_LONG).show();
@@ -168,6 +171,9 @@ public class MensagemActivity extends AppCompatActivity {
                     intent.putExtra("paciente", a.getNomePaciente());
                     intent.putExtra("medicamento", a.getNomeMedicamento());
                     intent.putExtra("mp3", a.getNomeMusica());
+                    intent.putExtra("tocar", a.getTocar());
+                    intent.putExtra("vibrar", a.getVibrar());
+
                     Calendar c = Calendar.getInstance();
                     c.add(Calendar.MINUTE, 10);
                     AlarmUtil.schedule(MensagemActivity.this, intent, c.getTimeInMillis(), -1);
@@ -175,9 +181,9 @@ public class MensagemActivity extends AppCompatActivity {
                     Intent service = new Intent(getApplicationContext(), AlarmeService.class);
                     stopService(service);
 
-                   /* Intent i = new Intent(MensagemActivity.this, ListLogAlarmeActivity.class);
+                    Intent i = new Intent(MensagemActivity.this, ListLogAlarmeActivity.class);
                     i.putExtra("id", id);
-                    startActivity(i);*/
+                    startActivity(i);
 
 
 
@@ -237,7 +243,7 @@ public class MensagemActivity extends AppCompatActivity {
         if (mais10Min)
             log.setHoraTomouMedicamento("+ 10 min");
         else
-            log.setHoraTomouMedicamento(hora + ":" + minuto);
+            log.setHoraTomouMedicamento("00".substring(hora.length()) + hora  + ":" + "00".substring(minuto.length()) + minuto );
         log.setTomei(tomei);
         log.setNomeMedicamento(a.getNomeMedicamento());
         log.setUsuario(a.getNomePaciente());

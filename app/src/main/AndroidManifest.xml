@@ -99,7 +99,8 @@
 
         <activity
             android:name=".CadastrarAlarmeActivity"
-            android:label="Alarme de Medicamento" />
+            android:label="Alarme de Medicamento"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".MensagemActivity"
             android:screenOrientation="portrait"

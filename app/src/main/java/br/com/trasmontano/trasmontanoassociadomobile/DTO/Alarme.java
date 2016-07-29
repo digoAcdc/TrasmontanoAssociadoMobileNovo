@@ -12,6 +12,46 @@ import se.emilsjolander.sprinkles.annotations.Table;
 @Table("alarme")
 public class Alarme extends Model {
 
+
+    @Key
+    @Column("id")
+    @AutoIncrement
+    private long id;
+    @Column("nomeMedicamento")
+    private String nomeMedicamento;
+    @Column("nomePaciente")
+    private String nomePaciente;
+    @Column("nomeMusica")
+    private String nomeMusica;
+    @Column("descricaoMedicamento")
+    private String descricaoMedicamento;
+    @Column("dosagem")
+    private String dosagem;
+    @Column("quantidade")
+    private String quantidade;
+    @Column("dataInicio")
+    private String dataInicio;
+    @Column("horaInicio")
+    private String horaInicio;
+    @Column("intervaloDe")
+    private String intervaloDe;
+    @Column("ativo")
+    private int ativo;
+    @Column("vibrar")
+    private int vibrar;
+    @Column("horarios")
+    private String horarios;
+    @Column("tocar")
+    private int tocar;
+
+    public int getTocar() {
+        return tocar;
+    }
+
+    public void setTocar(int tocar) {
+        this.tocar = tocar;
+    }
+
     public long getId() {
         return id;
     }
@@ -84,32 +124,6 @@ public class Alarme extends Model {
         this.ativo = ativo;
     }
 
-    @Key
-    @Column("id")
-    @AutoIncrement
-    private long id;
-    @Column("nomeMedicamento")
-    private String nomeMedicamento;
-    @Column("nomePaciente")
-    private String nomePaciente;
-    @Column("nomeMusica")
-    private String nomeMusica;
-    @Column("descricaoMedicamento")
-    private String descricaoMedicamento;
-    @Column("dosagem")
-    private String dosagem;
-    @Column("quantidade")
-    private String quantidade;
-    @Column("dataInicio")
-    private String dataInicio;
-    @Column("horaInicio")
-    private String horaInicio;
-    @Column("intervaloDe")
-    private String intervaloDe;
-    @Column("ativo")
-    private int ativo;
-    @Column("vibrar")
-    private int vibrar;
 
     public String getHorarios() {
         return horarios;
@@ -118,9 +132,6 @@ public class Alarme extends Model {
     public void setHorarios(String horarios) {
         this.horarios = horarios;
     }
-
-    @Column("horarios")
-    private String horarios;
 
 
     public int getVibrar() {
@@ -146,8 +157,6 @@ public class Alarme extends Model {
     public void setNomePaciente(String nomePaciente) {
         this.nomePaciente = nomePaciente;
     }
-
-
 
 
 }

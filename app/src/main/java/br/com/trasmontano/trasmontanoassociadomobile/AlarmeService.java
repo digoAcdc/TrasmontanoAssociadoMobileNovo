@@ -32,6 +32,9 @@ import livroandroid.lib.utils.NotificationUtil;
  */
 public class AlarmeService extends Service {
     MediaPlayer mMediaPlayer;
+    Vibrator v;
+    private int tocar = 1;
+    private int vibrar = 1;
 
     public void gerarNotificacao(String paciente, String medicacao, int id, String mp3) {
 
@@ -52,8 +55,14 @@ public class AlarmeService extends Service {
         builder.setContentIntent(p);
 
         Notification n = builder.build();
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (vibrar == 1) {
 
-        n.vibrate = new long[]{0, 4000, 150, 4000};
+            long[] pattern = {0, 2500, 700};
+            v.vibrate(pattern, 0);
+        }
+
+        //n.vibrate = new long[]{0, 4000, 150, 4000};
         n.flags = Notification.FLAG_NO_CLEAR;
         nm.notify(id, n);
 
@@ -61,8 +70,9 @@ public class AlarmeService extends Service {
         mMediaPlayer = new MediaPlayer();
         try {
             String filename = "android.resource://br.com.trasmontano.trasmontanoassociadomobile/raw/highway_to_hell";
-           // String filename = "android.resource://br.com.trasmontano.trasmontanoassociadomobile/raw/palmeiras";
-
+            // String filename = "android.resource://br.com.trasmontano.trasmontanoassociadomobile/raw/palmeiras";
+            if (tocar == 1)
+            {
             if (mp3.equalsIgnoreCase(""))
                 mMediaPlayer.setDataSource(this, Uri.parse(filename));
             else
@@ -74,7 +84,9 @@ public class AlarmeService extends Service {
                 mMediaPlayer.setLooping(true);
                 mMediaPlayer.prepare();
 
+
                 mMediaPlayer.start();
+            }
             }
         } catch (IOException e) {
             System.out.println("OOPS");
@@ -105,16 +117,22 @@ public class AlarmeService extends Service {
             paciente = b.getString("paciente");
             medicamento = b.getString("medicamento");
             mp3 = b.getString("mp3");
-
+            vibrar = b.getInt("vibrar");
+            tocar = b.getInt("tocar");
         }
         gerarNotificacao(paciente, medicamento, id, mp3);
         return START_STICKY;
     }
 
     public void onDestroy() {
-        if (mMediaPlayer.isPlaying()) {
-            mMediaPlayer.stop();
+        if (tocar == 1) {
+            if (mMediaPlayer.isPlaying()) {
+                mMediaPlayer.stop();
+            }
+            mMediaPlayer.release();
         }
-        mMediaPlayer.release();
+        if (v.hasVibrator())
+            v.cancel();
+
     }
 }

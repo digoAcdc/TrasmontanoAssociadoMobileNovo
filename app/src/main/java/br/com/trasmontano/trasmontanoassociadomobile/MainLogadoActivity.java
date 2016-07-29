@@ -178,9 +178,13 @@ public class MainLogadoActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_alarme_medicamentos) {
+            Intent i = new Intent(MainLogadoActivity.this, ListAlarmeActivity.class);
+            startActivity(i);
 
-        }/* else if (id == R.id.nav_send) {
+        }/* else if (id == R.id.nav_share) {
+
+        }else if (id == R.id.nav_send) {
 
         }*/
 

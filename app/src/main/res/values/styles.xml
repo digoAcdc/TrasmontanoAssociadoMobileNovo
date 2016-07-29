@@ -11,6 +11,7 @@
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
+        <item name="android:textColor">@color/white</item>
         <item name="windowNoTitle">true</item>
     </style>
 
@@ -23,6 +24,13 @@
         <item name="DialogTitleText">AGUARDE…</item>
         <item name="DialogSpotColor">@color/colorPrimaryDark</item>
         <item name="DialogSpotCount">4</item>
+    </style>
+
+    <style name="AppTheme.StyleTollbar" parent="AppTheme">
+        <item name="android:textColor">@color/white</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="StyleCardTitle" parent="@style/TextAppearance.AppCompat.Caption">
@@ -58,8 +66,8 @@
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:background">#ba3e3e</item>
         <!--<item name="android:background">#741D1D</item>-->
         <item name="android:textColor">@color/cardview_light_background</item>
 

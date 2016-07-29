@@ -11,6 +11,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -25,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jaredrummler.materialspinner.MaterialSpinner;
+
+import net.colindodd.toggleimagebutton.ToggleImageButton;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -53,24 +56,26 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
     EditText etDescricacoMedicamento;
     MaterialSpinner spinner;
     EditText etQuantidade;
-
     ImageButton btMp3;
     LinearLayout lnMp3;
     EditText etMp3;
-
-
     TextView tvDataInicioLabel;
     TextView tvHoraInicioLabel;
     LinearLayout lnHoraIntervalo;
     LinearLayout lnDataInicio;
     LinearLayout lnHoraInicio;
-
     Button btCadastrarAlarme;
+    ToggleImageButton tibSound;
+    ToggleImageButton tibVibration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_alarme);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar1);
+        myToolbar.setTitleTextColor(android.graphics.Color.WHITE);
+        setSupportActionBar(myToolbar);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -83,16 +88,16 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
         tvDataInicioLabel = (TextView) findViewById(R.id.tvDataInicioLabel);
         etHoraInicio = (EditText) findViewById(R.id.etHoraInicio);
         tvHoraInicioLabel = (TextView) findViewById(R.id.tvHoraInicioLabel);
-
         lnHoraIntervalo = (LinearLayout) findViewById(R.id.lnHoraIntervalo);
         lnDataInicio = (LinearLayout) findViewById(R.id.lnDataInicio);
         lnHoraInicio = (LinearLayout) findViewById(R.id.lnHoraInicial);
         etHoraInvervalo = (EditText) findViewById(R.id.etHoraInvervalo);
-
         btCadastrarAlarme = (Button) findViewById(R.id.btCadastrarAlarme);
         lnMp3 = (LinearLayout) findViewById(R.id.lnMp3);
         etMp3 = (EditText) findViewById(R.id.etMp3);
         btMp3 = (ImageButton) findViewById(R.id.imbMp3);
+        tibSound = (ToggleImageButton) findViewById(R.id.timbSound);
+        tibVibration = (ToggleImageButton) findViewById(R.id.timbVibration);
 
         etMp3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +134,15 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
                 a.setIntervaloDe(etHoraInvervalo.getText().toString());
                 a.setNomePaciente(etNomePaciente.getText().toString());
                 a.setNomeMusica(etMp3.getText().toString());
-                a.setVibrar(1);
+                if (tibSound.isChecked())
+                    a.setTocar(1);
+                else
+                    a.setTocar(0);
+                if (tibVibration.isChecked())
+                    a.setVibrar(1);
+                else
+                    a.setVibrar(0);
+
                 a.setAtivo(1);
 
                 String[] parts = a.getHoraInicio().split(":");
@@ -183,7 +196,7 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
                 if (horaIntervalo != 0)
                     a.setHorarios(horarios.substring(0, horarios.length() - 3));
                 else
-                a.setHorarios("");
+                    a.setHorarios("");
 
                 if (a.save()) {
 
@@ -197,6 +210,8 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
                     intent.putExtra("paciente", a.getNomePaciente());
                     intent.putExtra("medicamento", a.getNomeMedicamento());
                     intent.putExtra("mp3", a.getNomeMusica());
+                    intent.putExtra("vibrar", a.getVibrar());
+                    intent.putExtra("tocar", a.getTocar());
                     AlarmUtil.scheduleRepeat(CadastrarAlarmeActivity.this, intent, alarmeInicio, alarmeIntervalo, id);
                     Intent i = new Intent(CadastrarAlarmeActivity.this, ListAlarmeActivity.class);
 

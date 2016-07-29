@@ -123,6 +123,15 @@ public class ListLogAlarmeActivity extends AppCompatActivity {
             }
         };
     }
+    @Override
+    public void onBackPressed() {
+        // Otherwise defer to system default behavior.
+        super.onBackPressed();
+
+        Intent i = new Intent(ListLogAlarmeActivity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
 
 
 }

@@ -52,6 +52,7 @@ public class PDVAplication extends Application {
                                 "intervaloDe TEXT, " +
                                 "horarios TEXT, " +
                                 "ativo INTEGER, " +
+                                "tocar INTEGER, " +
                                 "vibrar INTEGER " +
                         ")"
                 );
