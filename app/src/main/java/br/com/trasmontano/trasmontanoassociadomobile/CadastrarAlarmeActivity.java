@@ -182,6 +182,8 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
                 }
                 if (horaIntervalo != 0)
                     a.setHorarios(horarios.substring(0, horarios.length() - 3));
+                else
+                a.setHorarios("");
 
                 if (a.save()) {
 

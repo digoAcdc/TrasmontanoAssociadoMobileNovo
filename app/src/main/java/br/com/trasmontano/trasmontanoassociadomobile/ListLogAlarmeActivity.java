@@ -56,7 +56,7 @@ public class ListLogAlarmeActivity extends AppCompatActivity {
 
         Alarme a = Query.one(Alarme.class, "select * from alarme where id=?", id).get();
         tvNome.setText("Paciente: " + a.getNomePaciente());
-        tvNomeMedicamento.setText("Medicamento" + a.getNomeMedicamento());
+        tvNomeMedicamento.setText("Medicamento: " + a.getNomeMedicamento());
 
         CarregaLista(id);
     }
@@ -82,7 +82,7 @@ public class ListLogAlarmeActivity extends AppCompatActivity {
                 TextView tvHora = (TextView)view.findViewById(R.id.tvHora);
                 TextView tvId = (TextView)view.findViewById(R.id.tvId);
 
-                LogMedicamentosTomados l = Query.one(LogMedicamentosTomados.class, "select * from logMedicamentosTomados where idAlarme=?", tvId.getText().toString()).get();
+                LogMedicamentosTomados l = Query.one(LogMedicamentosTomados.class, "select * from logMedicamentosTomados where id=?", tvId.getText().toString()).get();
 
 
                 if(shineButton.isChecked())

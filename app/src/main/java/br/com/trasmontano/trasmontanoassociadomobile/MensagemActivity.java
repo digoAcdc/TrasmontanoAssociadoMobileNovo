@@ -128,7 +128,10 @@ public class MensagemActivity extends AppCompatActivity {
                         oldNoti.cancel(id);
 
                     }
-                    InsereLogAlarme(0, false);
+                   if(!InsereLogAlarme(0, false))
+                   {
+                       Toast.makeText(MensagemActivity.this, "falha", Toast.LENGTH_LONG).show();
+                   }
 
                     Intent service = new Intent(getApplicationContext(), AlarmeService.class);
                     stopService(service);
@@ -150,7 +153,7 @@ public class MensagemActivity extends AppCompatActivity {
                     if (params != null) {
                         id = params.getInt("id");
                     }
-                    List<LogMedicamentosTomados> lst = Query.all(LogMedicamentosTomados.class).get().asList();
+                    //List<LogMedicamentosTomados> lst = Query.all(LogMedicamentosTomados.class).get().asList();
 
 
                     NotificationManager oldNoti = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -172,20 +175,11 @@ public class MensagemActivity extends AppCompatActivity {
                     Intent service = new Intent(getApplicationContext(), AlarmeService.class);
                     stopService(service);
 
-                    Intent i = new Intent(MensagemActivity.this, ListLogAlarmeActivity.class);
+                   /* Intent i = new Intent(MensagemActivity.this, ListLogAlarmeActivity.class);
                     i.putExtra("id", id);
-                    startActivity(i);
+                    startActivity(i);*/
 
-                    /*log = Query.one(LogMedicamentosTomados.class, "select * from logMedicamentosTomados where idAlarme=?", id).get();
-                    if(log == null)
-                    {
-                        log.setIdAlarme(id);
-                        log.setUsuario(a.getNomePaciente());
-                        log.setNomeMedicamento(a.getNomeMedicamento());
-                        log.setDataTomouMedicamento("");
-                        log.setHoraTomouMedicamento("");
-                        log.save();
-                    }*/
+
 
                     finish();
                 }
@@ -212,7 +206,7 @@ public class MensagemActivity extends AppCompatActivity {
 
                     log.save();*/
                     if (!InsereLogAlarme(1, false)) {
-                        Toast.makeText(MensagemActivity.this, "", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MensagemActivity.this, "falha", Toast.LENGTH_LONG).show();
                     }
 
                     Intent service = new Intent(getApplicationContext(), AlarmeService.class);
@@ -268,5 +262,11 @@ public class MensagemActivity extends AppCompatActivity {
         dia = String.valueOf(day);
         mes = String.valueOf(month + 1);
         ano = String.valueOf(year);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

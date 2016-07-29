@@ -64,6 +64,7 @@ public class ListAlarmeActivity extends AppCompatActivity {
 
                 Intent i = new Intent(ListAlarmeActivity.this, CadastrarAlarmeActivity.class);
                 startActivity(i);
+                finish();
 
             }
         });
@@ -270,6 +271,7 @@ public class ListAlarmeActivity extends AppCompatActivity {
                                         Intent intent = new Intent(AlarmeBroadcastReceiver.ACTION);
                                         String id = String.valueOf(a.getId());
                                         AlarmUtil.cancel(ListAlarmeActivity.this, intent, Integer.parseInt(id));
+                                        AlarmUtil.cancel(ListAlarmeActivity.this, intent, -1);
 
                                         if (a != null) {
                                             a.deleteAsync(new Model.OnDeletedCallback() {
