@@ -18,8 +18,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.List;
+
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.AgendaMedicaAssociado;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Associado;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Login;
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.Preferencias;
 import br.com.trasmontano.trasmontanoassociadomobile.network.APIClient;
 import dmax.dialog.SpotsDialog;
 import retrofit.Callback;
@@ -27,7 +31,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import se.emilsjolander.sprinkles.Query;
 
-public class LoginActivity extends AppCompatActivity  {
+public  class LoginActivity extends AppCompatActivity  {
     private Button btEntrar;
 
     private Button btCadastrar;
@@ -101,7 +105,9 @@ public class LoginActivity extends AppCompatActivity  {
         });
 
         tisenha.requestFocus();
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -119,7 +125,6 @@ public class LoginActivity extends AppCompatActivity  {
             super.onBackPressed();
         }
     }
-
 
     private void configureInformacaoAssociadoCallback() {
         callbackUsuario = new Callback<Login>() {
@@ -180,7 +185,10 @@ public class LoginActivity extends AppCompatActivity  {
     }
 
     public void GuardarDadosLoginAssociado(Login login, String redirecionarPara) {
-        SharedPreferences.Editor editor = getSharedPreferences("DADOS_LOGIN", MODE_PRIVATE).edit();
+
+        Preferencias p = new Preferencias(this);
+        p.GuardarDadosLoginAssociado(login, redirecionarPara);
+        /*SharedPreferences.Editor editor = getSharedPreferences("DADOS_LOGIN", MODE_PRIVATE).edit();
         editor.putString("Bloqueado", Integer.toString(login.getBloqueado()));
         editor.putString("ExpiraEm", Integer.toString(login.getExpiraEm()));
         editor.putString("StatusAcesso", Integer.toString(login.getStatusAcesso()));
@@ -194,6 +202,6 @@ public class LoginActivity extends AppCompatActivity  {
         if (redirecionarPara != "")
             editor.putString("redirecionarPara", redirecionarPara);
 
-        editor.commit();
+        editor.commit();*/
     }
 }

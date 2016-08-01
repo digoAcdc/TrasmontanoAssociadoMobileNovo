@@ -49,7 +49,13 @@ public class APIClient {
                 @Path("dependente") String dependente,
                 Callback<List<DadosCarteirinha>> callbackCarteirinhaTemporaria
         );
-
+        @GET("/associado/agendaMedicaAssociado/{matricula}/{dependente}/{tipo}")
+        void getAngendaMedicaAssociado(
+                @Path("matricula") String matricula ,
+                @Path("dependente") String dependente,
+                @Path("tipo") int tipo,
+                Callback<List<AgendaMedicaAssociado>> callbackAgendaMedicaAssociado
+        );
 
     }
 }

@@ -253,7 +253,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:background="@drawable/circle"
-            android:backgroundTint="#a73838"
+            android:backgroundTint="#8B7355"
             android:text="Cadastrar"
             android:textColor="@color/white" />
 

@@ -75,6 +75,7 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar1);
         myToolbar.setTitleTextColor(android.graphics.Color.WHITE);
+
         setSupportActionBar(myToolbar);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

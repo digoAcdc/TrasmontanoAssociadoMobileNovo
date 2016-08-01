@@ -55,6 +55,7 @@ public class AlarmeService extends Service {
         builder.setContentIntent(p);
 
         Notification n = builder.build();
+
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (vibrar == 1) {
 

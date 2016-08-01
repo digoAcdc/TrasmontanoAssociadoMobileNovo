@@ -60,7 +60,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainLogadoActivity"
-            android:label="@string/title_activity_main_logado"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CarteirinhaActivity"
@@ -78,7 +78,7 @@
 
         <activity android:name=".CarteirinhaPessoaFisicaFrenteFragment" />
         -->
-        <activity android:name=".ListAlarmeActivity" />
+        <activity android:name=".ListAlarmeActivity" android:label="Alarme"/>
 
         <!--
         <receiver android:name=".AlarmeBroadcastReceiver" >

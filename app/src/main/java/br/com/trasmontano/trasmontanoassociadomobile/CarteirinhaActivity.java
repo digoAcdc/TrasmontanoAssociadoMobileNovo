@@ -29,6 +29,7 @@ public class CarteirinhaActivity extends AppCompatActivity {
     //private Callback<List<DadosCarteirinha>> callbackCarteirinhaTemporaria;
     String TipoPlano;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

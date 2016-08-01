@@ -4,7 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="txtAbrirCamera">Abrir a Camera</string>
-    <string name="action_settings">Opções</string>
+    <string name="action_settings">Sobre</string>
     <string name="btLogin">Login</string>
     <string name="txtUsuario">Usuario</string>
     <string name="txtSenha">Senha</string>

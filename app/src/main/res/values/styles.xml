@@ -67,8 +67,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14dp</item>
-        <item name="android:background">#ba3e3e</item>
-        <!--<item name="android:background">#741D1D</item>-->
+        <item name="android:background">#CD853F</item>
+        <item name="android:textStyle">bold</item>
+        <!--<item name="android:background">#ba3e3e</item>-->
         <item name="android:textColor">@color/cardview_light_background</item>
 
     </style>

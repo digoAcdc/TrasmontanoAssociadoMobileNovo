@@ -1,9 +1,13 @@
 package br.com.trasmontano.trasmontanoassociadomobile;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,7 +19,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -23,7 +29,13 @@ import com.synnapps.carouselview.ImageListener;
 import java.util.List;
 
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Associado;
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.Login;
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.Preferencias;
+import br.com.trasmontano.trasmontanoassociadomobile.network.APIClient;
 import dmax.dialog.SpotsDialog;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import se.emilsjolander.sprinkles.Query;
 
 public class MainActivity extends AppCompatActivity
@@ -33,6 +45,10 @@ public class MainActivity extends AppCompatActivity
     private Button btCarteirinhaSemLogin;
     private Button btAlarmeMedicamentos;
     SpotsDialog spotsDialog;
+    private String redirecionarPara;
+
+
+    private Callback<Login> callbackUsuario;
 
     CarouselView carouselView;
 
@@ -48,13 +64,17 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        configureInformacaoAssociadoCallback();
+
         btLogar = (Button) findViewById(R.id.btLogar);
         btCarteirinhaSemLogin = (Button) findViewById(R.id.btCarteirinhaSemLogin);
 
         btCarteirinhaSemLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CarteirinhaSemLogin();
+                redirecionarPara = "CarteirinhaTemporaria";
+                showInputDialog();
+                //CarteirinhaSemLogin();
 
             }
         });
@@ -143,7 +163,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_login) {
             Logar();
         } else if (id == R.id.nav_carteirinha_sem_logar) {
-            CarteirinhaSemLogin();
+            redirecionarPara = "CarteirinhaTemporaria";
+            showInputDialog();
+            //CarteirinhaSemLogin();
         } else if (id == R.id.nav_home) {
 
 
@@ -152,10 +174,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_alarme_medicamentos) {
             Intent i = new Intent(MainActivity.this, ListAlarmeActivity.class);
             startActivity(i);
-
-        } else if (id == R.id.nav_carteirinha_sem_logar) {
-
         }
+
+       /* } else if (id == R.id.nav_carteirinha_sem_logar) {
+
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -188,6 +211,110 @@ public class MainActivity extends AppCompatActivity
         params.putString("redirecionarPara", "CarteirinhaTemporaria");
         intent.putExtras(params);
         startActivity(intent);
+    }
+
+    protected void showInputDialog() {
+
+        // get prompts.xml view
+        LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+        View promptView = layoutInflater.inflate(R.layout.input_dialog, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setView(promptView);
+
+        final EditText etSenha = (EditText) promptView.findViewById(R.id.etSenha);
+        final EditText etLogin = (EditText) promptView.findViewById(R.id.etLogin);
+
+
+        // setup a dialog window
+        alertDialogBuilder.setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //resultText.setText("Hello, " + editText.getText());
+                        if(etLogin.getText().toString().equals("") || etLogin.getText().toString().equals(""))
+                        {
+                            Toast.makeText(MainActivity.this, "Login/Senha Obrigatórios", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            spotsDialog.show();
+                            new APIClient().getRestService().getLoginAssociado(etLogin.getText().toString(),
+                                    etSenha.getText().toString(), callbackUsuario);
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create an alert dialog
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }
+    private void configureInformacaoAssociadoCallback() {
+        callbackUsuario = new Callback<Login>() {
+
+            @Override
+            public void success(Login login, Response response) {
+
+                if (login.UsuarioValido == true & login.SenhaValida == true & login.getBloqueado() == 0) {
+                    if (login.getSituacao().equalsIgnoreCase("A") | login.getSituacao().equalsIgnoreCase("S")) {
+
+                        Associado a = Query.one(Associado.class, "select * from associado where usuario=?", login.getCodigoUsuario()).get();
+                        if (a == null) {
+                            a = new Associado();
+                            a.setUsuario(login.getCodigoUsuario());
+                            a.save();
+                        }
+
+                        GuardarDadosLoginAssociado(login, redirecionarPara);
+                        finish();
+                        Intent intent = new Intent(MainActivity.this, MainLogadoActivity.class);
+                        startActivity(intent);
+                    } else {
+                        if (login.UsuarioValido == false) {
+                            Toast.makeText(MainActivity.this, "Usuario Inválido", Toast.LENGTH_LONG).show();
+
+                        } else if (login.SenhaValida == false) {
+                            Toast.makeText(MainActivity.this, "Senha Inválida", Toast.LENGTH_LONG).show();
+
+                        } else {
+                            Toast.makeText(MainActivity.this, "Login/Senha Inválidos", Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+                    spotsDialog.dismiss();
+                } else {
+                    if (login.UsuarioValido == false) {
+                        Toast.makeText(MainActivity.this, "Usuario Inválido", Toast.LENGTH_LONG).show();
+
+                    } else if (login.SenhaValida == false) {
+                        Toast.makeText(MainActivity.this, "Senha Inválida", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        Toast.makeText(MainActivity.this, "Login/Senha Inválidos", Toast.LENGTH_LONG).show();
+
+                    }
+                }
+                spotsDialog.dismiss();
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("ERRO-------->", error.getMessage().toString());
+                Toast.makeText(MainActivity.this, "Falha ao conectar no servidor", Toast.LENGTH_LONG).show();
+                spotsDialog.dismiss();
+            }
+        };
+    }
+
+    public void GuardarDadosLoginAssociado(Login login, String redirecionarPara) {
+
+        Preferencias p = new Preferencias(this);
+        p.GuardarDadosLoginAssociado(login, redirecionarPara);
+
     }
 
 }

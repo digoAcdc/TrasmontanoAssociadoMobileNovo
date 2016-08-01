@@ -19,15 +19,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.antonionicolaspina.revealtextview.RevealTextView;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.io.File;
+import java.util.List;
 
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.AgendaMedicaAssociado;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Associado;
+import br.com.trasmontano.trasmontanoassociadomobile.network.APIClient;
 import dmax.dialog.SpotsDialog;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import se.emilsjolander.sprinkles.Query;
 
 public class MainLogadoActivity extends AppCompatActivity
@@ -38,6 +45,8 @@ public class MainLogadoActivity extends AppCompatActivity
     private RevealTextView revealTextView;
     private RevealTextView revealTextViewNome;
     private String TipoPlano;
+    private TextView tvQtdConsultas;
+    private Callback<List<AgendaMedicaAssociado>> callbackAgendaMedicaAssociado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +63,8 @@ public class MainLogadoActivity extends AppCompatActivity
         String redirecionarPara = prefs.getString("redirecionarPara", "");
         TipoPlano = prefs.getString("PerfilUsuario", "");
         prefs.edit().remove("redirecionarPara").commit();
+
+        configureInformacaoAgendaMedicaAssociadoCallback();
 
         Associado a = Query.one(Associado.class, "select * from associado where usuario=?", mat).get();
 
@@ -101,15 +112,37 @@ public class MainLogadoActivity extends AppCompatActivity
             CarteirinhaVirtual();
         }
 
+        new APIClient().getRestService().getAngendaMedicaAssociado("554020",
+                "00", 0, callbackAgendaMedicaAssociado);
+
     }
-    public void Encerrar()
-    {
+
+    public void Encerrar() {
         super.onBackPressed();
     }
-    public void CarteirinhaVirtual()
-    {
+
+    public void CarteirinhaVirtual() {
         Intent i = new Intent(this, CarteirinhaActivity.class);
         startActivity(i);
+    }
+
+    private void configureInformacaoAgendaMedicaAssociadoCallback() {
+        callbackAgendaMedicaAssociado = new Callback<List<AgendaMedicaAssociado>>() {
+
+            @Override
+            public void success(List<AgendaMedicaAssociado> agendaMedicaAssociados, Response response) {
+
+                tvQtdConsultas = (TextView) findViewById(R.id.tvQtdConsultas);
+                tvQtdConsultas.setText(String.valueOf(agendaMedicaAssociados.size()) + " Consulta(s) Agendada(s)");
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        };
+
     }
 
     @Override
@@ -193,12 +226,11 @@ public class MainLogadoActivity extends AppCompatActivity
         return true;
     }
 
-    public void OpcaoEncerrarApp()
-    {
+    public void OpcaoEncerrarApp() {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch (which){
+                switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
                         Encerrar();
                         break;

@@ -19,9 +19,15 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:background="@drawable/backgroundred" />
+            android:layout_height="100dp"
+            android:layout_gravity="top"
+            android:background="@drawable/rodape_superior" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/rodape" />
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,7 +73,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/style_button_red"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:background="@drawable/circle"
                         android:text="@string/txtEntrar"
                         android:textColor="@color/icons" />
 
