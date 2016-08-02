@@ -78,7 +78,9 @@
 
         <activity android:name=".CarteirinhaPessoaFisicaFrenteFragment" />
         -->
-        <activity android:name=".ListAlarmeActivity" android:label="Alarme"/>
+        <activity
+            android:name=".ListAlarmeActivity"
+            android:label="Alarme" />
 
         <!--
         <receiver android:name=".AlarmeBroadcastReceiver" >
@@ -100,7 +102,7 @@
         <activity
             android:name=".CadastrarAlarmeActivity"
             android:label="Alarme de Medicamento"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MensagemActivity"
             android:screenOrientation="portrait"
@@ -119,8 +121,8 @@
 
         <activity
             android:name=".ListLogAlarmeActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ListAgendamentoConsultaActivity"></activity>
     </application>
 
 </manifest>

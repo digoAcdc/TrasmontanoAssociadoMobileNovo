@@ -174,6 +174,36 @@
                     android:gravity="center"
                     android:text="Virtual" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btagendamentoDeConsulta"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/style_button_azul"
+                    android:drawableTop="@android:drawable/ic_menu_my_calendar"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:textColor="#fff" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Agendamento" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="de Consulta" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

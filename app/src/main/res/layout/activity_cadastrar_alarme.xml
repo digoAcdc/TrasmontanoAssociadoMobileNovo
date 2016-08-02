@@ -16,7 +16,8 @@
         <include layout="@layout/toolbar"></include>
 
         <TextView
-            style="@style/StyleAlarmeTitle"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +31,8 @@
             android:maxLength="30" />
 
         <TextView
-            style="@style/StyleAlarmeTitle"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nome do Medicamento" />
@@ -43,9 +45,9 @@
             android:maxLength="15" />
 
         <TextView
-            style="@style/StyleAlarmeTitle"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:text="Descrição do Medicamento" />
 
@@ -63,7 +65,8 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/StyleAlarmeTitle"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Música Alarme" />
@@ -87,8 +90,6 @@
                     android:id="@+id/imbMp3"
                     android:layout_weight="0.2"
                     android:background="@drawable/mp3" />
-
-
             </LinearLayout>
         </LinearLayout>
 
@@ -106,7 +107,8 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/StyleAlarmeTitle"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tipo" />
@@ -115,7 +117,6 @@
                     android:id="@+id/spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -125,7 +126,8 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/StyleAlarmeTitle"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Qtd" />
@@ -146,8 +148,9 @@
             android:orientation="vertical">
 
             <TextView
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text"
                 android:id="@+id/tvDataInicioLabel"
-                style="@style/StyleAlarmeTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Data Inicio" />
@@ -169,8 +172,9 @@
             android:orientation="vertical">
 
             <TextView
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text"
                 android:id="@+id/tvHoraInicioLabel"
-                style="@style/StyleAlarmeTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hora Inicial" />
@@ -185,8 +189,9 @@
         </LinearLayout>
 
         <TextView
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text"
             android:id="@+id/tvHoraIntervaloLabel"
-            style="@style/StyleAlarmeTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
@@ -207,10 +212,10 @@
                 android:textSize="16dp" />
 
             <TextView
+                android:textSize="@dimen/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" horas"
-                android:textSize="16dp" />
+                android:text=" horas"/>
         </LinearLayout>
 
         <LinearLayout
@@ -241,11 +246,7 @@
                 tib:tib_drawable_on="@drawable/vibration"
                 tib:tib_drawable_off="@drawable/not_vibration"
                 android:checked="true" />
-
-
         </LinearLayout>
-
-
 
         <Button
             android:id="@+id/btCadastrarAlarme"
@@ -253,7 +254,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:background="@drawable/circle"
-            android:backgroundTint="#8B7355"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:text="Cadastrar"
             android:textColor="@color/white" />
 
