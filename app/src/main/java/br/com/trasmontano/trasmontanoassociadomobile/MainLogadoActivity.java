@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class MainLogadoActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     SpotsDialog spotsDialog;
     private Button btCarteirinha;
+    private Button btAgendamentoConsulta;
     private CircularImageView circularImageView;
     private RevealTextView revealTextView;
     private RevealTextView revealTextViewNome;
@@ -60,6 +62,7 @@ public class MainLogadoActivity extends AppCompatActivity
         SharedPreferences prefs = getSharedPreferences("DADOS_LOGIN", MODE_PRIVATE);
         String nome = prefs.getString("NomeUsuario", "");
         String mat = prefs.getString("CodigoUsuario", "");
+        String cdDependente = prefs.getString("CodigoDependente", "");
         String redirecionarPara = prefs.getString("redirecionarPara", "");
         TipoPlano = prefs.getString("PerfilUsuario", "");
         prefs.edit().remove("redirecionarPara").commit();
@@ -81,6 +84,16 @@ public class MainLogadoActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 CarteirinhaVirtual();
+            }
+        });
+
+        btAgendamentoConsulta = (Button)findViewById(R.id.btagendamentoDeConsulta);
+
+        btAgendamentoConsulta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainLogadoActivity.this, ListAgendamentoConsultaActivity.class);
+                startActivity(i);
             }
         });
 
@@ -112,8 +125,8 @@ public class MainLogadoActivity extends AppCompatActivity
             CarteirinhaVirtual();
         }
 
-        new APIClient().getRestService().getAngendaMedicaAssociado("554020",
-                "00", 0, callbackAgendaMedicaAssociado);
+        new APIClient().getRestService().getAngendaMedicaAssociado(mat,
+                cdDependente, 0, callbackAgendaMedicaAssociado);
 
     }
 

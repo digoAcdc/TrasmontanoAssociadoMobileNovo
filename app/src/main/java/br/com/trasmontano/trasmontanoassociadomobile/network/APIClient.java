@@ -56,6 +56,15 @@ public class APIClient {
                 @Path("tipo") int tipo,
                 Callback<List<AgendaMedicaAssociado>> callbackAgendaMedicaAssociado
         );
+        @GET("/associado/agendamentoMedicoWebParametros/{tipo}/{cdEspecialidade}/{cdLocalidade}")
+        void getAgendamentoMedicoWebParametros(
+                @Path("tipo") byte tipo ,
+                @Path("cdEspecialidade") int cdEspecialidade,
+                @Path("cdLocalidade") int cdLocalidade,
+                Callback<List<AgendamentoMedicoWebParametros>> callbackAgendamentoMedicoWebParametros
+        );
+
+
 
     }
 }

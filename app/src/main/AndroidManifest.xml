@@ -121,8 +121,9 @@
 
         <activity
             android:name=".ListLogAlarmeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ListAgendamentoConsultaActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ListAgendamentoConsultaActivity" />
+        <activity android:name=".AgendamentoDeConsultaActivity"></activity>
     </application>
 
 </manifest>

@@ -20,31 +20,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
-            android:orientation="vertical"
-            android:background="#ffffff">
+            android:background="#ffffff"
+            android:orientation="vertical">
 
             <TextView
-                style="@style/StyleCardTitle"
-                android:textSize="16dp"
-                android:gravity="left"
                 android:id="@+id/tvConsulta"
+                style="@style/StyleCardTitle"
+                android:gravity="left"
+                android:maxLength="30"
                 android:text="Consulta"
-                android:maxLength="30" />
+                android:textSize="16dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="10dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/consulta"/>
+                        android:layout_width="100dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/consulta" />
 
                 </LinearLayout>
 
@@ -54,64 +55,63 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvDataHora"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
-                        android:text="Data: 02/08/2016 07:45"
-                        android:id="@+id/tvDataHora"/>
+                        android:text="Data: 02/08/2016 07:45" />
 
                     <TextView
+                        android:id="@+id/tvMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
-                        android:text="Médico: Rodrigo Silveira Barbosa"
-                        android:id="@+id/tvMedico"/>
+                        android:text="Médico: Rodrigo Silveira Barbosa" />
 
                     <TextView
+                        android:id="@+id/tvEspecialidade"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
-                        android:text="Especialidade: Clínica Geral"
-                        android:id="@+id/tvEspecialidade"/>
+                        android:text="Especialidade: Clínica Geral" />
 
                     <TextView
+                        android:id="@+id/tvLocalidade"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
-                        android:text="Localidade: SEDE (São Paulo)"
-                        android:id="@+id/tvLocalidade"/>
+                        android:text="Localidade: SEDE (São Paulo)" />
 
                     <TextView
+                        android:id="@+id/tvSituacao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
-                        android:text="Situação: Agendado"
-                        android:id="@+id/tvSituacao"/>
+                        android:text="Situação: Agendado" />
                 </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
-                android:layout_gravity="right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tvId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    android:id="@+id/tvId"/>
+                    android:visibility="invisible" />
 
                 <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:id="@+id/imbDeleteAlarme"
-                    android:src="@drawable/delete"
-                    android:baselineAlignBottom="false"
-                    android:background="@drawable/circle" />
-
-
-
+                    android:id="@+id/imbDeleteAgendamentoConsulta"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/circle"
+                    android:src="@drawable/delete" />
             </LinearLayout>
 
 
