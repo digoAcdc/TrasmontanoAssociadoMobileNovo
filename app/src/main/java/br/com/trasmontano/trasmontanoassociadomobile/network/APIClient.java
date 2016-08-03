@@ -64,6 +64,25 @@ public class APIClient {
                 Callback<List<AgendamentoMedicoWebParametros>> callbackAgendamentoMedicoWebParametros
         );
 
+        @GET("/associado/agendamentoMedicoWebDadosAssociado/{matricula}/{cdDependente}")
+        void getAgendamentoMedicoWebDadosAssociado(
+                @Path("matricula") String matricula ,
+                @Path("cdDependente") String cdDependente,
+                Callback<Associado> callbackAgendamentoMedicoWebDadosAssociado
+        );
+        @GET("/associado/agendamentoMedicoWeb/{Inicio}/{Fim}/{cdEspecialidade}/{cdLocalidade}/{cdMedico}/{sexo}/{idade}/{tipo}/{cdReferencia}")
+        void getAgendamentoMedicoWeb(
+                @Path("Inicio") String Inicio ,
+                @Path("Fim") String Fim,
+                @Path("cdEspecialidade") int cdEspecialidade,
+                @Path("cdLocalidade") int cdLocalidade,
+                @Path("cdMedico") int cdMedico,
+                @Path("sexo") String sexo,
+                @Path("idade") int idade,
+                @Path("tipo") boolean tipo,
+                @Path("cdReferencia") int cdReferencia,
+                Callback<List<DadosConsulta>> callbackAgendamentoMedicoWeb
+        );
 
 
     }

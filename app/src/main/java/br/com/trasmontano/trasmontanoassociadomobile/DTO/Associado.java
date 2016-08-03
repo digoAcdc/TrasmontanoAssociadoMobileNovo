@@ -27,6 +27,80 @@ public class Associado extends Model {
     @Column("cpf")
     private String cpf;
 
+    private int Idade;
+    private int Tipo;
+    private String Sexo;
+    private String Situacao;
+    private String RG;
+    private String CPF;
+    private String DDD;
+
+    public int getIdade() {
+        return Idade;
+    }
+
+    public void setIdade(int idade) {
+        Idade = idade;
+    }
+
+    public int getTipo() {
+        return Tipo;
+    }
+
+    public void setTipo(int tipo) {
+        Tipo = tipo;
+    }
+
+    public String getSexo() {
+        return Sexo;
+    }
+
+    public void setSexo(String sexo) {
+        Sexo = sexo;
+    }
+
+    public String getSituacao() {
+        return Situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        Situacao = situacao;
+    }
+
+    public String getRG() {
+        return RG;
+    }
+
+    public void setRG(String RG) {
+        this.RG = RG;
+    }
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
+    }
+
+    public String getDDD() {
+        return DDD;
+    }
+
+    public void setDDD(String DDD) {
+        this.DDD = DDD;
+    }
+
+    public String getFone() {
+        return Fone;
+    }
+
+    public void setFone(String fone) {
+        Fone = fone;
+    }
+
+    private String Fone;
+
    /* private String senha;
     private String email;
     private String lembreteSenha;*/

@@ -4,33 +4,35 @@ package br.com.trasmontano.trasmontanoassociadomobile.DTO;
  * Created by rbarbosa on 02/08/2016.
  */
 public class AgendamentoMedicoWebParametros {
-    private String cbos;
-    private String especialidade;
+    private String CBOS;
+    private String cdDescricao;
 
-    public String getLocalidade() {
-        return localidade;
+    public String getDsDescricao() {
+        return dsDescricao;
     }
 
-    public void setLocalidade(String localidade) {
-        this.localidade = localidade;
+    public void setDsDescricao(String dsDescricao) {
+        this.dsDescricao = dsDescricao;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
+    public String getCdDescricao() {
+        return cdDescricao;
     }
 
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
+    public void setCdDescricao(String cdDescricao) {
+        this.cdDescricao = cdDescricao;
     }
 
-    public String getCbos() {
-        return cbos;
+    public String getCBOS() {
+        return CBOS;
     }
 
-    public void setCbos(String cbos) {
-        this.cbos = cbos;
+    public void setCBOS(String CBOS) {
+        this.CBOS = CBOS;
     }
 
-    private String localidade;
+    private String dsDescricao;
+
+
 
 }

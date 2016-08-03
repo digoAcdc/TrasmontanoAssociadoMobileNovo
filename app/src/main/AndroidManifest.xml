@@ -123,7 +123,14 @@
             android:name=".ListLogAlarmeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ListAgendamentoConsultaActivity" />
-        <activity android:name=".AgendamentoDeConsultaActivity"></activity>
+        <activity
+            android:name=".AgendamentoDeConsultaActivity"
+            android:label="Agendamento de Consulta"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListConsultaActivity"
+            android:label="Agendamento de Consulta">
+        </activity>
     </application>
 
 </manifest>
