@@ -40,7 +40,6 @@ public class ListAgendamentoConsultaActivity extends AppCompatActivity {
     private String nomeUsuario = "";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +71,6 @@ public class ListAgendamentoConsultaActivity extends AppCompatActivity {
         mat = prefs.getString("CodigoUsuario", "");
         perfilUsuario = prefs.getString("PerfilUsuario", "");
         nomeUsuario = prefs.getString("NomeUsuario", "");
-
 
 
         new APIClient().getRestService().getAngendaMedicaAssociado(mat,
@@ -135,9 +133,9 @@ public class ListAgendamentoConsultaActivity extends AppCompatActivity {
                         TextView tvDataHora = (TextView) view.findViewById(R.id.tvDataHora);
                         TextView tvLocalidade = (TextView) view.findViewById(R.id.tvLocalidade);
                         TextView tvEspecialidade = (TextView) view.findViewById(R.id.tvEspecialidade);
-                        String assunto = "Id Agenda: " + " " + tvId.getText().toString() + " " + "Horário: " + " " + tvDataHora.getText().toString() +  " " + tvLocalidade.getText().toString() + " " + "Especialidade: " + " " + tvEspecialidade.getText().toString() + " " + "CANCELAMENTO PELO MOBILE";
-
-                        new APIClient().getRestService().setCancelamentoDeConsulta(mat, cdDependente, Integer.parseInt(tvId.getText().toString()), mat, mat, '0', nomeUsuario, "Cancelado", tvDataHora.getText().toString(), tvLocalidade.getText().toString(), tvEspecialidade.getText().toString().replace("Í","I"), tvIdAgenda.getText().toString() ,callbackCancelamentoDeConsulta);
+                        String assunto = "Id Agenda: " + " " + tvId.getText().toString() + " " + "Horário: " + " " + tvDataHora.getText().toString() + " " + tvLocalidade.getText().toString() + " " + "Especialidade: " + " " + tvEspecialidade.getText().toString() + " " + "CANCELAMENTO PELO MOBILE";
+                         //descomentar para apagar a consulta
+                        // new APIClient().getRestService().setCancelamentoDeConsulta(mat, cdDependente, Integer.parseInt(tvId.getText().toString()), mat, mat, '0', nomeUsuario, "Cancelado", tvDataHora.getText().toString(), tvLocalidade.getText().toString(), tvEspecialidade.getText().toString().replace("Í","I"), tvIdAgenda.getText().toString() ,callbackCancelamentoDeConsulta);
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:

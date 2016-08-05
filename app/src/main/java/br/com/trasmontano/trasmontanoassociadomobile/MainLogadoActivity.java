@@ -49,6 +49,7 @@ public class MainLogadoActivity extends AppCompatActivity
     private String TipoPlano;
     private TextView tvQtdConsultas;
     private Callback<List<AgendaMedicaAssociado>> callbackAgendaMedicaAssociado;
+    private Button btnQtdConsultas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class MainLogadoActivity extends AppCompatActivity
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         circularImageView = (CircularImageView) findViewById(R.id.ivAssociadoCard);
         spotsDialog = new SpotsDialog(this, R.style.LoaderCustom);
+        btnQtdConsultas = (Button)findViewById(R.id.btnQtdConsultas);
         SharedPreferences prefs = getSharedPreferences("DADOS_LOGIN", MODE_PRIVATE);
         String nome = prefs.getString("NomeUsuario", "");
         String mat = prefs.getString("CodigoUsuario", "");
@@ -94,6 +96,16 @@ public class MainLogadoActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent i = new Intent(MainLogadoActivity.this, ListAgendamentoConsultaActivity.class);
                 startActivity(i);
+            }
+        });
+
+        btnQtdConsultas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!btnQtdConsultas.getText().equals("") || !btnQtdConsultas.getText().equals("0 Consulta(s) Agendada(s)")) {
+                    Intent i = new Intent(MainLogadoActivity.this, ListAgendamentoConsultaActivity.class);
+                    startActivity(i);
+                }
             }
         });
 
@@ -145,8 +157,8 @@ public class MainLogadoActivity extends AppCompatActivity
             @Override
             public void success(List<AgendaMedicaAssociado> agendaMedicaAssociados, Response response) {
 
-                tvQtdConsultas = (TextView) findViewById(R.id.tvQtdConsultas);
-                tvQtdConsultas.setText(String.valueOf(agendaMedicaAssociados.size()) + " Consulta(s) Agendada(s)");
+              btnQtdConsultas.setText(String.valueOf(agendaMedicaAssociados.size()) + " Consulta(s) Agendada(s)");
+
 
             }
 
