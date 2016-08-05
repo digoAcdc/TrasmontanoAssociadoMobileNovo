@@ -18,10 +18,11 @@
 
         <ImageButton
             android:id="@+id/btAbrirCamera"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@color/white"
             android:layout_gravity="left"
-            android:src="@drawable/ic_menu_camera"
+            android:src="@drawable/photo_camera"
             android:text="@string/txtAbrirCamera" />
 
         <TextView
@@ -194,15 +195,27 @@
         </android.support.design.widget.TextInputLayout>
 
 
+        <!--<Button
+            android:id="@+id/btCadastrarAssociado"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="@color/white"
+            android:background="@drawable/circle"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:text="@string/txtCadastrar"
+             />-->
+
         <Button
             android:id="@+id/btCadastrarAssociado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/style_button_azul"
-            android:paddingTop="30dp"
-            android:paddingBottom="30dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/circle"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:text="@string/txtCadastrar"
-            android:textColor="@color/abc_secondary_text_material_dark" />
+            android:textColor="@color/icons" />
 
 
     </LinearLayout>

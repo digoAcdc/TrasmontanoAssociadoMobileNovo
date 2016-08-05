@@ -51,7 +51,8 @@ public class AgendamentoConsultaAdapter extends RecyclerView.Adapter<Agendamento
     public void onBindViewHolder(final AgendamentoConsultaViewHolder holder, final int position) {
         AgendaMedicaAssociado a = lstAgendaMedica.get(position);
 
-        holder.tvId.setText(String.valueOf(a.getProtocolo()));
+        holder.tvId.setText(String.valueOf(a.getID()));
+        holder.tvIdAgenda.setText(String.valueOf(a.getIdAgenda()));
         holder.tvDataHora.setText("Data: " + a.getDataHoraAgendamento());
         holder.tvEspecialidade.setText("Especialidade: " + a.getDsEspecialidade());
         holder.tvLocalidade.setText("Localidade: " + a.getDsLocalidade());
@@ -82,6 +83,7 @@ public class AgendamentoConsultaAdapter extends RecyclerView.Adapter<Agendamento
         TextView tvLocalidade;
         TextView tvSituacao;
         TextView tvId;
+        TextView tvIdAgenda;
         ImageButton imbDeleteAgendamentoConsulta;
 
 
@@ -96,6 +98,7 @@ public class AgendamentoConsultaAdapter extends RecyclerView.Adapter<Agendamento
             this.tvLocalidade = (TextView) view.findViewById(R.id.tvLocalidade);
             this.tvSituacao = (TextView) view.findViewById(R.id.tvSituacao);
             this.tvId = (TextView) view.findViewById(R.id.tvId);
+            this.tvIdAgenda = (TextView) view.findViewById(R.id.tvIdAgenda);
             this.imbDeleteAgendamentoConsulta = (ImageButton) view.findViewById(R.id.imbDeleteAgendamentoConsulta);
 
 

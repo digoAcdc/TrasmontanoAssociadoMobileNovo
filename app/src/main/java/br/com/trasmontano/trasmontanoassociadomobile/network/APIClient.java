@@ -83,6 +83,36 @@ public class APIClient {
                 @Path("cdReferencia") int cdReferencia,
                 Callback<List<DadosConsulta>> callbackAgendamentoMedicoWeb
         );
+       /* @GET("/associado/cancelamentoDeConsulta/{matricula}/{cdDependente}/{id}/{usuRede}/{usuSistema}/{tipo}/{solicitante}/{situacao}/{assunto}")
+        void setCancelamentoDeConsulta(
+                @Header("matricula") String matricula ,
+                @Header("cdDependente") String cdDependente,
+                @Header("id") int id,
+                @Header("usuRede") String usuRede,
+                @Header("usuSistema") String usuSistema,
+                @Header("tipo") char tipo,
+                @Header("solicitante") String solicitante,
+                @Header("situacao") String situacao,
+                @Header("assunto") String assunto,
+                Callback<String> callbackCancelamentoDeConsulta
+        );*/
+
+        @GET("/associado/cancelamentoDeConsulta")
+        void setCancelamentoDeConsulta(
+                @Header("matricula") String matricula ,
+                @Header("cdDependente") String cdDependente,
+                @Header("id") int id,
+                @Header("usuRede") String usuRede,
+                @Header("usuSistema") String usuSistema,
+                @Header("tipo") char tipo,
+                @Header("solicitante") String solicitante,
+                @Header("situacao") String situacao,
+                @Header("horario") String horario,
+                @Header("localidade") String localidade,
+                @Header("especialidade") String especialidade,
+                @Header("idAgenda") String idAgenda,
+                Callback<String> callbackCancelamentoDeConsulta
+        );
 
 
     }

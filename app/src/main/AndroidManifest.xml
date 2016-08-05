@@ -122,7 +122,8 @@
         <activity
             android:name=".ListLogAlarmeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ListAgendamentoConsultaActivity" />
+        <activity android:name=".ListAgendamentoConsultaActivity"
+            android:label="Consultas Agendadas"/>
         <activity
             android:name=".AgendamentoDeConsultaActivity"
             android:label="Agendamento de Consulta"

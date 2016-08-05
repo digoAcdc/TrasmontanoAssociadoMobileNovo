@@ -103,6 +103,7 @@ public class AlarmeAdapter extends RecyclerView.Adapter<AlarmeAdapter.AlarmeView
     public static class AlarmeViewHolder extends RecyclerView.ViewHolder {
 
 
+
         TextView tvNomePaciente;
         Switch swAtivo;
         TextView tvId;

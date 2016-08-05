@@ -6,6 +6,8 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -53,10 +55,15 @@ public class AgendamentoDeConsultaActivity extends AppCompatActivity {
     private static List<AgendamentoMedicoWebParametros> lstMedicos;
     public static List<DadosConsulta> lstDadosConsulta;
 
+    WebView wvGrafico;
+    String strURL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agendamento_de_consulta);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         spotsDialog = new SpotsDialog(this, R.style.LoaderCustom);
 
@@ -69,6 +76,26 @@ public class AgendamentoDeConsultaActivity extends AppCompatActivity {
         etPeriodoFim = (EditText) findViewById(R.id.etPeriodoFim);
         btNovaConsulta = (Button) findViewById(R.id.btNovaConsulta);
         btFiltrar = (Button) findViewById(R.id.btFiltrar);
+
+        btFiltrar.requestFocus();
+
+        strURL = "https://chart.googleapis.com/chart?" +
+                "cht=bvs&" + //define o tipo do gráfico "linha"
+                "chxt=x,y&" + //imprime os valores dos eixos X, Y
+                "chs=350x200&" + //define o tamanho da imagem
+                "chd=t:10,45,5,10,13,26,5,84,6,47,12,75&" + //valor de cada coluna do gráfico
+                "chl=Jan|Fev|Mar|Abr|Mai|Jun|Jul|Ago|Set|Out|Nov|Dez&" + //rótulo para cada coluna
+                "chdl=Consultas&" + //legenda do gráfico
+                "chxr=1,0,100&" + //define o valor de início e fim do eixo
+                "chds=0,100&" + //define o valor de escala dos dados
+                "chg=0,5,0,0&" + //desenha linha horizontal na grade
+                "chco=A52A2A&" + //cor da linha do gráfico
+                "chtt=Consultas&" + //cabeçalho do gráfico
+                "chm=B,FFDAB9,0,0,0";//fundo verde
+
+
+        wvGrafico = (WebView)findViewById(R.id.wvGrafico);
+        wvGrafico.loadUrl(strURL);
 
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);

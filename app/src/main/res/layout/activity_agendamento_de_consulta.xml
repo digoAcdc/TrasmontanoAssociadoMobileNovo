@@ -10,34 +10,43 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
         android:background="@color/white"
         android:orientation="vertical"
         tools:context="br.com.trasmontano.trasmontanoassociadomobile.AgendamentoDeConsultaActivity">
 
+        <WebView
+            android:id="@+id/wvGrafico"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_gravity="center" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:text="Especialidade"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16dp" />
 
         <Spinner
             android:id="@+id/spnEspecialidades"
             style="@style/spinner_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:spinnerMode="dialog"
-            android:focusable="false" />
+            android:focusable="false"
+            android:spinnerMode="dialog" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="Localidade"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16dp" />
 
         <Spinner
             android:id="@+id/spnLocalidade"
@@ -51,7 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="Medico(a)"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16dp" />
 
         <Spinner
             android:id="@+id/spnMedicos"
@@ -83,6 +93,7 @@
                         android:id="@+id/etPeriodoInicio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:autoText="false"
                         android:enabled="true"
                         android:hint="Inicio"
                         android:inputType="date"
@@ -187,6 +198,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/colorPrimaryDark"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:text="Filtrar"
                 android:textColor="@color/white" />
 
@@ -194,19 +207,28 @@
         </LinearLayout>
 
         <TextView
-            android:textAlignment="center"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Caso não possa comparecer favor cancelar com 48hs de antecedência"/>
+            android:layout_marginTop="10dp"
+            android:text="Caso não possa comparecer favor cancelar com 48hs de antecedência"
+            android:textAlignment="center" />
 
         <TextView
-            android:layout_marginTop="20dp"
-            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Em caso de dificuldade de agendamento com a especialidade procurada, consulte o Orientador Médico"
-            android:textSize="16dp"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="vertical">
+
+        </LinearLayout>
     </LinearLayout>
+
+
 </ScrollView>
