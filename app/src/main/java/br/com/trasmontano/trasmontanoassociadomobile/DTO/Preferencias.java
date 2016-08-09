@@ -25,8 +25,8 @@ public class Preferencias   {
         editor.putString("DataUltimoAcesso", login.getDataUltimoAcesso());
         if(login.getCodigoUsuario().length() > 6)
         {
-            editor.putString("CodigoUsuario", login.getCodigoUsuario().substring(0, 5));
-            editor.putString("CodigoDependente", login.getCodigoUsuario().substring(6, 7));
+            editor.putString("CodigoUsuario", login.getCodigoUsuario().substring(0, 6));
+            editor.putString("CodigoDependente", login.getCodigoUsuario().substring(6, 8));
         }
         else
         {

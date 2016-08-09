@@ -71,23 +71,23 @@ public class AlarmeService extends Service {
         mMediaPlayer = new MediaPlayer();
         try {
             String filename = "android.resource://br.com.trasmontano.trasmontanoassociadomobile/raw/highway_to_hell";
-            // String filename = "android.resource://br.com.trasmontano.trasmontanoassociadomobile/raw/palmeiras";
-            if (tocar == 1)
-            {
-            if (mp3.equalsIgnoreCase(""))
-                mMediaPlayer.setDataSource(this, Uri.parse(filename));
-            else
-                mMediaPlayer.setDataSource(this, Uri.parse(mp3));
-            final AudioManager audioManager = (AudioManager) this
-                    .getSystemService(Context.AUDIO_SERVICE);
-            if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
-                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
-                mMediaPlayer.setLooping(true);
-                mMediaPlayer.prepare();
+             //String filename = "android.resource://br.com.trasmontano.trasmontanoassociadomobile/raw/palmeiras";
+             //mp3 = "android.resource://br.com.trasmontano.trasmontanoassociadomobile/raw/palmeiras";
+            if (tocar == 1) {
+                if (mp3.equalsIgnoreCase(""))
+                    mMediaPlayer.setDataSource(this, Uri.parse(filename));
+                else
+                    mMediaPlayer.setDataSource(this, Uri.parse(mp3));
+                final AudioManager audioManager = (AudioManager) this
+                        .getSystemService(Context.AUDIO_SERVICE);
+                if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
+                    mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+                    mMediaPlayer.setLooping(true);
+                    mMediaPlayer.prepare();
 
 
-                mMediaPlayer.start();
-            }
+                    mMediaPlayer.start();
+                }
             }
         } catch (IOException e) {
             System.out.println("OOPS");
@@ -132,8 +132,10 @@ public class AlarmeService extends Service {
             }
             mMediaPlayer.release();
         }
-        if (v.hasVibrator())
-            v.cancel();
+        if (vibrar == 1) {
+            if (v.hasVibrator())
+                v.cancel();
+        }
 
     }
 }

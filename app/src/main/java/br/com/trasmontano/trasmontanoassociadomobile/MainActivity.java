@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /*String token = FirebaseInstanceId.getInstance().getToken();
+        Log.d("token ", token);*/
         configureInformacaoAssociadoCallback();
 
         btLogar = (Button) findViewById(R.id.btLogar);

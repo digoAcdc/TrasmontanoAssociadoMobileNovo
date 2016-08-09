@@ -1,267 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        tools:context="br.com.trasmontano.trasmontanoassociadomobile.CadastrarAlarmeActivity">
-
-        <include layout="@layout/toolbar"></include>
-
-        <TextView
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/text"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nome do Paciente"/>
-
-        <EditText
-            android:id="@+id/etNomePaciente"
-            android:inputType="textCapWords"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="30" />
-
-        <TextView
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nome do Medicamento" />
-
-        <EditText
-            android:inputType="textCapWords"
-            android:id="@+id/etNomeMedicamento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="15" />
-
-        <TextView
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Descrição do Medicamento" />
-
-        <EditText
-            android:inputType="textCapWords"
-            android:id="@+id/etDescricao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="30" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/lnMp3"
-            android:orientation="vertical">
-
-            <TextView
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Música Alarme" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:orientation="horizontal">
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/etMp3"
-                    android:enabled="false"
-                    android:layout_weight="2" />
-
-                <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:id="@+id/imbMp3"
-                    android:layout_weight="0.2"
-                    android:background="@drawable/mp3" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:weightSum="3">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tipo" />
-
-                <com.jaredrummler.materialspinner.MaterialSpinner
-                    android:id="@+id/spinner"
-                    android:layout_width="match_parent"
-                    android:spinnerMode="dialog"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:orientation="vertical">
-
-                <TextView
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Qtd" />
-
-                <EditText
-                    android:id="@+id/etQuantidade"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnDataInicio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/text"
-                android:id="@+id/tvDataInicioLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Data Inicio" />
-
-            <EditText
-                android:id="@+id/etDataInicio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:text=""
-                android:textSize="16dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnHoraInicial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/text"
-                android:id="@+id/tvHoraInicioLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Hora Inicial" />
-
-            <EditText
-                android:id="@+id/etHoraInicio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:text=""
-                android:textSize="16dp" />
-        </LinearLayout>
-
-        <TextView
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/text"
-            android:id="@+id/tvHoraIntervaloLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:text="Intervalo de" />
-
-        <LinearLayout
-            android:id="@+id/lnHoraIntervalo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/etHoraInvervalo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/horaIntervalo"
-                android:textSize="16dp" />
-
-            <TextView
-                android:textSize="@dimen/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" horas"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="right"
-            android:orientation="horizontal">
-
-            <net.colindodd.toggleimagebutton.ToggleImageButton
-                xmlns:tib="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/timbSound"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:gravity="right"
-                android:layout_gravity="right"
-                tib:tib_drawable_on="@drawable/sound"
-                tib:tib_drawable_off="@drawable/not_sound"
-                android:checked="true" />
-            <net.colindodd.toggleimagebutton.ToggleImageButton
-                xmlns:tib="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/timbVibration"
-                android:gravity="right"
-                android:layout_gravity="right"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="15dp"
-                tib:tib_drawable_on="@drawable/vibration"
-                tib:tib_drawable_off="@drawable/not_vibration"
-                android:checked="true" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btCadastrarAlarme"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/circle"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:text="Cadastrar"
-            android:textColor="@color/white" />
-
-    </LinearLayout>
-     </ScrollView>-->
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -402,7 +139,7 @@
                     android:id="@+id/etDataInicio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="DataInicio"
+                    android:hint="Data Inicio"
                     android:maxLength="15"
                     android:enabled="true"
                     android:focusable="false" />
@@ -466,7 +203,7 @@
                     android:id="@+id/etIntervaloDe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Intervalo De"
+                    android:hint="Intervalo De (horas)"
                     android:maxLength="15"
                     android:text="08:00"
                     android:focusable="false"
@@ -498,6 +235,8 @@
 
                 <EditText
                     android:id="@+id/etMp3"
+                    android:focusable="false"
+                    android:enabled="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Música Alarme"

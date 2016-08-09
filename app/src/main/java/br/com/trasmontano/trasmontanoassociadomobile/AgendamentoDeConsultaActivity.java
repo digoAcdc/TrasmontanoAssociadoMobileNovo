@@ -157,7 +157,7 @@ public class AgendamentoDeConsultaActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != 0) {
                     AgendamentoMedicoWebParametros a = lstLocalidades.get(position - 1);
-                    AgendamentoMedicoWebParametros a1 = lstEspecialidade.get(position - 1);
+                    AgendamentoMedicoWebParametros a1 = lstEspecialidade.get(spnEspecialidade.getSelectedItemPosition() - 1);
                     tipo = 2;
                     spotsDialog.show();
                     new APIClient().getRestService().getAgendamentoMedicoWebParametros((byte) 2,
@@ -232,6 +232,7 @@ public class AgendamentoDeConsultaActivity extends AppCompatActivity {
                 lstDadosConsulta = dadosConsultas;
                 if (lstDadosConsulta.size() == 0) {
                     Toast.makeText(AgendamentoDeConsultaActivity.this, "Não há agenda disponível no momento para essa pesquisa", Toast.LENGTH_LONG).show();
+                    spotsDialog.dismiss();
                     return;
                 }
                 Intent i = new Intent(AgendamentoDeConsultaActivity.this, ListConsultaActivity.class);

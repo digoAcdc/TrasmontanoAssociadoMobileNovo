@@ -72,6 +72,11 @@ public  class LoginActivity extends AppCompatActivity  {
         SharedPreferences prefs = getSharedPreferences("MATRICULA_SELECIONADA_NA_LISTA", MODE_PRIVATE);
         if (prefs.contains("matricula")) {
             tiUsuario.getEditText().setText(prefs.getString("matricula", ""));
+            tisenha.requestFocus();
+        }
+        else
+        {
+            tiUsuario.requestFocus();
         }
         SharedPreferences.Editor editor = getSharedPreferences("MATRICULA_SELECIONADA_NA_LISTA", MODE_PRIVATE).edit();
         editor.remove("matricula");
@@ -104,7 +109,7 @@ public  class LoginActivity extends AppCompatActivity  {
             }
         });
 
-        tisenha.requestFocus();
+
 
     }
 

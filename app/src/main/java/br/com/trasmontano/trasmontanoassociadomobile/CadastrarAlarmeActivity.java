@@ -23,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -74,23 +75,7 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
     TextInputLayout tiHoraInicio;
     TextInputLayout tiIntervaloDe;
     EditText etQuantidade;
-
-
-
-    /*EditText etDataInicio;
-    EditText etHoraInicio;
-    EditText etHoraInvervalo;
-    EditText etNomePaciente;
-    EditText etNomeMedicamento;
-    EditText etDescricacoMedicamento;
-    EditText etQuantidade;
-    EditText etMp3;
-    TextView tvDataInicioLabel;
-    TextView tvHoraInicioLabel;
-    LinearLayout lnHoraIntervalo;
-    LinearLayout lnDataInicio;
-    LinearLayout lnHoraInicio;
-    */
+    ImageView imageView;
 
 
     @Override
@@ -108,16 +93,16 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
         lnMp3 = (LinearLayout) findViewById(R.id.lnMp3);
         etMp3 = (EditText) findViewById(R.id.etMp3);
         btMp3 = (ImageButton) findViewById(R.id.imbMp3);
-        tiNomePaciente = (TextInputLayout)findViewById(R.id.tiNomePaciente);
-        tiNomeMedicamento = (TextInputLayout)findViewById(R.id.tiNomeMedicamento);
-        tiDescMedicamento = (TextInputLayout)findViewById(R.id.tiDescricaoMedicamento);
-        tiDataInicio = (TextInputLayout)findViewById(R.id.tiDataInicio);
-        tiHoraInicio = (TextInputLayout)findViewById(R.id.tiHoraInicio);
-        tiIntervaloDe = (TextInputLayout)findViewById(R.id.tiIntervaloDe);
-        btCadastrarAlarme = (Button)findViewById(R.id.btCadastrarAlarme) ;
-        ibtIntervaloDe = (ImageButton)findViewById(R.id.imbIntervaloDe);
-        ibtHoraInicio = (ImageButton)findViewById(R.id.imbHoraInicio);
-        ibtDataInicio = (ImageButton)findViewById(R.id.imbDataInicio);
+        tiNomePaciente = (TextInputLayout) findViewById(R.id.tiNomePaciente);
+        tiNomeMedicamento = (TextInputLayout) findViewById(R.id.tiNomeMedicamento);
+        tiDescMedicamento = (TextInputLayout) findViewById(R.id.tiDescricaoMedicamento);
+        tiDataInicio = (TextInputLayout) findViewById(R.id.tiDataInicio);
+        tiHoraInicio = (TextInputLayout) findViewById(R.id.tiHoraInicio);
+        tiIntervaloDe = (TextInputLayout) findViewById(R.id.tiIntervaloDe);
+        btCadastrarAlarme = (Button) findViewById(R.id.btCadastrarAlarme);
+        ibtIntervaloDe = (ImageButton) findViewById(R.id.imbIntervaloDe);
+        ibtHoraInicio = (ImageButton) findViewById(R.id.imbHoraInicio);
+        ibtDataInicio = (ImageButton) findViewById(R.id.imbDataInicio);
         layIntervaloDe = (LinearLayout) findViewById(R.id.layIntervaloDe);
         layDataInicio = (LinearLayout) findViewById(R.id.layDataInicio);
         layHoraInicio = (LinearLayout) findViewById(R.id.layHoraInicio);
@@ -125,10 +110,12 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
         etDataInicio = (EditText) findViewById(R.id.etDataInicio);
         etHoraInvervalo = (EditText) findViewById(R.id.etIntervaloDe);
         etHoraInicio = (EditText) findViewById(R.id.etHoraInicio);
-        spinner = (Spinner)findViewById(R.id.spinner) ;
-        etQuantidade = (EditText)findViewById(R.id.etQuantidade);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        etQuantidade = (EditText) findViewById(R.id.etQuantidade);
+        imageView = (ImageView) findViewById(R.id.imagem);
 
-       //spinner.seti.setItems("Comprimido", "Gotas", "Sache");
+        imageView.requestFocus();
+
         ArrayList lst = new ArrayList<String>();
 
         lst.add("Comprimido");
@@ -281,7 +268,6 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MostraHora(etHoraInvervalo);
-               // MostraHora(tiHoraInicio.getEditText());
             }
         });
 
@@ -289,7 +275,6 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MostraHora(etHoraInvervalo);
-                //MostraHora(tiIntervaloDe.getEditText());
             }
         });
 
@@ -311,7 +296,6 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MostraHora(etHoraInicio);
-                //MostraHora(tiHoraInicio.getEditText());
             }
         });
 
@@ -319,240 +303,8 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MostraHora(etHoraInicio);
-                //MostraHora(tiHoraInicio.getEditText());
             }
         });
-
-
-        /*ImageButton ibtIntervaloDe;
-        LinearLayout layIntervaloDe;
-        ImageButton ibtDataInicio;
-        LinearLayout layDataInicio;
-        ImageButton ibtHoraInicio;
-        LinearLayout layHoraInicio;*/
-
-        /*etNomePaciente = (EditText) findViewById(R.id.etNomePaciente);
-        etNomeMedicamento = (EditText) findViewById(R.id.etNomeMedicamento);
-        etDescricacoMedicamento = (EditText) findViewById(R.id.etDescricao);
-        spinner = (MaterialSpinner) findViewById(R.id.spinner);
-        etQuantidade = (EditText) findViewById(R.id.etQuantidade);
-        etDataInicio = (EditText) findViewById(R.id.etDataInicio);
-        tvDataInicioLabel = (TextView) findViewById(R.id.tvDataInicioLabel);
-        etHoraInicio = (EditText) findViewById(R.id.etHoraInicio);
-        tvHoraInicioLabel = (TextView) findViewById(R.id.tvHoraInicioLabel);
-        lnHoraIntervalo = (LinearLayout) findViewById(R.id.lnHoraIntervalo);
-        lnDataInicio = (LinearLayout) findViewById(R.id.lnDataInicio);
-        lnHoraInicio = (LinearLayout) findViewById(R.id.lnHoraInicial);
-        etHoraInvervalo = (EditText) findViewById(R.id.etHoraInvervalo);
-        btCadastrarAlarme = (Button) findViewById(R.id.btCadastrarAlarme);
-        lnMp3 = (LinearLayout) findViewById(R.id.lnMp3);
-        etMp3 = (EditText) findViewById(R.id.etMp3);
-        btMp3 = (ImageButton) findViewById(R.id.imbMp3);
-        tibSound = (ToggleImageButton) findViewById(R.id.timbSound);
-        tibVibration = (ToggleImageButton) findViewById(R.id.timbVibration);
-
-        etMp3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showFileChooser();
-            }
-        });
-
-        lnMp3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showFileChooser();
-            }
-        });
-
-        btMp3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showFileChooser();
-            }
-        });
-
-        btCadastrarAlarme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Alarme a = new Alarme();
-                a.setNomeMedicamento(etNomeMedicamento.getText().toString());
-                a.setDescricaoMedicamento(etDescricacoMedicamento.getText().toString());
-                a.setDosagem(spinner.getText().toString());
-                a.setQuantidade(etQuantidade.getText().toString());
-                a.setDataInicio(etDataInicio.getText().toString());
-                a.setHoraInicio(etHoraInicio.getText().toString());
-                a.setIntervaloDe(etHoraInvervalo.getText().toString());
-                a.setNomePaciente(etNomePaciente.getText().toString());
-                a.setNomeMusica(etMp3.getText().toString());
-                if (tibSound.isChecked())
-                    a.setTocar(1);
-                else
-                    a.setTocar(0);
-                if (tibVibration.isChecked())
-                    a.setVibrar(1);
-                else
-                    a.setVibrar(0);
-
-                a.setAtivo(1);
-
-                String[] parts = a.getHoraInicio().split(":");
-                String[] partsIntervalo = a.getIntervaloDe().split(":");
-                String[] partsData = a.getDataInicio().split("/");
-
-                int horaInicio = Integer.parseInt(parts[0]);
-                int minutoInicio = Integer.parseInt(parts[1]);
-                int horaIntervalo = Integer.parseInt(partsIntervalo[0]);
-                int minutoIntervalo = Integer.parseInt(partsIntervalo[1]);
-                int dia = Integer.parseInt(partsData[0]);
-                int mes = Integer.parseInt(partsData[1]);
-                int ano = Integer.parseInt(partsData[2]);
-
-
-                long alarmeInicio = retornaHoraMillisecond(horaInicio, minutoInicio, dia, mes, ano);
-                //long alarmeIntervalo = retornaHoraMillisecond(horaIntervalo, minutoIntervalo);
-                long alarmeIntervalo = retornaIntervaloMillisecond(horaIntervalo, minutoIntervalo);
-
-                if (alarmeInicio == 0) {
-                    Toast.makeText(CadastrarAlarmeActivity.this, "Voce esta agendando um alame com Data/Hora anterior a data atual", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                int quantidade = 0;
-                if (horaIntervalo != 0)
-                    quantidade = 24 / horaIntervalo;
-
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.HOUR_OF_DAY, horaInicio);
-                calendar.set(Calendar.MINUTE, minutoInicio);
-                calendar.set(Calendar.SECOND, 0);
-                calendar.set(Calendar.DAY_OF_MONTH, dia);
-                calendar.set(Calendar.MONTH, mes - 1);
-                calendar.set(Calendar.YEAR, ano);
-
-                String horarios = "";
-
-
-                for (int i = 0; i < quantidade; i++) {
-                    int hours = calendar.get(Calendar.HOUR_OF_DAY);
-                    int minutes = calendar.get(Calendar.MINUTE);
-
-                    String hora = String.valueOf(hours);
-                    String minuto = String.valueOf(minutes);
-
-                    horarios += String.valueOf("00".substring(hora.length()) + hora + ":") + "00".substring(minuto.length()) + minuto + " - ";
-
-                    calendar.add(Calendar.HOUR_OF_DAY, horaIntervalo);
-                    calendar.add(Calendar.MINUTE, minutoIntervalo);
-                }
-                if (horaIntervalo != 0)
-                    a.setHorarios(horarios.substring(0, horarios.length() - 3));
-                else
-                    a.setHorarios("");
-
-                if (a.save()) {
-
-                    List<Alarme> lst = Query.all(Alarme.class).get().asList();
-                    // Alarme alarme = lst.get(lst.size() - 1);
-
-                    int id = (int) a.getId();
-
-                    Intent intent = new Intent(AlarmeBroadcastReceiver.ACTION);
-                    intent.putExtra("id", id);
-                    intent.putExtra("paciente", a.getNomePaciente());
-                    intent.putExtra("medicamento", a.getNomeMedicamento());
-                    intent.putExtra("mp3", a.getNomeMusica());
-                    intent.putExtra("vibrar", a.getVibrar());
-                    intent.putExtra("tocar", a.getTocar());
-                    AlarmUtil.scheduleRepeat(CadastrarAlarmeActivity.this, intent, alarmeInicio, alarmeIntervalo, id);
-                    Intent i = new Intent(CadastrarAlarmeActivity.this, ListAlarmeActivity.class);
-
-                    startActivity(i);
-                    finish();
-
-                } else {
-                    Toast.makeText(CadastrarAlarmeActivity.this, "Falha ao Cadastrar Alarme", Toast.LENGTH_LONG).show();
-                }
-
-            }
-        });
-
-
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        Date hora = Calendar.getInstance().getTime(); // Ou qualquer outra forma que tem
-        String horaFormatada = sdf.format(hora);
-
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
-        Date data = Calendar.getInstance().getTime(); // Ou qualquer outra forma que tem
-        String dataFormatada = sdf1.format(data);
-
-        etHoraInicio.setText(horaFormatada);
-        etDataInicio.setText(dataFormatada);
-        etDataInicio.setInputType(InputType.TYPE_NULL);
-        etHoraInicio.setInputType(InputType.TYPE_NULL);
-        etHoraInvervalo.setInputType(InputType.TYPE_NULL);
-
-
-        etHoraInvervalo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MostraHora(etHoraInvervalo);
-            }
-        });
-
-        lnHoraIntervalo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MostraHora(etHoraInvervalo);
-            }
-        });
-
-        lnDataInicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MostraData();
-            }
-        });
-
-        etDataInicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MostraData();
-            }
-        });
-
-
-        etHoraInicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MostraHora(etHoraInicio);
-            }
-        });
-
-        tvHoraInicioLabel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MostraHora(etHoraInicio);
-            }
-        });
-
-        lnHoraInicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MostraHora(etHoraInicio);
-            }
-        });
-
-        spinner = (MaterialSpinner) findViewById(R.id.spinner);
-        spinner.setItems("Comprimido", "Gotas", "Sache");
-      /*  spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-
-            @Override
-            public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                Toast.makeText(CadastrarAlarmeActivity.this, "Clicked " + item, Toast.LENGTH_LONG).show();
-
-            }
-        });*/
     }
 
     @Override

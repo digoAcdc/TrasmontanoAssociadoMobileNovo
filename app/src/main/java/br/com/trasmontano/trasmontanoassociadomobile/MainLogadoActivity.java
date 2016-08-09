@@ -70,13 +70,25 @@ public class MainLogadoActivity extends AppCompatActivity
         prefs.edit().remove("redirecionarPara").commit();
 
         configureInformacaoAgendaMedicaAssociadoCallback();
+        Associado a = null;
 
-        Associado a = Query.one(Associado.class, "select * from associado where usuario=?", mat).get();
+        if(cdDependente == "00")
+        {
+             a = Query.one(Associado.class, "select * from associado where usuario=?", mat).get();
+        }
+        else
+        {
+             a = Query.one(Associado.class, "select * from associado where usuario=?", mat + cdDependente).get();
+        }
 
-        if (a.getCaminhoImagem() != null) {
-            File file = new File(a.getCaminhoImagem());
-            if (file.exists()) {
-                circularImageView.setImageURI(Uri.parse(a.getCaminhoImagem()));
+
+
+        if (a != null) {
+            if(a.getCaminhoImagem() != null) {
+                File file = new File(a.getCaminhoImagem());
+                if (file.exists()) {
+                    circularImageView.setImageURI(Uri.parse(a.getCaminhoImagem()));
+                }
             }
         }
 

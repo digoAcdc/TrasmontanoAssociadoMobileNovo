@@ -21,12 +21,12 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
     }
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
@@ -40,8 +40,13 @@ dependencies {
     compile 'com.github.d-max:spots-dialog:0.4@aar'
     compile 'com.antonionicolaspina:revealtextview:2.0'
     compile 'com.jaredrummler:material-spinner:1.0.9'
-    compile 'com.google.android.gms:play-services:9.2.0'
+
     compile 'com.sackcentury:shinebutton:0.1.4'
     compile 'net.colindodd:toggleimagebutton:1.2'
+    compile 'com.google.firebase:firebase-core:9.0.2'
+
+    compile 'com.google.firebase:firebase-messaging:9.0.0'
 
 }
+
+apply plugin: 'com.google.gms.google-services'
