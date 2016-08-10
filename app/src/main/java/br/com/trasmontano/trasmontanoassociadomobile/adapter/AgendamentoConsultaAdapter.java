@@ -53,7 +53,9 @@ public class AgendamentoConsultaAdapter extends RecyclerView.Adapter<Agendamento
 
         holder.tvId.setText(String.valueOf(a.getID()));
         holder.tvIdAgenda.setText(String.valueOf(a.getIdAgenda()));
-        holder.tvDataHora.setText("Data: " + a.getDataHoraAgendamento());
+        String data = a.getDataHoraAgendamento().substring(8,10) + "/" + a.getDataHoraAgendamento().substring(5,7) + "/" + a.getDataHoraAgendamento().substring(0,4);
+        String hora = a.getDataHoraAgendamento().substring(11,16);
+        holder.tvDataHora.setText("Data: " + data + " " + hora);
         holder.tvEspecialidade.setText("Especialidade: " + a.getDsEspecialidade());
         holder.tvLocalidade.setText("Localidade: " + a.getDsLocalidade());
         holder.tvMedico.setText("Médico(a): " + a.getNmMedico());

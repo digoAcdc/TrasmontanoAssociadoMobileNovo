@@ -64,21 +64,6 @@ public class MensagemActivity extends AppCompatActivity {
         Intent intent = getIntent();
         params = intent.getExtras();
 
-        /*Calendar c = Calendar.getInstance();
-
-         hours = c.get(c.HOUR_OF_DAY);
-         minutes = c.get(c.MINUTE);
-         day = c.get(c.DAY_OF_MONTH);
-         month = c.get(c.MONTH);
-         year = c.get(c.YEAR);
-
-
-         hora = String.valueOf(hours);
-         minuto = String.valueOf(minutes);
-         dia = String.valueOf(day);
-         mes = String.valueOf(month + 1);
-         ano = String.valueOf(year);*/
-
         CarregaData();
 
         tvMedicamento = (TextView) findViewById(R.id.tvMedicamento);
@@ -95,17 +80,6 @@ public class MensagemActivity extends AppCompatActivity {
             id = params.getInt("id");
 
             a = Query.one(Alarme.class, "select * from alarme where id=?", id).get();
-
-
-            /*log = new LogMedicamentosTomados();
-            log.setIdAlarme(id);
-            log.setDataTomouMedicamento("00".substring(dia.length()) + dia + "/" + "00".substring(mes.length()) + mes + "/" + "0000".substring(ano.length()) + ano);
-            log.setHoraTomouMedicamento(hora + ":" + minuto);
-            log.setTomei(0);
-            log.setNomeMedicamento(a.getNomeMedicamento());
-            log.setUsuario(a.getNomePaciente());
-            log.save();*/
-
 
             tvMedicamento.setText(a.getNomeMedicamento());
             tvNmPaciente.setText(a.getNomePaciente());
@@ -156,8 +130,6 @@ public class MensagemActivity extends AppCompatActivity {
                     if (params != null) {
                         id = params.getInt("id");
                     }
-                    //List<LogMedicamentosTomados> lst = Query.all(LogMedicamentosTomados.class).get().asList();
-
 
                     NotificationManager oldNoti = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     oldNoti.cancel(id);
@@ -165,7 +137,7 @@ public class MensagemActivity extends AppCompatActivity {
                     NotificationManager oldNoti1 = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     oldNoti1.cancel(-1);
                     InsereLogAlarme(0, true);
-                    // a = Query.one(Alarme.class, "select * from alarme where id=?", id).get();
+
                     Intent intent = new Intent(AlarmeBroadcastReceiver.ACTION);
                     intent.putExtra("id", id);
                     intent.putExtra("paciente", a.getNomePaciente());
@@ -185,8 +157,6 @@ public class MensagemActivity extends AppCompatActivity {
                     i.putExtra("id", id);
                     startActivity(i);
 
-
-
                     finish();
                 }
             });
@@ -205,19 +175,12 @@ public class MensagemActivity extends AppCompatActivity {
                     NotificationManager oldNoti1 = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     oldNoti1.cancel(-1);
 
-                   /* log = Query.one(LogMedicamentosTomados.class, "select * from logMedicamentosTomados where idAlarme=?", id).get();
-
-                    log.setDataTomouMedicamento("00".substring(dia.length()) + dia + "/" + "00".substring(mes.length()) + mes + "/" + "0000".substring(ano.length()) + ano);
-                    log.setHoraTomouMedicamento(hora + ":" + minuto);
-
-                    log.save();*/
                     if (!InsereLogAlarme(1, false)) {
                         Toast.makeText(MensagemActivity.this, "falha", Toast.LENGTH_LONG).show();
                     }
 
                     Intent service = new Intent(getApplicationContext(), AlarmeService.class);
                     stopService(service);
-
 
                     Intent i = new Intent(MensagemActivity.this, ListLogAlarmeActivity.class);
                     i.putExtra("id", id);
