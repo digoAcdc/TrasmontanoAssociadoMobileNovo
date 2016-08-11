@@ -110,7 +110,6 @@ public class MainLogadoActivity extends AppCompatActivity
             }
         });
 
-
         if (a != null) {
             if(a.getCaminhoImagem() != null) {
                 File file = new File(a.getCaminhoImagem());
