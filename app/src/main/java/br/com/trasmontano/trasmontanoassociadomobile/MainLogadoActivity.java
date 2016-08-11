@@ -3,11 +3,15 @@ package br.com.trasmontano.trasmontanoassociadomobile;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,12 +31,17 @@ import com.antonionicolaspina.revealtextview.RevealTextView;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.AgendaMedicaAssociado;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Associado;
 import br.com.trasmontano.trasmontanoassociadomobile.network.APIClient;
 import dmax.dialog.SpotsDialog;
+import livroandroid.lib.utils.ImageResizeUtils;
+import livroandroid.lib.utils.SDCardUtils;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -50,6 +59,10 @@ public class MainLogadoActivity extends AppCompatActivity
     private TextView tvQtdConsultas;
     private Callback<List<AgendaMedicaAssociado>> callbackAgendaMedicaAssociado;
     private Button btnQtdConsultas;
+    private File file;
+    String mat;
+    String cdDependente;
+    Associado a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +75,9 @@ public class MainLogadoActivity extends AppCompatActivity
         spotsDialog = new SpotsDialog(this, R.style.LoaderCustom);
         btnQtdConsultas = (Button)findViewById(R.id.btnQtdConsultas);
         SharedPreferences prefs = getSharedPreferences("DADOS_LOGIN", MODE_PRIVATE);
-        String nome = prefs.getString("NomeUsuario", "");
-        String mat = prefs.getString("CodigoUsuario", "");
-        String cdDependente = prefs.getString("CodigoDependente", "");
+         String nome = prefs.getString("NomeUsuario", "");
+         mat = prefs.getString("CodigoUsuario", "");
+         cdDependente = prefs.getString("CodigoDependente", "");
         String redirecionarPara = prefs.getString("redirecionarPara", "");
         TipoPlano = prefs.getString("PerfilUsuario", "");
         prefs.edit().remove("redirecionarPara").commit();
@@ -72,7 +85,7 @@ public class MainLogadoActivity extends AppCompatActivity
         configureInformacaoAgendaMedicaAssociadoCallback();
         Associado a = null;
 
-        if(cdDependente == "00")
+        if(cdDependente.equalsIgnoreCase("00"))
         {
              a = Query.one(Associado.class, "select * from associado where usuario=?", mat).get();
         }
@@ -81,6 +94,21 @@ public class MainLogadoActivity extends AppCompatActivity
              a = Query.one(Associado.class, "select * from associado where usuario=?", mat + cdDependente).get();
         }
 
+        circularImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                //get current date time with Date()
+                Date date = new Date();
+                //System.out.println(dateFormat.format(date));
+
+                file = SDCardUtils.getPrivateFile(getBaseContext(), dateFormat.format(date) + ".jpg", Environment.DIRECTORY_PICTURES);
+                // Chama a intent informando o arquivo para salvar a foto
+                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+                startActivityForResult(i, 0);
+            }
+        });
 
 
         if (a != null) {
@@ -156,6 +184,43 @@ public class MainLogadoActivity extends AppCompatActivity
 
     public void Encerrar() {
         super.onBackPressed();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && file != null) {
+
+            SharedPreferences prefs = getSharedPreferences("DADOS_LOGIN", MODE_PRIVATE);
+
+            mat = prefs.getString("CodigoUsuario", "");
+            cdDependente = prefs.getString("CodigoDependente", "");
+            if(cdDependente.equalsIgnoreCase("00"))
+            {
+                a = Query.one(Associado.class, "select * from associado where usuario=?", mat).get();
+            }
+            else
+            {
+                a = Query.one(Associado.class, "select * from associado where usuario=?", mat + cdDependente).get();
+            }
+
+            if (file != null && file.exists()) {
+                a.setCaminhoImagem(file.toString());
+
+                a.save();
+                circularImageView.setImageURI(Uri.parse(a.getCaminhoImagem()));
+            }
+            //showImage(file);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Salvar o estado caso gire a tela
+        outState.putSerializable("file", file);
     }
 
     public void CarteirinhaVirtual() {

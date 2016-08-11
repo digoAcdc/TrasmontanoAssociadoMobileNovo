@@ -83,10 +83,10 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_alarme);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar1);
+       /* Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar1);
         myToolbar.setTitleTextColor(android.graphics.Color.WHITE);
 
-        setSupportActionBar(myToolbar);
+        setSupportActionBar(myToolbar);*/
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -126,6 +126,7 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(dataAdapter);
+
 
         tibSound = (ToggleImageButton) findViewById(R.id.timbSound);
         tibVibration = (ToggleImageButton) findViewById(R.id.timbVibration);

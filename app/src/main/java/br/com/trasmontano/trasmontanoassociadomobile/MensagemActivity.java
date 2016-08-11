@@ -70,7 +70,6 @@ public class MensagemActivity extends AppCompatActivity {
         tvNmPaciente = (TextView) findViewById(R.id.tvNmPaciente);
         tvDescricaoMedicamento = (TextView) findViewById(R.id.tvDescricaoMedicamento);
         tvFrequencia = (TextView) findViewById(R.id.tvFrequencia);
-        // tvHorarios = (TextView)findViewById(R.id.tvHorarios);
         tvTipo = (TextView) findViewById(R.id.tvTipo);
         tvQuantidade = (TextView) findViewById(R.id.tvQuantidade);
         imbMaisDez = (ImageButton) findViewById(R.id.imbMaisDesz);
@@ -85,7 +84,6 @@ public class MensagemActivity extends AppCompatActivity {
             tvNmPaciente.setText(a.getNomePaciente());
             tvDescricaoMedicamento.setText(a.getDescricaoMedicamento());
             tvFrequencia.setText(a.getIntervaloDe() + " em " + a.getIntervaloDe() + " horas");
-            // tvHorarios.setText(a.getHorarios());
             tvTipo.setText(a.getDosagem());
             tvQuantidade.setText(a.getQuantidade());
 

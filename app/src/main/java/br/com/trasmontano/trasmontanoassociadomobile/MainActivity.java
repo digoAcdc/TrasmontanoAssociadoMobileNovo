@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-           // super.onBackPressed();
+            super.onBackPressed();
 
         }
     }
@@ -150,8 +150,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_central_atendimento) {
+            Intent i = new Intent(MainActivity.this, CentralDeAtendimentoActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

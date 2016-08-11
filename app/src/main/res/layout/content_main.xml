@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
 
@@ -11,6 +10,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:paddingTop="@dimen/activity_vertical_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".MainActivity"
@@ -92,18 +92,20 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:drawableTint="@color/colorPrimaryDark"
                         android:id="@+id/btLogar"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:background="@drawable/style_button_azul"
-                        android:drawableTop="@android:drawable/ic_lock_idle_lock"
+                        android:background="@drawable/style_button"
+                        android:drawableTop="@drawable/padlock"
                         android:gravity="center"
                         android:paddingTop="20dp"
                         android:textColor="#fff" />
-
+                    <!-- ic_lock_idle_lock-->
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -111,6 +113,7 @@
                         android:text="Login" />
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -126,23 +129,26 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:drawableTint="@color/colorPrimaryDark"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:background="@drawable/style_button_azul"
-                        android:drawableTop="@android:drawable/ic_menu_myplaces"
+                        android:background="@drawable/style_button"
+                        android:drawableTop="@drawable/flag"
                         android:gravity="center"
                         android:paddingTop="20dp"
                         android:textColor="#fff" />
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Unidades" />
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -157,23 +163,26 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:drawableTint="@color/colorPrimaryDark"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:background="@drawable/style_button_azul"
-                        android:drawableTop="@android:drawable/ic_menu_my_calendar"
+                        android:background="@drawable/style_button"
+                        android:drawableTop="@drawable/hospital"
                         android:gravity="center"
                         android:paddingTop="20dp"
                         android:textColor="#fff" />
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Agendamento" />
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -195,17 +204,19 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:drawableTint="@color/colorPrimaryDark"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:background="@drawable/style_button_azul"
-                        android:drawableTop="@android:drawable/ic_menu_sort_alphabetically"
+                        android:background="@drawable/style_button"
+                        android:drawableTop="@drawable/book"
                         android:gravity="center"
                         android:paddingTop="20dp"
                         android:textColor="#fff" />
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -213,6 +224,7 @@
                         android:text="Orientador" />
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -228,24 +240,27 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:drawableTint="@color/colorPrimaryDark"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:background="@drawable/style_button_azul"
+                        android:background="@drawable/style_button"
                         android:id="@+id/btAlarmeMedicamentos"
-                        android:drawableTop="@android:drawable/ic_popup_reminder"
+                        android:drawableTop="@drawable/bell"
                         android:gravity="center"
                         android:paddingTop="20dp"
                         android:textColor="#fff" />
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Alarme de" />
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -265,19 +280,22 @@
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:background="@drawable/style_button_azul"
-                        android:drawableTop="@android:drawable/ic_menu_crop"
+                        android:background="@drawable/style_button"
+                        android:drawableTop="@drawable/frame"
+                        android:drawableTint="@color/colorPrimaryDark"
                         android:gravity="center"
                         android:paddingTop="20dp"
                         android:textColor="#fff" />
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Carteirinha" />
 
                     <TextView
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -301,12 +319,18 @@
                 />
 
             <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/rodape" />
+
+           <!-- <ImageView
                 android:id="@+id/imagem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:src="@drawable/faleconosco" />
+                android:src="@drawable/faleconosco" />-->
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
