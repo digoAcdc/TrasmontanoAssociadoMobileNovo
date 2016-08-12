@@ -130,8 +130,7 @@ public class MainLogadoActivity extends AppCompatActivity
         btAgendamentoConsulta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainLogadoActivity.this, ListAgendamentoConsultaActivity.class);
-                startActivity(i);
+                AgendamentoDeConsulta();
             }
         });
 
@@ -172,10 +171,19 @@ public class MainLogadoActivity extends AppCompatActivity
         if (redirecionarPara.equalsIgnoreCase("CarteirinhaTemporaria")) {
             CarteirinhaVirtual();
         }
+        else if(redirecionarPara.equalsIgnoreCase("AgendamentoConsulta"))
+        {
+            AgendamentoDeConsulta();
+        }
 
         new APIClient().getRestService().getAngendaMedicaAssociado(mat,
                 cdDependente, 0, callbackAgendaMedicaAssociado);
 
+    }
+    public  void AgendamentoDeConsulta()
+    {
+        Intent i = new Intent(MainLogadoActivity.this, ListAgendamentoConsultaActivity.class);
+        startActivity(i);
     }
 
     public void Encerrar() {

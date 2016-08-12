@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity
 
     private Button btLogar;
     private Button btCarteirinhaSemLogin;
+    private Button btAgendamentoConsultaSemLogin;
     private Button btAlarmeMedicamentos;
     SpotsDialog spotsDialog;
     private String redirecionarPara;
@@ -71,6 +72,15 @@ public class MainActivity extends AppCompatActivity
 
         btLogar = (Button) findViewById(R.id.btLogar);
         btCarteirinhaSemLogin = (Button) findViewById(R.id.btCarteirinhaSemLogin);
+        btAgendamentoConsultaSemLogin = (Button) findViewById(R.id.btAgendamentoConsultaSemLogin);
+
+        btAgendamentoConsultaSemLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirecionarPara = "AgendamentoConsulta";
+                showInputDialog();
+            }
+        });
 
         btCarteirinhaSemLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +183,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_home) {
 
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_agendamentoConsulta) {
+            redirecionarPara = "AgendamentoConsulta";
+            showInputDialog();
 
         } else if (id == R.id.nav_alarme_medicamentos) {
             Intent i = new Intent(MainActivity.this, ListAlarmeActivity.class);

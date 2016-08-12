@@ -138,6 +138,7 @@
                     android:orientation="vertical">
 
                     <Button
+                      android:id="@+id/btAgendamentoConsultaSemLogin"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
