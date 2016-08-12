@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/app_bar_main">
 
-    <LinearLayout
-
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
+        android:paddingBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".MainActivity"
-        tools:showIn="@layout/app_bar_main">
-
-
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:background="@color/white">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingTop="@dimen/activity_horizontal_margin">
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,7 +36,6 @@
                     android:id="@+id/carouselView"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:paddingTop="@dimen/activity_horizontal_margin"
                     app:fillColor="#FFFFFFFF"
                     app:pageColor="#00000000"
                     app:radius="6dp"
@@ -48,35 +50,8 @@
                 android:layout_height="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:alpha="0.2"
-                />
+                android:alpha="0.2" />
 
-           <!-- <View
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:alpha="0.2"
-                android:background="@color/black" />-->
-
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:alpha="0.2"
-                />
-
-
-           <!-- <View
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:alpha="0.2"
-                android:background="@color/black" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -92,13 +67,13 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:drawableTint="@color/colorPrimaryDark"
                         android:id="@+id/btLogar"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button"
+                        android:drawableTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/padlock"
                         android:gravity="center"
                         android:paddingTop="20dp"
@@ -129,12 +104,12 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:drawableTint="@color/colorPrimaryDark"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button"
+                        android:drawableTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/flag"
                         android:gravity="center"
                         android:paddingTop="20dp"
@@ -163,12 +138,12 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:drawableTint="@color/colorPrimaryDark"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button"
+                        android:drawableTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/hospital"
                         android:gravity="center"
                         android:paddingTop="20dp"
@@ -204,12 +179,12 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:drawableTint="@color/colorPrimaryDark"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button"
+                        android:drawableTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/book"
                         android:gravity="center"
                         android:paddingTop="20dp"
@@ -240,13 +215,13 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:drawableTint="@color/colorPrimaryDark"
+                        android:id="@+id/btAlarmeMedicamentos"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button"
-                        android:id="@+id/btAlarmeMedicamentos"
+                        android:drawableTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/bell"
                         android:gravity="center"
                         android:paddingTop="20dp"
@@ -281,8 +256,8 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button"
-                        android:drawableTop="@drawable/frame"
                         android:drawableTint="@color/colorPrimaryDark"
+                        android:drawableTop="@drawable/frame"
                         android:gravity="center"
                         android:paddingTop="20dp"
                         android:textColor="#fff" />
@@ -310,27 +285,26 @@
                 android:layout_marginTop="20dp"
                 android:alpha="0.2"
                 android:background="@color/black" />-->
-            <View
+            <!--<View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:alpha="0.2"
-                />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_gravity="bottom"
-                android:background="@drawable/rodape" />
-
-           <!-- <ImageView
-                android:id="@+id/imagem"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:src="@drawable/faleconosco" />-->
+                android:alpha="0.2" />-->
         </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/rodape" />
     </LinearLayout>
-</ScrollView>
+
+</RelativeLayout>

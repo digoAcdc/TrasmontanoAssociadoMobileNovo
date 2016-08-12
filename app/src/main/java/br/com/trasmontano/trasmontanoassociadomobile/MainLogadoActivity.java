@@ -73,11 +73,11 @@ public class MainLogadoActivity extends AppCompatActivity
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         circularImageView = (CircularImageView) findViewById(R.id.ivAssociadoCard);
         spotsDialog = new SpotsDialog(this, R.style.LoaderCustom);
-        btnQtdConsultas = (Button)findViewById(R.id.btnQtdConsultas);
+        btnQtdConsultas = (Button) findViewById(R.id.btnQtdConsultas);
         SharedPreferences prefs = getSharedPreferences("DADOS_LOGIN", MODE_PRIVATE);
-         String nome = prefs.getString("NomeUsuario", "");
-         mat = prefs.getString("CodigoUsuario", "");
-         cdDependente = prefs.getString("CodigoDependente", "");
+        String nome = prefs.getString("NomeUsuario", "");
+        mat = prefs.getString("CodigoUsuario", "");
+        cdDependente = prefs.getString("CodigoDependente", "");
         String redirecionarPara = prefs.getString("redirecionarPara", "");
         TipoPlano = prefs.getString("PerfilUsuario", "");
         prefs.edit().remove("redirecionarPara").commit();
@@ -85,13 +85,10 @@ public class MainLogadoActivity extends AppCompatActivity
         configureInformacaoAgendaMedicaAssociadoCallback();
         Associado a = null;
 
-        if(cdDependente.equalsIgnoreCase("00"))
-        {
-             a = Query.one(Associado.class, "select * from associado where usuario=?", mat).get();
-        }
-        else
-        {
-             a = Query.one(Associado.class, "select * from associado where usuario=?", mat + cdDependente).get();
+        if (cdDependente.equalsIgnoreCase("00")) {
+            a = Query.one(Associado.class, "select * from associado where usuario=?", mat).get();
+        } else {
+            a = Query.one(Associado.class, "select * from associado where usuario=?", mat + cdDependente).get();
         }
 
         circularImageView.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +108,7 @@ public class MainLogadoActivity extends AppCompatActivity
         });
 
         if (a != null) {
-            if(a.getCaminhoImagem() != null) {
+            if (a.getCaminhoImagem() != null) {
                 File file = new File(a.getCaminhoImagem());
                 if (file.exists()) {
                     circularImageView.setImageURI(Uri.parse(a.getCaminhoImagem()));
@@ -128,7 +125,7 @@ public class MainLogadoActivity extends AppCompatActivity
             }
         });
 
-        btAgendamentoConsulta = (Button)findViewById(R.id.btagendamentoDeConsulta);
+        btAgendamentoConsulta = (Button) findViewById(R.id.btagendamentoDeConsulta);
 
         btAgendamentoConsulta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +138,7 @@ public class MainLogadoActivity extends AppCompatActivity
         btnQtdConsultas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!btnQtdConsultas.getText().equals("") || !btnQtdConsultas.getText().equals("0 Consulta(s) Agendada(s)")) {
+                if (!btnQtdConsultas.getText().equals("") || !btnQtdConsultas.getText().equals("0 Consulta(s) Agendada(s)")) {
                     Intent i = new Intent(MainLogadoActivity.this, ListAgendamentoConsultaActivity.class);
                     startActivity(i);
                 }
@@ -196,13 +193,15 @@ public class MainLogadoActivity extends AppCompatActivity
 
             mat = prefs.getString("CodigoUsuario", "");
             cdDependente = prefs.getString("CodigoDependente", "");
-            if(cdDependente.equalsIgnoreCase("00"))
-            {
+            if (cdDependente.equalsIgnoreCase("00")) {
                 a = Query.one(Associado.class, "select * from associado where usuario=?", mat).get();
-            }
-            else
-            {
+
+            } else {
                 a = Query.one(Associado.class, "select * from associado where usuario=?", mat + cdDependente).get();
+            }
+            if (a.getCaminhoImagem() != null) {
+                File file1 = new File(a.getCaminhoImagem());
+                file1.delete();
             }
 
             if (file != null && file.exists()) {
@@ -232,15 +231,12 @@ public class MainLogadoActivity extends AppCompatActivity
 
             @Override
             public void success(List<AgendaMedicaAssociado> agendaMedicaAssociados, Response response) {
-
-              btnQtdConsultas.setText(String.valueOf(agendaMedicaAssociados.size()) + " Consulta(s) Agendada(s)");
-
-
+                btnQtdConsultas.setText(String.valueOf(agendaMedicaAssociados.size()) + " Consulta(s) Agendada(s)");
             }
 
             @Override
             public void failure(RetrofitError error) {
-
+                Toast.makeText(MainLogadoActivity.this, "Falha ao conectar ao servidor", Toast.LENGTH_LONG).show();
             }
         };
 
@@ -253,25 +249,8 @@ public class MainLogadoActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             //super.onBackPressed();
-
             OpcaoEncerrarApp();
-           /* DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    switch (which){
-                        case DialogInterface.BUTTON_POSITIVE:
-                            Encerrar();
-                            break;
 
-                        case DialogInterface.BUTTON_NEGATIVE:
-                            break;
-                    }
-                }
-            };
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Deseja encerrar o aplicativo?").setPositiveButton("Sim", dialogClickListener)
-                    .setNegativeButton("Não", dialogClickListener).show();*/
         }
     }
 
@@ -291,8 +270,9 @@ public class MainLogadoActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_central_atendimento) {
+            Intent i = new Intent(MainLogadoActivity.this, CentralDeAtendimentoActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

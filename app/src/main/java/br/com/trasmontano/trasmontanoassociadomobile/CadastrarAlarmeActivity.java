@@ -359,7 +359,7 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
 
     private void showFileChooser() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/.mp3");
+        intent.setType("audio/mp3");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
 
         try {
