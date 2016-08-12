@@ -59,7 +59,7 @@ public  class LoginActivity extends AppCompatActivity  {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         spotsDialog = new SpotsDialog(this, R.style.LoaderCustom);
 
         configureInformacaoAssociadoCallback();
@@ -93,7 +93,6 @@ public  class LoginActivity extends AppCompatActivity  {
                     new APIClient().getRestService().getLoginAssociado(tiUsuario.getEditText().getText().toString(),
                             tisenha.getEditText().getText().toString(), callbackUsuario);
                 }
-
             }
         });
 
@@ -108,27 +107,18 @@ public  class LoginActivity extends AppCompatActivity  {
 
             }
         });
-
-
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.login, menu);
         return true;
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
     private void configureInformacaoAssociadoCallback() {
@@ -193,20 +183,5 @@ public  class LoginActivity extends AppCompatActivity  {
 
         Preferencias p = new Preferencias(this);
         p.GuardarDadosLoginAssociado(login, redirecionarPara);
-        /*SharedPreferences.Editor editor = getSharedPreferences("DADOS_LOGIN", MODE_PRIVATE).edit();
-        editor.putString("Bloqueado", Integer.toString(login.getBloqueado()));
-        editor.putString("ExpiraEm", Integer.toString(login.getExpiraEm()));
-        editor.putString("StatusAcesso", Integer.toString(login.getStatusAcesso()));
-        editor.putString("DataUltimoAcesso", login.getDataUltimoAcesso());
-        editor.putString("CodigoUsuario", login.getCodigoUsuario());
-        editor.putString("NomeUsuario", login.getNomeUsuario());
-        editor.putString("Email", login.getEmail());
-        editor.putString("PerfilUsuario", login.getPerfilUsuario());
-        editor.putString("TipoPlano", login.getTipoPlano());
-
-        if (redirecionarPara != "")
-            editor.putString("redirecionarPara", redirecionarPara);
-
-        editor.commit();*/
     }
 }

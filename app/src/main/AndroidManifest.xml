@@ -115,7 +115,8 @@
             android:label="Consultas Agendadas" />
         <activity
             android:name=".AgendamentoDeConsultaActivity"
-            android:label="Agendamento de Consulta"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ListConsultaActivity"

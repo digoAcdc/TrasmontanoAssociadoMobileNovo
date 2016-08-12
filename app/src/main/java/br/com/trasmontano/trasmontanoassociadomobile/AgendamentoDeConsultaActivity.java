@@ -79,7 +79,7 @@ public class AgendamentoDeConsultaActivity extends AppCompatActivity {
 
         btFiltrar.requestFocus();
 
-        strURL = "https://chart.googleapis.com/chart?" +
+       /* strURL = "https://chart.googleapis.com/chart?" +
                 "cht=bvs&" + //define o tipo do gráfico "linha"
                 "chxt=x,y&" + //imprime os valores dos eixos X, Y
                 "chs=350x200&" + //define o tamanho da imagem
@@ -95,7 +95,7 @@ public class AgendamentoDeConsultaActivity extends AppCompatActivity {
 
 
         wvGrafico = (WebView)findViewById(R.id.wvGrafico);
-        wvGrafico.loadUrl(strURL);
+        wvGrafico.loadUrl(strURL);*/
 
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
