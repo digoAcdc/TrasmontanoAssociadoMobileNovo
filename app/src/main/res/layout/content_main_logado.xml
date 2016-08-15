@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-
     android:paddingBottom="16dp"
-
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -165,7 +163,7 @@
                     android:layout_height="80dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="@drawable/style_button"
+                    android:background="@drawable/style_button_elevation"
                     android:drawableTop="@drawable/frame"
                     android:drawableTint="@color/colorPrimaryDark"
                     android:gravity="center"
@@ -210,7 +208,7 @@
                     android:layout_height="80dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="@drawable/style_button"
+                    android:background="@drawable/style_button_elevation"
                     android:drawableTop="@drawable/hospital"
                     android:drawableTint="@color/colorPrimaryDark"
                     android:gravity="center"
