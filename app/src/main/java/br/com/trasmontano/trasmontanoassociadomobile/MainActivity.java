@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity
 
     CarouselView carouselView;
 
-    int[] sampleImages = {R.drawable.agend, R.drawable.bannersantos, R.drawable.igesp, R.drawable.saude_integral};
+    //int[] sampleImages = {R.drawable.agend, R.drawable.bannersantos, R.drawable.igesp, R.drawable.saude_integral};
+    int[] sampleImages = {R.drawable.banner_um, R.drawable.banner, R.drawable.banner_dois, R.drawable.banner_quatro};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

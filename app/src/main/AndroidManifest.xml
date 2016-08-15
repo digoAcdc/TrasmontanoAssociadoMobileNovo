@@ -116,11 +116,11 @@
         <activity
             android:name=".AgendamentoDeConsultaActivity"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ListConsultaActivity"
-            android:label="Agendamento de Consulta"></activity>
+            android:label="Agendamento de Consulta" />
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
@@ -133,8 +133,10 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".CentralDeAtendimentoActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".CentralDeAtendimentoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EmailActivity"></activity>
     </application>
 
 </manifest>
