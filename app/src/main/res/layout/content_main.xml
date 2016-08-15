@@ -12,25 +12,24 @@
     tools:showIn="@layout/app_bar_main">
 
     <ScrollView
-        android:paddingBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
+        android:background="@color/white"
         android:gravity="center_horizontal"
-        android:background="@color/white">
+        android:paddingBottom="50dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <com.synnapps.carouselview.CarouselView
                     android:id="@+id/carouselView"
@@ -138,7 +137,7 @@
                     android:orientation="vertical">
 
                     <Button
-                      android:id="@+id/btAgendamentoConsultaSemLogin"
+                        android:id="@+id/btAgendamentoConsultaSemLogin"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
@@ -257,9 +256,9 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button_elevation"
-                        android:elevation="10dp"
                         android:drawableTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/frame"
+                        android:elevation="10dp"
                         android:gravity="center"
                         android:paddingTop="20dp"
                         android:textColor="#fff" />
@@ -295,6 +294,7 @@
                 android:alpha="0.2" />-->
         </LinearLayout>
     </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
