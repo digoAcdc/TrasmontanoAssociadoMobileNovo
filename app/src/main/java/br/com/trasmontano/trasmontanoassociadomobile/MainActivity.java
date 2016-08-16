@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
     CarouselView carouselView;
 
     //int[] sampleImages = {R.drawable.agend, R.drawable.bannersantos, R.drawable.igesp, R.drawable.saude_integral};
-    int[] sampleImages = {R.drawable.banner_um, R.drawable.banner, R.drawable.banner_dois, R.drawable.banner_quatro};
+    int[] sampleImages = {R.drawable.banner_um, R.drawable.banner, R.drawable.banner_quatro, R.drawable.banner_dois};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +67,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*String token = FirebaseInstanceId.getInstance().getToken();
-        Log.d("token ", token);*/
         configureInformacaoAssociadoCallback();
 
         btLogar = (Button) findViewById(R.id.btLogar);
@@ -142,7 +140,6 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-
         }
     }
 

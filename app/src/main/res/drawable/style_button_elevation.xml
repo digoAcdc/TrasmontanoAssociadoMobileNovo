@@ -15,7 +15,7 @@
             <item
                 android:bottom="5px">
                 <shape>
-                    <padding android:bottom="5dp"/>
+                   />
                     <stroke android:width="6px"
                         android:color="@color/colorPrimaryDark" />
 
@@ -49,7 +49,7 @@
             <!-- BUTTON -->
             <item android:bottom="5px">
                 <shape>
-                    <padding android:bottom="5dp"/>
+                    />
                     <corners
                         android:radius="1000dp"/>
                     <padding

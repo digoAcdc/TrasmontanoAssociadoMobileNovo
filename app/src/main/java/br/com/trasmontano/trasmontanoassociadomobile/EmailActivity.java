@@ -1,27 +1,47 @@
 package br.com.trasmontano.trasmontanoassociadomobile;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.WindowManager;
+import android.widget.TextView;
+
 
 public class EmailActivity extends AppCompatActivity {
+
+    static String tipo;
+    static String email;
+
+    TextView tvSetor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        String to = "barbosa_silveira@hotmail.com";
-        String subject = "ASSUNTO";
-        String message = "MENSAGEM";
+        tvSetor = (TextView)findViewById(R.id.tvSetor);
 
-        Intent email = new Intent(Intent.ACTION_SEND);
-        email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
-        email.putExtra(Intent.EXTRA_SUBJECT, subject);
-        email.putExtra(Intent.EXTRA_TEXT, message);
-        email.setType("message/rfc822");
+        Intent intent = getIntent();
 
-        startActivity(Intent.createChooser(email, "E-mail"));
+        Bundle params = intent.getExtras();
+
+        if (params != null) {
+            tipo = params.getString("tipo");
+            email = params.getString("tipo");
+        }
+
+        tvSetor.setText(tipo);
+
+
+
+
+
+
     }
+
 }
+
