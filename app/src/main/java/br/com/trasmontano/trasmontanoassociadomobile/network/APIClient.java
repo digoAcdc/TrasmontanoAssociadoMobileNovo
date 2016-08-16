@@ -9,6 +9,7 @@ import retrofit.client.OkClient;
 import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.Header;
+import retrofit.http.POST;
 import retrofit.http.Path;
 
 /**
@@ -113,6 +114,13 @@ public class APIClient {
                 @Header("idAgenda") String idAgenda,
                 Callback<String> callbackCancelamentoDeConsulta
         );
+
+
+//        @POST("/associado/enviaEmail")
+//        void enviaEmail(@Body EmailCanalAtendimento email, Callback<EmailCanalAtendimento> callback);
+
+        @POST("/associado/enviaEmail")
+        void enviaEmail(@Body EmailCanalAtendimento email, Callback<String> callback);
 
 
     }

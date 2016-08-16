@@ -32,7 +32,7 @@
             android:scrollbarSize="16dp"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-
+            android:textStyle="bold"
             android:text="" />
 
         <TextView
@@ -46,7 +46,7 @@
             android:textColor="@color/text_secondary"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:id="@+id/name_edit_text"
+            android:id="@+id/etNomeEmail"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_below="@+id/etNomeEmail"
@@ -162,7 +162,7 @@
             android:id="@+id/etAssuntoEmail"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_below="@+id/etNomeEmail"
+            android:layout_below="@+id/etAssuntoEmail"
             android:layout_centerHorizontal="true"
             android:background="@drawable/style_edit_text"
             android:ems="15"
@@ -186,7 +186,7 @@
             android:layout_height="150dp"
             android:maxLines="6"
             android:layout_below="@+id/etNomeEmail"
-           android:textAlignment="textStart"
+            android:textAlignment="textStart"
             android:background="@drawable/style_edit_text"
             android:ems="15"
             android:enabled="true"
@@ -213,12 +213,14 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:layout_below="@+id/imbEnviarEmail"
                 android:layout_width="wrap_content"
                 android:background="@color/white"
                 android:layout_height="wrap_content"
                 android:src="@drawable/send_email"/>
 
             <ImageButton
+                android:layout_below="@+id/imbLimpar"
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:background="@color/white"
