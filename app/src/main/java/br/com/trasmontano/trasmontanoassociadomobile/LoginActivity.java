@@ -57,6 +57,7 @@ public  class LoginActivity extends AppCompatActivity  {
             redirecionarPara = params.getString("redirecionarPara");
         }
 
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
