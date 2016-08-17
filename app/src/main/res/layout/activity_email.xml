@@ -213,6 +213,21 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/imbEnviarEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@drawable/send_email"/>
+
+            <ImageButton
+                android:id="@+id/imbLimpar"
+                android:layout_marginLeft="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@drawable/trash"/>
+
+           <!-- <ImageButton
                 android:layout_below="@+id/imbEnviarEmail"
                 android:layout_width="wrap_content"
                 android:background="@color/white"
@@ -225,7 +240,7 @@
                 android:layout_marginLeft="50dp"
                 android:background="@color/white"
                 android:layout_height="wrap_content"
-                android:src="@drawable/trash"/>
+                android:src="@drawable/trash"/>-->
 
         </LinearLayout>
 

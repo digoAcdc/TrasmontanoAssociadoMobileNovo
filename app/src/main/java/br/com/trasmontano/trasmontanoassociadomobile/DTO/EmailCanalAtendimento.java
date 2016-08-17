@@ -7,13 +7,30 @@ import com.google.gson.annotations.SerializedName;
  */
 public class EmailCanalAtendimento {
 
-
+    @SerializedName("nome")
     private String nome;
+    @SerializedName("matricula")
     private String matricula;
+    @SerializedName("cdDependente")
     private String cdDependente;
+    @SerializedName("email")
     private String email;
+    @SerializedName("emailDestinatario")
+    private String emailDestinatario;
+    @SerializedName("assunto")
     private String assunto;
+    @SerializedName("mensagem")
     private String mensagem;
+
+    public String getEmailDestinatario() {
+        return emailDestinatario;
+    }
+
+    public void setEmailDestinatario(String emailDestinatario) {
+        this.emailDestinatario = emailDestinatario;
+    }
+
+
 
     public String getMensagem() {
         return mensagem;

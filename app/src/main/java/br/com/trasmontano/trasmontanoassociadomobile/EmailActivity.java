@@ -69,15 +69,7 @@ public class EmailActivity extends AppCompatActivity {
 
         tvSetor.setText("Setor: " + tipo);
 
-
-       /* imbEnviarEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
-
-       /* imbLimpar.setOnClickListener(new View.OnClickListener() {
+        imbLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 etNomeEmail.setText("");
@@ -87,18 +79,27 @@ public class EmailActivity extends AppCompatActivity {
                 etAssuntoEmail.setText("");
                 etMensagemEmail.setText("");
             }
-        });*/
+        });
 
-        configureEmailCallback();
-        EmailCanalAtendimento e = new EmailCanalAtendimento();
-        e.setAssunto("assunto");
-        e.setCdDependente("00");
-        e.setEmail("fsafas");
-        e.setMatricula("55400");
-        e.setMensagem("bla");
-        e.setNome("Rodrigo");
+        imbEnviarEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spotsDialog.show();
+                configureEmailCallback();
+                EmailCanalAtendimento e = new EmailCanalAtendimento();
+                e.setAssunto(etAssuntoEmail.getText().toString());
+                e.setCdDependente(etCdDependenteEmail.getText().toString());
+                e.setEmail(etEmail.getText().toString());
+                e.setEmailDestinatario(etEmail.getText().toString());
+                //e.setEmailDestinatario(email);
+                e.setMatricula(etMatriculaEmail.getText().toString());
+                e.setMensagem(etMensagemEmail.getText().toString());
+                e.setNome(etNomeEmail.getText().toString());
 
-        new APIClient().getRestService().enviaEmail(e, callbackEmail);
+                new APIClient().getRestService().enviaEmail(e, callbackEmail);
+                //Toast.makeText(EmailActivity.this, "Enviar email", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
@@ -108,12 +109,19 @@ public class EmailActivity extends AppCompatActivity {
 
             @Override
             public void success(String s, Response response) {
-
+                if (s.equalsIgnoreCase("Sucesso")) {
+                    Toast.makeText(EmailActivity.this, s, Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(EmailActivity.this, s, Toast.LENGTH_LONG).show();
+                }
+                spotsDialog.dismiss();
             }
 
             @Override
             public void failure(RetrofitError error) {
-
+                spotsDialog.dismiss();
             }
         };
     }
