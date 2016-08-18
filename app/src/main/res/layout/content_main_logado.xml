@@ -59,7 +59,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-               <!-- <com.antonionicolaspina.revealtextview.RevealTextView
+                <com.antonionicolaspina.revealtextview.RevealTextView
                     android:id="@+id/rtvLabelNome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="16dp"
                     android:text=""
-                    app:rtv_duration="3000" />-->
+                    app:rtv_duration="3000" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
