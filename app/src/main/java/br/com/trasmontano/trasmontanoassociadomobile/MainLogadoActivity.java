@@ -169,11 +169,11 @@ public class MainLogadoActivity extends AppCompatActivity
                 if (index == 0) {
                     CentralDeAtendimento();
                 } else if (index == 1) {
-                    CarteirinhaVirtual();
-                }else if (index == 2) {
-                    AgendamentoDeConsulta();
-                }else if (index == 3) {
                     AlarmeDeMedicamentos();
+                } else if (index == 2) {
+                    CarteirinhaVirtual();
+                } else if (index == 3) {
+                    AgendamentoDeConsulta();
                 }
 
                 Toast.makeText(MainLogadoActivity.this, "Button Clicked = " + index, Toast.LENGTH_SHORT).show();

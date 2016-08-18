@@ -13,7 +13,7 @@
         <item>@color/red_4</item>
     </integer-array>
     <array name="button_icons">
-        <item>@drawable/asterisk</item>
+        <item>@drawable/flag</item>
         <item>@drawable/bell</item>
         <item>@drawable/frame</item>
         <item>@drawable/hospital</item>
