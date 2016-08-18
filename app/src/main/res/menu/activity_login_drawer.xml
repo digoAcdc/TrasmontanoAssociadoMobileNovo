@@ -4,19 +4,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@android:drawable/ic_menu_revert"
+            android:icon="@android:drawable/btn_star_big_off"
             android:title="Home" />
         <item
             android:id="@+id/nav_login"
-            android:icon="@android:drawable/ic_lock_idle_lock"
+            android:icon="@drawable/padlock"
             android:title="Login" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/flag"
             android:title="Unidades" />
         <item
             android:id="@+id/nav_agendamentoConsulta"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/hospital"
             android:title="Agendamento de Consulta" />
 
     </group>
@@ -25,11 +25,11 @@
         <menu>
             <item
                 android:id="@+id/nav_alarme_medicamentos"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/bell"
                 android:title="Alarme de Medicamentos" />
             <item
                 android:id="@+id/nav_carteirinha_sem_logar"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/frame"
                 android:title="Carteirinha Virtual" />
         </menu>
     </item>

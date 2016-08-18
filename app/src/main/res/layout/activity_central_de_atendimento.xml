@@ -152,6 +152,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:background="@drawable/layout_click"
                     android:id="@+id/layAtendimento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -190,6 +191,7 @@
 
 
             <LinearLayout
+                android:background="@drawable/layout_click"
                 android:id="@+id/layRedeCredenciada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -256,6 +258,7 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:background="@drawable/layout_click"
                 android:id="@+id/layDeficienteAuditivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

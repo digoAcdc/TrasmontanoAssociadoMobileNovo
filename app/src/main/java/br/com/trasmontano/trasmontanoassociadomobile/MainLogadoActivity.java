@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.antonionicolaspina.revealtextview.RevealTextView;
+import com.bcgdv.asia.lib.fanmenu.FanMenuButtons;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.io.File;
@@ -82,6 +83,8 @@ public class MainLogadoActivity extends AppCompatActivity
         TipoPlano = prefs.getString("PerfilUsuario", "");
         prefs.edit().remove("redirecionarPara").commit();
 
+        final FanMenuButtons sub = (FanMenuButtons) findViewById(R.id.myFABSubmenu);
+
         configureInformacaoAgendaMedicaAssociadoCallback();
         Associado a = null;
 
@@ -116,23 +119,23 @@ public class MainLogadoActivity extends AppCompatActivity
             }
         }
 
-        btCarteirinha = (Button) findViewById(R.id.btCarteirinha);
+       /* btCarteirinha = (Button) findViewById(R.id.btCarteirinha);
 
         btCarteirinha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CarteirinhaVirtual();
             }
-        });
+        });*/
 
-        btAgendamentoConsulta = (Button) findViewById(R.id.btagendamentoDeConsulta);
+       /* btAgendamentoConsulta = (Button) findViewById(R.id.btagendamentoDeConsulta);
 
         btAgendamentoConsulta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AgendamentoDeConsulta();
             }
-        });
+        });*/
 
         btnQtdConsultas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,8 +157,26 @@ public class MainLogadoActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                sub.toggleShow();
+               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+            }
+        });
+        sub.setOnFanButtonClickListener(new FanMenuButtons.OnFanClickListener() {
+            @Override
+            public void onFanButtonClicked(int index) {
+
+                if (index == 0) {
+                    CentralDeAtendimento();
+                } else if (index == 1) {
+                    CarteirinhaVirtual();
+                }else if (index == 2) {
+                    AgendamentoDeConsulta();
+                }else if (index == 3) {
+                    AlarmeDeMedicamentos();
+                }
+
+                Toast.makeText(MainLogadoActivity.this, "Button Clicked = " + index, Toast.LENGTH_SHORT).show();
             }
         });
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -169,9 +190,7 @@ public class MainLogadoActivity extends AppCompatActivity
 
         if (redirecionarPara.equalsIgnoreCase("CarteirinhaTemporaria")) {
             CarteirinhaVirtual();
-        }
-        else if(redirecionarPara.equalsIgnoreCase("AgendamentoConsulta"))
-        {
+        } else if (redirecionarPara.equalsIgnoreCase("AgendamentoConsulta")) {
             AgendamentoDeConsulta();
         }
 
@@ -179,8 +198,8 @@ public class MainLogadoActivity extends AppCompatActivity
                 cdDependente, 0, callbackAgendaMedicaAssociado);
 
     }
-    public  void AgendamentoDeConsulta()
-    {
+
+    public void AgendamentoDeConsulta() {
         Intent i = new Intent(MainLogadoActivity.this, ListAgendamentoConsultaActivity.class);
         startActivity(i);
     }
@@ -278,11 +297,18 @@ public class MainLogadoActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_central_atendimento) {
-            Intent i = new Intent(MainLogadoActivity.this, CentralDeAtendimentoActivity.class);
-            startActivity(i);
+            Toast.makeText(MainLogadoActivity.this, "Criar pagina sobre", Toast.LENGTH_LONG).show();
+            //CentralDeAtendimento();
+            /*Intent i = new Intent(MainLogadoActivity.this, CentralDeAtendimentoActivity.class);
+            startActivity(i);*/
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void CentralDeAtendimento() {
+        Intent i = new Intent(MainLogadoActivity.this, CentralDeAtendimentoActivity.class);
+        startActivity(i);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -300,8 +326,9 @@ public class MainLogadoActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_alarme_medicamentos) {
-            Intent i = new Intent(MainLogadoActivity.this, ListAlarmeActivity.class);
-            startActivity(i);
+            AlarmeDeMedicamentos();
+            /*Intent i = new Intent(MainLogadoActivity.this, ListAlarmeActivity.class);
+            startActivity(i);*/
 
         }/* else if (id == R.id.nav_share) {
 
@@ -312,6 +339,11 @@ public class MainLogadoActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void AlarmeDeMedicamentos() {
+        Intent i = new Intent(MainLogadoActivity.this, ListAlarmeActivity.class);
+        startActivity(i);
     }
 
     public void OpcaoEncerrarApp() {

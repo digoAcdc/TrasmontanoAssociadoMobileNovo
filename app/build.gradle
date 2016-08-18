@@ -42,12 +42,12 @@ dependencies {
     compile 'com.github.d-max:spots-dialog:0.4@aar'
     compile 'com.antonionicolaspina:revealtextview:2.0'
     compile 'com.jaredrummler:material-spinner:1.0.9'
-
     compile 'com.sackcentury:shinebutton:0.1.4'
     compile 'net.colindodd:toggleimagebutton:1.2'
     compile 'com.google.firebase:firebase-core:9.0.2'
-
     compile 'com.google.firebase:firebase-messaging:9.0.0'
+
+    compile 'com.bcgdv.asia.lib:fanmenu:1.2'
 
 
 }

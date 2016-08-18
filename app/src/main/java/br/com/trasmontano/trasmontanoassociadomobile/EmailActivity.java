@@ -72,12 +72,7 @@ public class EmailActivity extends AppCompatActivity {
         imbLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                etNomeEmail.setText("");
-                etMatriculaEmail.setText("");
-                etCdDependenteEmail.setText("");
-                etEmail.setText("");
-                etAssuntoEmail.setText("");
-                etMensagemEmail.setText("");
+                LimparEmail();
             }
         });
 
@@ -103,6 +98,16 @@ public class EmailActivity extends AppCompatActivity {
 
     }
 
+    public void LimparEmail()
+    {
+        etNomeEmail.setText("");
+        etMatriculaEmail.setText("");
+        etCdDependenteEmail.setText("");
+        etEmail.setText("");
+        etAssuntoEmail.setText("");
+        etMensagemEmail.setText("");
+    }
+
     private void configureEmailCallback() {
         callbackEmail = new Callback<String>() {
 
@@ -110,7 +115,8 @@ public class EmailActivity extends AppCompatActivity {
             @Override
             public void success(String s, Response response) {
                 if (s.equalsIgnoreCase("Sucesso")) {
-                    Toast.makeText(EmailActivity.this, s, Toast.LENGTH_LONG).show();
+                    Toast.makeText(EmailActivity.this, "Email enviado com sucesso", Toast.LENGTH_LONG).show();
+                    LimparEmail();
                 }
                 else
                 {
