@@ -144,11 +144,11 @@ public class MainLogadoActivity extends AppCompatActivity
             }
         });
 
-        revealTextView = (RevealTextView) findViewById(R.id.rtvLabelNome);
+        /*revealTextView = (RevealTextView) findViewById(R.id.rtvLabelNome);
         revealTextViewNome = (RevealTextView) findViewById(R.id.rtvLabelMatricula);
 
         revealTextView.setAnimatedText("Bem vindo, " + nome + "!");
-        revealTextViewNome.setAnimatedText("Matrícula, " + mat + "");
+        revealTextViewNome.setAnimatedText("Matrícula, " + mat + "");*/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -158,7 +158,6 @@ public class MainLogadoActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

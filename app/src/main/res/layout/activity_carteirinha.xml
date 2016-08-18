@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:id="@+id/layoutCarteirinha"
     android:layout_height="match_parent"
     tools:context="br.com.trasmontano.trasmontanoassociadomobile.CarteirinhaActivity">
+
+   <FrameLayout
+       android:id="@+id/maincontainer"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
 
    <FrameLayout
        android:layout_width="wrap_content"
@@ -25,10 +30,7 @@
           android:text="Verso"
           android:paddingTop="20dp"
           android:textColor="#fff" />
-      <FrameLayout
-          android:id="@+id/maincontainer"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"/>
+
 
    </FrameLayout>
 
@@ -37,19 +39,7 @@
 
 
 
-
-
-
-  <!-- <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragCarteirinha"
-        class="br.com.trasmontano.trasmontanoassociadomobile.CarteirinhaEmpresarialFrenteFragment">
-
-   </fragment>-->
-
-
-</LinearLayout>
+</FrameLayout>
 
 
 
