@@ -36,6 +36,7 @@ public class CarteirinhaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carteirinha);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+
         SharedPreferences prefs = getSharedPreferences("DADOS_LOGIN", MODE_PRIVATE);
         String nome = prefs.getString("NomeUsuario", "");
         String mat = prefs.getString("CodigoUsuario", "");

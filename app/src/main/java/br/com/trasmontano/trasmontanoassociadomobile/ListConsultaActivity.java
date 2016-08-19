@@ -30,7 +30,7 @@ public class ListConsultaActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.rvConsulta);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-
+        overridePendingTransition(R.anim.slide_esquerda, R.anim.slide_direita);
 
 
         List<DadosConsulta> lst = AgendamentoDeConsultaActivity.lstDadosConsulta;

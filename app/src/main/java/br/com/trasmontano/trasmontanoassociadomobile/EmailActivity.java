@@ -46,7 +46,7 @@ public class EmailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_email);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        overridePendingTransition(R.anim.slide_esquerda, R.anim.slide_direita);
         spotsDialog = new SpotsDialog(this, R.style.LoaderCustom);
         tvSetor = (TextView) findViewById(R.id.tvSetor);
         etNomeEmail = (TextView) findViewById(R.id.etNomeEmail);
