@@ -138,7 +138,6 @@
         <activity
             android:name=".EmailActivity"
             android:label="Email"></activity>
-        <activity android:name=".SobreActivity"></activity>
     </application>
 
 </manifest>

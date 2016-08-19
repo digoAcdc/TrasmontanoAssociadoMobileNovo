@@ -4,6 +4,6 @@
     <item
         android:id="@+id/action_central_atendimento"
         android:orderInCategory="100"
-        android:title="Sobre"
+        android:title="Cental de Atedimento"
         app:showAsAction="never" />
 </menu>
