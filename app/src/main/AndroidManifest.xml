@@ -137,9 +137,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EmailActivity"
-            android:label="Email"
-            >
-        </activity>
+            android:label="Email"></activity>
+        <activity android:name=".SobreActivity"></activity>
     </application>
 
 </manifest>

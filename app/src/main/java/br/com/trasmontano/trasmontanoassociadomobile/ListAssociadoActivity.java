@@ -48,7 +48,7 @@ public class ListAssociadoActivity extends AppCompatActivity  {
 
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
         recyclerView = (RecyclerView) findViewById(R.id.rvAssociados);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);

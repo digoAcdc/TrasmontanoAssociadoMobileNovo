@@ -25,6 +25,8 @@ public class CentralDeAtendimentoActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
+
         layAtendimento = (LinearLayout)findViewById(R.id.layAtendimento);
         layRedeCredenciada = (LinearLayout)findViewById(R.id.layRedeCredenciada);
         layOuvidoria = (LinearLayout)findViewById(R.id.layOuvidoria);

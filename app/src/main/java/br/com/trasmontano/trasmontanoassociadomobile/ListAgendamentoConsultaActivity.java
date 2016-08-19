@@ -46,7 +46,7 @@ public class ListAgendamentoConsultaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_agendamento_consulta);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
         recyclerView = (RecyclerView) findViewById(R.id.rvAgendamentoDeConsulta);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);

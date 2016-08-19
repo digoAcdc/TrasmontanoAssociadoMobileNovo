@@ -89,7 +89,7 @@ public class CadastrarAlarmeActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);*/
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        overridePendingTransition(R.anim.slide_esquerda, R.anim.slide_direita);
         lnMp3 = (LinearLayout) findViewById(R.id.lnMp3);
         etMp3 = (EditText) findViewById(R.id.etMp3);
         btMp3 = (ImageButton) findViewById(R.id.imbMp3);

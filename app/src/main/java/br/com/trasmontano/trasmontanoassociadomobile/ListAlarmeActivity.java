@@ -51,7 +51,7 @@ public class ListAlarmeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_alarme);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
         recyclerView = (RecyclerView) findViewById(R.id.rvAlarme);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);

@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -22,6 +23,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -61,6 +64,7 @@ public class MainLogadoActivity extends AppCompatActivity
     private Callback<List<AgendaMedicaAssociado>> callbackAgendaMedicaAssociado;
     private Button btnQtdConsultas;
     private File file;
+    private CardView card_view;
     String mat;
     String cdDependente;
     Associado a;
@@ -82,6 +86,15 @@ public class MainLogadoActivity extends AppCompatActivity
         String redirecionarPara = prefs.getString("redirecionarPara", "");
         TipoPlano = prefs.getString("PerfilUsuario", "");
         prefs.edit().remove("redirecionarPara").commit();
+
+        card_view = (CardView)findViewById(R.id.card_view);
+
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_direita);
+        card_view.startAnimation(animation);
+
+        Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down);
+        circularImageView.startAnimation(animation1);
+
 
         final FanMenuButtons sub = (FanMenuButtons) findViewById(R.id.myFABSubmenu);
 
@@ -176,7 +189,7 @@ public class MainLogadoActivity extends AppCompatActivity
                     AgendamentoDeConsulta();
                 }
 
-                Toast.makeText(MainLogadoActivity.this, "Button Clicked = " + index, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainLogadoActivity.this, "Button Clicked = " + index, Toast.LENGTH_SHORT).show();
             }
         });
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -297,10 +310,10 @@ public class MainLogadoActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_central_atendimento) {
-            Toast.makeText(MainLogadoActivity.this, "Criar pagina sobre", Toast.LENGTH_LONG).show();
-            //CentralDeAtendimento();
-            /*Intent i = new Intent(MainLogadoActivity.this, CentralDeAtendimentoActivity.class);
-            startActivity(i);*/
+            //Toast.makeText(MainLogadoActivity.this, "Criar pagina sobre", Toast.LENGTH_LONG).show();
+
+            Intent i = new Intent(MainLogadoActivity.this, SobreActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
