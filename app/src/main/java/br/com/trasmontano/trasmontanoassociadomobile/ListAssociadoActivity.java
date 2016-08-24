@@ -1,18 +1,24 @@
 package br.com.trasmontano.trasmontanoassociadomobile;
 
+import android.*;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,7 +54,7 @@ public class ListAssociadoActivity extends AppCompatActivity  {
 
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        overridePendingTransition(R.anim.slide_down, R.anim.slide_up);
+        overridePendingTransition(R.anim.slide_down, R.anim.splash);
         recyclerView = (RecyclerView) findViewById(R.id.rvAssociados);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -79,6 +85,7 @@ public class ListAssociadoActivity extends AppCompatActivity  {
 
             @Override
             public void OnClickAssociado(View view, int index) {
+
                 TextView t =  (TextView) view.findViewById(R.id.tvMatricula);
 
                 SharedPreferences.Editor editor = getSharedPreferences("MATRICULA_SELECIONADA_NA_LISTA", MODE_PRIVATE).edit();

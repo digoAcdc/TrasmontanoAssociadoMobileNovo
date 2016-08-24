@@ -44,6 +44,14 @@ public class APIClient {
                 @Header("senha") String senha,
                 Callback<Login> callbackUsuario
         );
+        @GET("/acesso/autenticacaomobilebiometria")
+        void getLoginAssociadoBiometria(
+                @Header("usuario") String usuario,
+                @Header("telefone") String telefone,
+                Callback<Login> callbackUsuario
+        );
+
+
         @GET("/associado/carencia/{matricula}/{dependente}")
         void getDadosCarteirinhaTemporaria(
                 @Path("matricula") String matricula ,
