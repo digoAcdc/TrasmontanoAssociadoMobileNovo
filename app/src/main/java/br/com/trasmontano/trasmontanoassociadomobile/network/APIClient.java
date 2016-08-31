@@ -142,7 +142,31 @@ public class APIClient {
                 @Header("cdDependente") String cdDependente,
                 Callback<String> callbackSituacaoAssociado
         );
-
+        @GET("/associado/descricaoDosPlanos")
+        void getDescricaoPlanos(
+                Callback<List<OrientadorMedicoDTO>> callbackDescricaoPlanos
+        );
+        @GET("/associado/descricaoDasRegioes/{codPlano}")
+        void getDescricaoDasRegioes(
+                @Path("codPlano") String codPlano,
+                Callback<List<OrientadorMedicoDTO>> callbackDescricaoDasRegioes
+        );
+        @GET("/associado/descricaoDosMunicipios/{codPlano}/{codRegiao}")
+        void getDescricaoDosMunicipios(
+                @Path("codPlano") String codPlano,
+                @Path("codRegiao") String codRegiao,
+                Callback<List<OrientadorMedicoDTO>> callbackDescricaoDosMunicipios
+        );
+        @GET("/associado/descricaoDasEspecialidade")
+        void getDescricaoDasEspecialidade(
+                Callback<List<OrientadorMedicoDTO>> callbackDescricaoDasEspecialidade
+        );
+        //@POST("/associado/carregarGridOrientadorMedicoMobile")
+        //void getGridOrientadorMedicoMobile(
+        //@Body DTOParametrosOrientador orientador,
+        //Callback<List<OrientadorMedicoDTOPesquisa>> callbackOrientadorWeb);
+        @POST("/associado/carregarGridOrientadorMedicoMobile")
+        void getGridOrientadorMedicoMobile(@Body DTOParametrosOrientador orientador, Callback<List<OrientadorMedicoDTOPesquisa>> callback);
 
     }
 }
