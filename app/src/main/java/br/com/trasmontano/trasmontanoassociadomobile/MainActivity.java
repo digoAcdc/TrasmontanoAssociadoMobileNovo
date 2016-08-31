@@ -3,27 +3,24 @@ package br.com.trasmontano.trasmontanoassociadomobile;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -46,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     private Button btCarteirinhaSemLogin;
     private Button btAgendamentoConsultaSemLogin;
     private Button btAlarmeMedicamentos;
+    private Button btOrientadorMedico;
     SpotsDialog spotsDialog;
     private String redirecionarPara;
 
@@ -101,6 +99,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        btOrientadorMedico = (Button)findViewById(R.id.btOrientador);
+        btOrientadorMedico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, OrientadorMedico.class);
+                startActivity(i);
+            }
+        });
 
         carouselView = (CarouselView) findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.length);

@@ -32,5 +32,8 @@
     <string name="menu_carteirinha_virtual">Carteirinha Virtual</string>
     <string name="menu_agendamento_consulta">Agendamento de Consulta</string>
     <string name="menu_alarme_medicamentos">Alarme de Medicamentos</string>
+    <string name="title_activity_maps_activity_rede_credenciada">Map</string>
+    <string name="padr_o_nacional_de_qualidade">Padrão nacional de qualidade</string>
+    <string name="alpac">ALPAC</string>
 
 </resources>
