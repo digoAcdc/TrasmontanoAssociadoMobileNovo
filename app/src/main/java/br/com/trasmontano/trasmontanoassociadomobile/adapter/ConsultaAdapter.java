@@ -50,10 +50,11 @@ public class ConsultaAdapter extends RecyclerView.Adapter<ConsultaAdapter.Consul
     public void onBindViewHolder(final ConsultaViewHolder holder, final int position) {
 
         DadosConsulta a = lstAgendaMedica.get(position);
-
-        holder.tvDataHoraConsulta.setText((a.getDataHoraAgendamento()));
+        String data = a.getDataHoraAgendamento().substring(8,10) + "/" + a.getDataHoraAgendamento().substring(5,7) + "/" + a.getDataHoraAgendamento().substring(0,4);
+        String hora = a.getDataHoraAgendamento().substring(11,16);
+        holder.tvDataHoraConsulta.setText((data + " " + hora));
         holder.tvNomeMedico.setText("Médico(a): " + a.getNmMedico());
-        holder.tvIdConsulta.setText(a.getID());
+        holder.tvIdConsulta.setText(a.getIdAgenda());
         holder.tvLocalidadeConsulta.setText(a.getDsLocalidade());
         holder.tvEnderecoConsulta.setText(a.getEndereco());
 

@@ -69,9 +69,7 @@ public class FingerprintHandler extends
     @Override
     public void onAuthenticationHelp(int helpMsgId,
                                      CharSequence helpString) {
-        Toast.makeText(appContext,
-                "Authentication help\n" + helpString,
-                Toast.LENGTH_LONG).show();
+        Toast.makeText(appContext, helpString,  Toast.LENGTH_LONG).show();
     }
 
     @Override

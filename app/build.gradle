@@ -50,6 +50,7 @@ dependencies {
     compile 'com.bcgdv.asia.lib:fanmenu:1.2'
 
 
+
 }
 
 apply plugin: 'com.google.gms.google-services'

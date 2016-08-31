@@ -161,7 +161,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
         GetPermissao();
-        ValidaExisteSensorBiometrico();
+
+        if (pedirSensor)
+            ValidaExisteSensorBiometrico();
 
         /*SensorManager  sMgr = (SensorManager)this.getSystemService(SENSOR_SERVICE);
         List<Sensor> list = sMgr.getSensorList(Sensor.TYPE_ALL);
@@ -246,8 +248,12 @@ public class LoginActivity extends AppCompatActivity {
             if (numTel.equalsIgnoreCase("")) {
                 ivBiometria.setVisibility(View.INVISIBLE);
                 pedirSensor = false;
+            } else
+            {
+                pedirSensor = true;
+                Toast.makeText(this, manager.getLine1Number().toString(), Toast.LENGTH_LONG).show();
             }
-            Toast.makeText(this, manager.getLine1Number().toString(), Toast.LENGTH_LONG).show();
+
             //ivBiometria.setVisibility(View.VISIBLE);
         }
 
@@ -261,13 +267,10 @@ public class LoginActivity extends AppCompatActivity {
                 TelephonyManager manager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
                 numTel = manager.getLine1Number().toString();
 
-                if(numTel.equalsIgnoreCase(""))
-                {
+                if (numTel.equalsIgnoreCase("")) {
                     ivBiometria.setVisibility(View.INVISIBLE);
                     pedirSensor = false;
-                }
-                else
-                {
+                } else {
                     pedirSensor = true;
                 }
 

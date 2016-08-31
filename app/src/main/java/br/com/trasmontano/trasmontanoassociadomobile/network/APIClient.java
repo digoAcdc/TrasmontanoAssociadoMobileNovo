@@ -20,6 +20,8 @@ public class APIClient {
     private static RestAdapter REST_ADAPTER;
 
     private static void createAdapterIfNeeded() {
+        //http://webapi.trasmontano.com.br
+        //http://m.trasmontano.srv.br:8888
         if (REST_ADAPTER == null) {
             REST_ADAPTER = new RestAdapter.Builder()
                     .setEndpoint("http://webapi.trasmontano.com.br")
@@ -123,12 +125,23 @@ public class APIClient {
                 Callback<String> callbackCancelamentoDeConsulta
         );
 
-
-//        @POST("/associado/enviaEmail")
-//        void enviaEmail(@Body EmailCanalAtendimento email, Callback<EmailCanalAtendimento> callback);
-
         @POST("/associado/enviaEmail")
         void enviaEmail(@Body EmailCanalAtendimento email, Callback<String> callback);
+
+        @GET("/associado/verificaUsuarioExiste")
+        void getUsuarioExiste(
+                @Header("matricula") String matricula ,
+                @Header("cdDependente") String cdDependente,
+                @Header("dataNascimento") String usuRede,
+                Callback<String> callbackUsuarioExiste
+        );
+
+        @GET("/associado/verificaSituacaoAssociado")
+        void getSituacaoAssociado(
+                @Header("matricula") String matricula ,
+                @Header("cdDependente") String cdDependente,
+                Callback<String> callbackSituacaoAssociado
+        );
 
 
     }
