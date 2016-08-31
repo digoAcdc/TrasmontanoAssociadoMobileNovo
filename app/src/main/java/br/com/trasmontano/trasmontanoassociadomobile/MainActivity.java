@@ -1,36 +1,26 @@
 package br.com.trasmontano.trasmontanoassociadomobile;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.telephony.TelephonyManager;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -46,10 +36,6 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import se.emilsjolander.sprinkles.Query;
 
-
-import android.Manifest;
-
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -57,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     private Button btCarteirinhaSemLogin;
     private Button btAgendamentoConsultaSemLogin;
     private Button btAlarmeMedicamentos;
+    private Button btOrientadorMedico;
     SpotsDialog spotsDialog;
     private String redirecionarPara;
 
@@ -102,7 +89,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        btAlarmeMedicamentos = (Button) findViewById(R.id.btAlarmeMedicamentos);
+        btAlarmeMedicamentos = (Button)findViewById(R.id.btAlarmeMedicamentos);
 
         btAlarmeMedicamentos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +99,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        btOrientadorMedico = (Button)findViewById(R.id.btOrientador);
+        btOrientadorMedico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, OrientadorMedico.class);
+                startActivity(i);
+            }
+        });
 
         carouselView = (CarouselView) findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.length);
@@ -127,17 +122,14 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
     }
-
-
 
     ImageListener imageListener = new ImageListener() {
         @Override
@@ -146,7 +138,6 @@ public class MainActivity extends AppCompatActivity
 
         }
     };
-
 
     @Override
     public void onBackPressed() {
@@ -214,22 +205,26 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void Logar() {
+    public void Logar()
+    {
         spotsDialog.show();
         List<Associado> lst = Query.all(Associado.class).get().asList();
 
-        if (lst.size() > 0) {
+        if(lst.size() > 0)
+        {
             Intent i = new Intent(MainActivity.this, ListAssociadoActivity.class);
             startActivity(i);
             spotsDialog.dismiss();
-        } else {
+        }
+        else
+        {
             Intent i = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(i);
             spotsDialog.dismiss();
         }
     }
-
-    public void CarteirinhaSemLogin() {
+    public void CarteirinhaSemLogin()
+    {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         Bundle params = new Bundle();
 
@@ -255,9 +250,11 @@ public class MainActivity extends AppCompatActivity
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //resultText.setText("Hello, " + editText.getText());
-                        if (etLogin.getText().toString().equals("") || etLogin.getText().toString().equals("")) {
+                        if(etLogin.getText().toString().equals("") || etLogin.getText().toString().equals(""))
+                        {
                             Toast.makeText(MainActivity.this, "Login/Senha Obrigatórios", Toast.LENGTH_LONG).show();
-                        } else {
+                        }
+                        else {
                             spotsDialog.show();
                             new APIClient().getRestService().getLoginAssociado(etLogin.getText().toString(),
                                     etSenha.getText().toString(), callbackUsuario);
@@ -275,7 +272,6 @@ public class MainActivity extends AppCompatActivity
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
     }
-
     private void configureInformacaoAssociadoCallback() {
         callbackUsuario = new Callback<Login>() {
 

@@ -24,7 +24,7 @@ public class APIClient {
         //http://m.trasmontano.srv.br:8888
         if (REST_ADAPTER == null) {
             REST_ADAPTER = new RestAdapter.Builder()
-                    .setEndpoint("http://webapi.trasmontano.com.br")
+                    .setEndpoint("http:/m.trasmontano.srv.br:8888")
                     .setLogLevel(RestAdapter.LogLevel.FULL)
                     .setClient(new OkClient())
                     .build();
