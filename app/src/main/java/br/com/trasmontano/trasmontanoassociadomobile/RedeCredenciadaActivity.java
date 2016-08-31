@@ -235,6 +235,7 @@ public class RedeCredenciadaActivity extends AppCompatActivity implements Serial
                 i.putExtras(b);
                 startActivity(i);
                 //Toast.makeText(RedeCredenciadaActivity.this, "Info", Toast.LENGTH_LONG).show();
+
             }
         };
     }
