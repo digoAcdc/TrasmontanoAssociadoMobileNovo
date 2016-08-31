@@ -101,9 +101,11 @@ public class Associado extends Model {
 
     private String Fone;
 
-   /* private String senha;
+
+    private String senha;
     private String email;
-    private String lembreteSenha;*/
+    private String lembreteSenha;
+
 
     public long getId() {
         return id;
@@ -137,13 +139,13 @@ public class Associado extends Model {
         this.usuario = usuario;
     }
 
-   /* public String getSenha() {
+    public String getSenha() {
         return senha;
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }*/
+    }
 
     public String getDataNascimento() {
         return dataNascimento;
@@ -161,7 +163,7 @@ public class Associado extends Model {
         this.cpf = cpf;
     }
 
-    /*public String getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -175,5 +177,5 @@ public class Associado extends Model {
 
     public void setLembreteSenha(String lembreteSenha) {
         this.lembreteSenha = lembreteSenha;
-    }*/
+    }
 }

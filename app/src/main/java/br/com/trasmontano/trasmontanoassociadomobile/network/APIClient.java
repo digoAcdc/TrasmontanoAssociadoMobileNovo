@@ -20,6 +20,8 @@ public class APIClient {
     private static RestAdapter REST_ADAPTER;
 
     private static void createAdapterIfNeeded() {
+        //http://webapi.trasmontano.com.br
+        //http://m.trasmontano.srv.br:8888
         if (REST_ADAPTER == null) {
             REST_ADAPTER = new RestAdapter.Builder()
                     .setEndpoint("http://webapi.trasmontano.com.br")
@@ -44,6 +46,14 @@ public class APIClient {
                 @Header("senha") String senha,
                 Callback<Login> callbackUsuario
         );
+        @GET("/acesso/autenticacaomobilebiometria")
+        void getLoginAssociadoBiometria(
+                @Header("usuario") String usuario,
+                @Header("telefone") String telefone,
+                Callback<Login> callbackUsuario
+        );
+
+
         @GET("/associado/carencia/{matricula}/{dependente}")
         void getDadosCarteirinhaTemporaria(
                 @Path("matricula") String matricula ,
@@ -115,33 +125,24 @@ public class APIClient {
                 Callback<String> callbackCancelamentoDeConsulta
         );
 
-
-//        @POST("/associado/enviaEmail")
-//        void enviaEmail(@Body EmailCanalAtendimento email, Callback<EmailCanalAtendimento> callback);
-
         @POST("/associado/enviaEmail")
         void enviaEmail(@Body EmailCanalAtendimento email, Callback<String> callback);
 
-        @GET("/associado/descricaoDosPlanos")
-        void getDescricaoPlanos(
-                Callback<List<OrientadorMedicoDTO>> callbackDescricaoPlanos
+        @GET("/associado/verificaUsuarioExiste")
+        void getUsuarioExiste(
+                @Header("matricula") String matricula ,
+                @Header("cdDependente") String cdDependente,
+                @Header("dataNascimento") String usuRede,
+                Callback<String> callbackUsuarioExiste
         );
-        @GET("/associado/descricaoDasRegioes/{codPlano}")
-        void getDescricaoDasRegioes(
-                @Path("codPlano") String codPlano,
-                Callback<List<OrientadorMedicoDTO>> callbackDescricaoDasRegioes
+
+        @GET("/associado/verificaSituacaoAssociado")
+        void getSituacaoAssociado(
+                @Header("matricula") String matricula ,
+                @Header("cdDependente") String cdDependente,
+                Callback<String> callbackSituacaoAssociado
         );
-        @GET("/associado/descricaoDosMunicipios/{codPlano}/{codRegiao}")
-        void getDescricaoDosMunicipios(
-                @Path("codPlano") String codPlano,
-                @Path("codRegiao") String codRegiao,
-                Callback<List<OrientadorMedicoDTO>> callbackDescricaoDosMunicipios
-        );
-        @GET("/associado/descricaoDasEspecialidade")
-        void getDescricaoDasEspecialidade(
-                Callback<List<OrientadorMedicoDTO>> callbackDescricaoDasEspecialidade
-        );
-        @POST("/associado/carregarGridOrientadorMedicoMobile")
-        void getGridOrientadorMedicoMobile(@Body DTOParametrosOrientador orientador, Callback<List<OrientadorMedicoDTOPesquisa>> callback);
+
+
     }
 }

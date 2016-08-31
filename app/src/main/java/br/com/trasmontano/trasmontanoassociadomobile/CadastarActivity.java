@@ -29,10 +29,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Associado;
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.DadosConsulta;
 import livroandroid.lib.utils.ImageResizeUtils;
 import livroandroid.lib.utils.SDCardUtils;
+import retrofit.Callback;
 
 public class CadastarActivity extends AppCompatActivity {
     private Button btCadastrar;
@@ -51,6 +54,8 @@ public class CadastarActivity extends AppCompatActivity {
     private int day;
     private int month;
     private int year;
+
+    private Callback<String> callbackUsuarioExiste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +79,7 @@ public class CadastarActivity extends AppCompatActivity {
 
         ImageButton b = (ImageButton) findViewById(R.id.btAbrirCamera);
 
-        imbData = (ImageButton)findViewById(R.id.imbData);
+        imbData = (ImageButton) findViewById(R.id.imbData);
         cal = Calendar.getInstance();
         day = cal.get(Calendar.DAY_OF_MONTH);
         month = cal.get(Calendar.MONTH);
@@ -108,31 +113,32 @@ public class CadastarActivity extends AppCompatActivity {
         btCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Associado a = new Associado();
-                a.setUsuario(tiMatricula.getEditText().getText().toString());
-                a.setCpf(tiCPF.getEditText().getText().toString());
-                a.setDataNascimento(tiDataNascimento.getEditText().getText().toString());
-                //a.setEmail(tiEmail.getEditText().getText().toString());
-               // a.setLembreteSenha(tiLembrarSenha.getEditText().getText().toString());
 
-                if (file != null && file.exists()) {
-                    a.setCaminhoImagem(file.toString());
-                }
-                try {
 
-                  if(a.save())
-                    {
-                        Intent i = new Intent(CadastarActivity.this, ListAssociadoActivity.class);
-                        startActivity(i);
-                        finish();
+                if (VaidarDados()) {
+                    Associado a = new Associado();
+                    a.setUsuario(tiMatricula.getEditText().getText().toString());
+                    a.setCpf(tiCPF.getEditText().getText().toString());
+                    a.setDataNascimento(tiDataNascimento.getEditText().getText().toString());
+                    a.setEmail(tiEmail.getEditText().getText().toString());
+                    a.setLembreteSenha(tiLembrarSenha.getEditText().getText().toString());
+
+                    if (file != null && file.exists()) {
+                        a.setCaminhoImagem(file.toString());
                     }
-                    else
-                  {
-                      Toast.makeText(CadastarActivity.this,"Falha ao cadastrar", Toast.LENGTH_LONG).show();
-                  }
-                } catch (Exception ex) {
-                    Log.d("", ex.getMessage().toString());
+                    try {
 
+                        if (a.save()) {
+                            Intent i = new Intent(CadastarActivity.this, ListAssociadoActivity.class);
+                            startActivity(i);
+                            finish();
+                        } else {
+                            Toast.makeText(CadastarActivity.this, "Falha ao cadastrar", Toast.LENGTH_LONG).show();
+                        }
+                    } catch (Exception ex) {
+                        Log.d("", ex.getMessage().toString());
+
+                    }
                 }
             }
         });
@@ -145,6 +151,43 @@ public class CadastarActivity extends AppCompatActivity {
 
         imageView.requestFocus();
 
+    }
+
+    public boolean VaidarDados() {
+        if (tiDataNascimento.getEditText().getText().equals("")) {
+            tiDataNascimento.setError("Campo data nascimento obrigatório");
+            return false;
+        }
+        if (tiEmail.getEditText().getText().equals("")) {
+            tiEmail.setError("Campo email obrigatório");
+            return false;
+        }
+        if (tiConfirmaEmail.getEditText().getText().equals("")) {
+            tiConfirmaEmail.setError("Campo repetir email obrigatório");
+            return false;
+        }
+        if (tiEmail.getEditText().getText() != tiConfirmaEmail.getEditText().getText()) {
+            tiConfirmaEmail.setError("Campo email divergente do anterior");
+            return false;
+        }
+        if (tiSenha.getEditText().getText().equals("")) {
+            tiSenha.setError("Campo senha obrigatório");
+            return false;
+        }
+        if (tiRepetirSenha.getEditText().getText().equals("")) {
+            tiRepetirSenha.setError("Campo repetir senha obrigatório");
+            return false;
+        }
+        if (tiSenha.getEditText().getText() != tiRepetirSenha.getEditText().getText()) {
+            tiRepetirSenha.setError("Campo repetir senha divergente do anterior");
+            return false;
+        }
+        if (tiLembrarSenha.getEditText().getText().equals("")) {
+            tiLembrarSenha.setError("Campo lembrar senha obrigatório");
+            return false;
+        }
+
+        return true;
     }
 
     private void showImage(File file) {
@@ -186,7 +229,7 @@ public class CadastarActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int selectedYear,
                               int selectedMonth, int selectedDay) {
-           tiDataNascimento.getEditText().setText(selectedDay + "/" + (selectedMonth + 1) + "/"
+            tiDataNascimento.getEditText().setText(selectedDay + "/" + (selectedMonth + 1) + "/"
                     + selectedYear);
         }
     };

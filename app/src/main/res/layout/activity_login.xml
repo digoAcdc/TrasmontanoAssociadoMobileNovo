@@ -127,6 +127,14 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/txtCadastrar_se" />
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivBiometria"
+                android:layout_width="70dp"
+                android:alpha="0.3"
+                android:visibility="invisible"
+                android:layout_height="70dp"
+                android:src="@drawable/biometria"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

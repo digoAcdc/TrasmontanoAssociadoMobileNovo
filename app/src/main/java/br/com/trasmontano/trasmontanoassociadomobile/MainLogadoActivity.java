@@ -87,7 +87,7 @@ public class MainLogadoActivity extends AppCompatActivity
         TipoPlano = prefs.getString("PerfilUsuario", "");
         prefs.edit().remove("redirecionarPara").commit();
 
-        card_view = (CardView)findViewById(R.id.card_view);
+        card_view = (CardView) findViewById(R.id.card_view);
 
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_direita);
         card_view.startAnimation(animation);
@@ -218,6 +218,10 @@ public class MainLogadoActivity extends AppCompatActivity
     }
 
     public void Encerrar() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         super.onBackPressed();
     }
 
