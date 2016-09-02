@@ -134,8 +134,8 @@ public class ListAgendamentoConsultaActivity extends AppCompatActivity {
                         TextView tvLocalidade = (TextView) view.findViewById(R.id.tvLocalidade);
                         TextView tvEspecialidade = (TextView) view.findViewById(R.id.tvEspecialidade);
                         String assunto = "Id Agenda: " + " " + tvId.getText().toString() + " " + "Horário: " + " " + tvDataHora.getText().toString() + " " + tvLocalidade.getText().toString() + " " + "Especialidade: " + " " + tvEspecialidade.getText().toString() + " " + "CANCELAMENTO PELO MOBILE";
-                         //descomentar para apagar a consulta
-                        // new APIClient().getRestService().setCancelamentoDeConsulta(mat, cdDependente, Integer.parseInt(tvId.getText().toString()), mat, mat, '0', nomeUsuario, "Cancelado", tvDataHora.getText().toString(), tvLocalidade.getText().toString(), tvEspecialidade.getText().toString().replace("Í","I"), tvIdAgenda.getText().toString() ,callbackCancelamentoDeConsulta);
+
+                         new APIClient().getRestService().setCancelamentoDeConsulta(mat, cdDependente, Integer.parseInt(tvId.getText().toString()), mat, mat, '0', nomeUsuario, "Cancelado", tvDataHora.getText().toString(), tvLocalidade.getText().toString(), tvEspecialidade.getText().toString().replace("Í","I"), tvIdAgenda.getText().toString() ,callbackCancelamentoDeConsulta);
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:

@@ -53,10 +53,18 @@ public class AgendamentoDeConsultaActivity extends AppCompatActivity {
     private static List<AgendamentoMedicoWebParametros> lstEspecialidade;
     private static List<AgendamentoMedicoWebParametros> lstLocalidades;
     private static List<AgendamentoMedicoWebParametros> lstMedicos;
-    public static List<DadosConsulta> lstDadosConsulta;
+    public static String cdEspecialidade;
+    public static String dsEspecialidade;
+    public static String limiteConsAnual;
+
+
+    public  static List<DadosConsulta> lstDadosConsulta;
 
     WebView wvGrafico;
     String strURL;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,25 +88,9 @@ public class AgendamentoDeConsultaActivity extends AppCompatActivity {
 
         btFiltrar.requestFocus();
 
-       /* strURL = "https://chart.googleapis.com/chart?" +
-                "cht=bvs&" + //define o tipo do gráfico "linha"
-                "chxt=x,y&" + //imprime os valores dos eixos X, Y
-                "chs=350x200&" + //define o tamanho da imagem
-                "chd=t:10,45,5,10,13,26,5,84,6,47,12,75&" + //valor de cada coluna do gráfico
-                "chl=Jan|Fev|Mar|Abr|Mai|Jun|Jul|Ago|Set|Out|Nov|Dez&" + //rótulo para cada coluna
-                "chdl=Consultas&" + //legenda do gráfico
-                "chxr=1,0,100&" + //define o valor de início e fim do eixo
-                "chds=0,100&" + //define o valor de escala dos dados
-                "chg=0,5,0,0&" + //desenha linha horizontal na grade
-                "chco=A52A2A&" + //cor da linha do gráfico
-                "chtt=Consultas&" + //cabeçalho do gráfico
-                "chm=B,FFDAB9,0,0,0";//fundo verde
-
-
-        wvGrafico = (WebView)findViewById(R.id.wvGrafico);
-        wvGrafico.loadUrl(strURL);*/
 
         Calendar c = Calendar.getInstance();
+
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
@@ -109,8 +101,19 @@ public class AgendamentoDeConsultaActivity extends AppCompatActivity {
         String paddedmes = "00".substring(mes.length()) + mes;
 
         etPeriodoInicio.setText(paddeddia + "/" + paddedmes + "/" + year);
-        mes = String.valueOf(month + 2);
+
+        c = Calendar.getInstance();
+        c.add(Calendar.MONTH, 1);
+
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
+
+        dia = String.valueOf(day);
+        mes = String.valueOf(month + 1);
+        paddeddia = "00".substring(dia.length()) + dia;
         paddedmes = "00".substring(mes.length()) + mes;
+
         etPeriodoFim.setText(paddeddia + "/" + paddedmes + "/" + year);
 
 
@@ -260,6 +263,9 @@ public class AgendamentoDeConsultaActivity extends AppCompatActivity {
                     AgendamentoMedicoWebParametros l = null;
                     AgendamentoMedicoWebParametros m = null;
                     AgendamentoMedicoWebParametros e = lstEspecialidade.get(spnEspecialidade.getSelectedItemPosition() - 1);
+                    dsEspecialidade = e.getDsDescricao();
+                    cdEspecialidade = e.getCdDescricao();
+
                     if (spnLocalidade.getSelectedItemPosition() != 0) {
                         l = lstLocalidades.get(spnLocalidade.getSelectedItemPosition() - 1);
                         cdLocalidade = l.getCdDescricao();

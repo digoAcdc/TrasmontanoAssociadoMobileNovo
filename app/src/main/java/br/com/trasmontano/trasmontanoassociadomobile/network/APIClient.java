@@ -24,7 +24,7 @@ public class APIClient {
         //http://m.trasmontano.srv.br:8888
         if (REST_ADAPTER == null) {
             REST_ADAPTER = new RestAdapter.Builder()
-                    .setEndpoint("http:/m.trasmontano.srv.br:8888")
+                    .setEndpoint("http://m.trasmontano.srv.br:8888")
                     .setLogLevel(RestAdapter.LogLevel.FULL)
                     .setClient(new OkClient())
                     .build();
@@ -94,7 +94,7 @@ public class APIClient {
                 @Path("cdReferencia") int cdReferencia,
                 Callback<List<DadosConsulta>> callbackAgendamentoMedicoWeb
         );
-       /* @GET("/associado/cancelamentoDeConsulta/{matricula}/{cdDependente}/{id}/{usuRede}/{usuSistema}/{tipo}/{solicitante}/{situacao}/{assunto}")
+        /*@GET("/associado/cancelamentoDeConsulta/{matricula}/{cdDependente}/{id}/{usuRede}/{usuSistema}/{tipo}/{solicitante}/{situacao}/{assunto}")
         void setCancelamentoDeConsulta(
                 @Header("matricula") String matricula ,
                 @Header("cdDependente") String cdDependente,
@@ -168,5 +168,23 @@ public class APIClient {
         @POST("/associado/carregarGridOrientadorMedicoMobile")
         void getGridOrientadorMedicoMobile(@Body DTOParametrosOrientador orientador, Callback<List<OrientadorMedicoDTOPesquisa>> callback);
 
+        @GET("/associado/agendamentoDeConsulta")
+        void setAgendamentoDeConsulta(
+                @Header("matricula") String matricula ,
+                @Header("cdDependente") String cdDependente,
+                @Header("dataParaAgendar") String dataParaAgendar,
+                @Header("especialidade") String especialidade,
+                @Header("localidade") String localidade,
+                @Header("cdEspecialidade") String cdEspecialidade,
+                @Header("cbos") String cbos,
+                @Header("cdMedico") String cdMedico,
+                @Header("idAgendaMedica") String idAgendaMedica,
+                @Header("nmMedico") String nmMedico,
+                @Header("idAgenda") String idAgenda,
+                @Header("perfilUsuario") String perfilUsuario,
+                @Header("limiteConsAnual") String limiteConsAnual,
+                Callback<String> callbackAgendamentoDeConsulta
+
+        );
     }
 }

@@ -165,11 +165,7 @@ public class LoginActivity extends AppCompatActivity {
         if (pedirSensor)
             ValidaExisteSensorBiometrico();
 
-        /*SensorManager  sMgr = (SensorManager)this.getSystemService(SENSOR_SERVICE);
-        List<Sensor> list = sMgr.getSensorList(Sensor.TYPE_ALL);
-        for(Sensor sensor: list){
-            Log.i("Sensor: ", sensor.getName());
-        }*/
+
 
 
     }
