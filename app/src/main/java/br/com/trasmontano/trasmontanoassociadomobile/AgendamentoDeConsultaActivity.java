@@ -350,6 +350,7 @@ public class AgendamentoDeConsultaActivity extends AppCompatActivity {
         lst.add("TODAS");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AgendamentoDeConsultaActivity.this, android.R.layout.simple_spinner_item, lst);
 
+
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spnLocalidade.setAdapter(dataAdapter);
