@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.Normalizer;
 import java.util.List;
 
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Associado;
@@ -86,6 +87,7 @@ public class ListConsultaActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
+                        spotsDialog.show();
                         Toast.makeText(ListConsultaActivity.this, "Agendar", Toast.LENGTH_LONG).show();
                         configureAgendamentoDeConsultaCallback();
 
@@ -99,7 +101,11 @@ public class ListConsultaActivity extends AppCompatActivity {
                         String data = dados.getDataHoraAgendamento().substring(8,10) + "/" + dados.getDataHoraAgendamento().substring(5,7) + "/" + dados.getDataHoraAgendamento().substring(0,4);
                         String hora = dados.getDataHoraAgendamento().substring(11,16);
 
-                        new APIClient().getRestService().setAgendamentoDeConsulta(mat,cdDependente, data + " " + hora, AgendamentoDeConsultaActivity.dsEspecialidade, dados.getDsLocalidade().replace("Ã","A"),AgendamentoDeConsultaActivity.cdEspecialidade, dados.getCbos(), dados.getCdMedico(), dados.getID(), dados.getNmMedico(),dados.getIdAgenda(),TipoPlano ,dados.getLimiteConsAnual() ,callbackAgendamentoDeConsulta);
+                        String especialidade = Normalizer.normalize(AgendamentoDeConsultaActivity.dsEspecialidade, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+                        String localidade = Normalizer.normalize(dados.getDsLocalidade(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+                        String nmMedico = Normalizer.normalize(dados.getNmMedico(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+
+                        new APIClient().getRestService().setAgendamentoDeConsulta(mat,cdDependente, data + " " + hora, especialidade, localidade,AgendamentoDeConsultaActivity.cdEspecialidade, dados.getCbos(), dados.getCdMedico(), dados.getID(), nmMedico,dados.getIdAgenda(),TipoPlano ,dados.getLimiteConsAnual() ,callbackAgendamentoDeConsulta);
 
 
                       break;
@@ -123,13 +129,17 @@ public class ListConsultaActivity extends AppCompatActivity {
                /* Toast.makeText(ListAgendamentoConsultaActivity.this, "Sucesso cancelamento " + s, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(ListAgendamentoConsultaActivity.this, ListAgendamentoConsultaActivity.class);
                 startActivity(i);*/
-
+                spotsDialog.dismiss();
                 Toast.makeText(ListConsultaActivity.this, s, Toast.LENGTH_LONG).show();
+                Intent i = new Intent(ListConsultaActivity.this, ListAgendamentoConsultaActivity.class);
+                startActivity(i);
+                finish();
             }
 
             @Override
             public void failure(RetrofitError error) {
                // Toast.makeText(ListAgendamentoConsultaActivity.this, "Falha ao cancelar", Toast.LENGTH_LONG).show();
+                spotsDialog.dismiss();
                 Toast.makeText(ListConsultaActivity.this, "Falha ao agendar " + error, Toast.LENGTH_LONG).show();
             }
         };

@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.Normalizer;
 import java.util.List;
 
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.AgendaMedicaAssociado;
@@ -61,6 +62,7 @@ public class ListAgendamentoConsultaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(ListAgendamentoConsultaActivity.this, AgendamentoDeConsultaActivity.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -101,6 +103,7 @@ public class ListAgendamentoConsultaActivity extends AppCompatActivity {
                 Toast.makeText(ListAgendamentoConsultaActivity.this, "Sucesso cancelamento " + s, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(ListAgendamentoConsultaActivity.this, ListAgendamentoConsultaActivity.class);
                 startActivity(i);
+                finish();
             }
 
             @Override
@@ -135,7 +138,10 @@ public class ListAgendamentoConsultaActivity extends AppCompatActivity {
                         TextView tvEspecialidade = (TextView) view.findViewById(R.id.tvEspecialidade);
                         String assunto = "Id Agenda: " + " " + tvId.getText().toString() + " " + "Horário: " + " " + tvDataHora.getText().toString() + " " + tvLocalidade.getText().toString() + " " + "Especialidade: " + " " + tvEspecialidade.getText().toString() + " " + "CANCELAMENTO PELO MOBILE";
 
-                         new APIClient().getRestService().setCancelamentoDeConsulta(mat, cdDependente, Integer.parseInt(tvId.getText().toString()), mat, mat, '0', nomeUsuario, "Cancelado", tvDataHora.getText().toString(), tvLocalidade.getText().toString(), tvEspecialidade.getText().toString().replace("Í","I"), tvIdAgenda.getText().toString() ,callbackCancelamentoDeConsulta);
+                        String localidade = Normalizer.normalize(tvLocalidade.getText().toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+                        String especialidade = Normalizer.normalize(tvEspecialidade.getText().toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+
+                         new APIClient().getRestService().setCancelamentoDeConsulta(mat, cdDependente, Integer.parseInt(tvId.getText().toString()), mat, mat, '0', nomeUsuario, "Cancelado", tvDataHora.getText().toString(), localidade, especialidade, tvIdAgenda.getText().toString() ,callbackCancelamentoDeConsulta);
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:

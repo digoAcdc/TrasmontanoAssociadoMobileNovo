@@ -7,6 +7,8 @@ import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 import retrofit.http.Body;
+import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.POST;
@@ -94,7 +96,7 @@ public class APIClient {
                 @Path("cdReferencia") int cdReferencia,
                 Callback<List<DadosConsulta>> callbackAgendamentoMedicoWeb
         );
-        /*@GET("/associado/cancelamentoDeConsulta/{matricula}/{cdDependente}/{id}/{usuRede}/{usuSistema}/{tipo}/{solicitante}/{situacao}/{assunto}")
+        /*@POST("/associado/cancelamentoDeConsulta")
         void setCancelamentoDeConsulta(
                 @Header("matricula") String matricula ,
                 @Header("cdDependente") String cdDependente,
@@ -104,9 +106,13 @@ public class APIClient {
                 @Header("tipo") char tipo,
                 @Header("solicitante") String solicitante,
                 @Header("situacao") String situacao,
-                @Header("assunto") String assunto,
+                @Header("horario") String horario,
+                @Header("localidade") String localidade,
+                @Header("especialidade") String especialidade,
+                @Header("idAgenda") String idAgenda,
                 Callback<String> callbackCancelamentoDeConsulta
         );*/
+
 
         @GET("/associado/cancelamentoDeConsulta")
         void setCancelamentoDeConsulta(
