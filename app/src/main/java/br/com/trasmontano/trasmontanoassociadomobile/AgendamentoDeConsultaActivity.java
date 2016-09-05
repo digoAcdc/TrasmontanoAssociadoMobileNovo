@@ -352,8 +352,7 @@ public class AgendamentoDeConsultaActivity extends AppCompatActivity {
 
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spnLocalidade.setAdapter(dataAdapter);
-    }
+        spnLocalidade.setAdapter(dataAdapter);    }
 
     public void LimpaSpinerMedicos() {
         ArrayList lst = new ArrayList<String>();
