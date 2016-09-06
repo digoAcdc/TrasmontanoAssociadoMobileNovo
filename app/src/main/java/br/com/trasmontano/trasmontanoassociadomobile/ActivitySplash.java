@@ -60,7 +60,7 @@ public class ActivitySplash extends AppCompatActivity {
     }
 
 
-    public boolean ValidaExisteSensorBiometrico() {
+    /*public boolean ValidaExisteSensorBiometrico() {
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -88,7 +88,7 @@ public class ActivitySplash extends AppCompatActivity {
             ret = false;
         }
         return ret;
-    }
+    }*/
 
 
 }
