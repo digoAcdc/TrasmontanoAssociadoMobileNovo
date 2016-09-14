@@ -49,7 +49,7 @@ public class AssociadoLoginAdapter extends RecyclerView.Adapter<AssociadoLoginAd
     public void onBindViewHolder(final AssociadoLoginAdapter.AssociadoViewHolder holder, final int position) {
         Associado r = lstAssociado.get(position);
 
-        holder.tiNomeAssociado.setText("ASSOCIADO");
+        holder.tiNomeAssociado.setText(r.getNome());
         holder.tiMatricula.setText(r.getUsuario());
 
         if (r.getCaminhoImagem() != null) {
@@ -85,7 +85,7 @@ public class AssociadoLoginAdapter extends RecyclerView.Adapter<AssociadoLoginAd
         TextView tiNomeAssociado;
         TextView tiMatricula;
         ImageView ivOpcoes;
-        ProgressBar pbAssociado;
+        //ProgressBar pbAssociado;
         private View view;
 
         public AssociadoViewHolder(View view) {
@@ -95,7 +95,7 @@ public class AssociadoLoginAdapter extends RecyclerView.Adapter<AssociadoLoginAd
             this.ivAssociado = (CircularImageView) view.findViewById(R.id.ivAssociado);
             this.tiMatricula = (TextView) view.findViewById(R.id.tvMatricula);
             this.ivOpcoes = (ImageView) view.findViewById(R.id.ivOpcoes);
-            this.pbAssociado = (ProgressBar) view.findViewById(R.id.pbAssociado);
+            //this.pbAssociado = (ProgressBar) view.findViewById(R.id.pbAssociado);
         }
     }
 }

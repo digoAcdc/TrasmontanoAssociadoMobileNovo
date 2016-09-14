@@ -71,7 +71,6 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button_elevation"
-                        android:drawableTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/padlock"
                         android:gravity="center"
                         android:paddingTop="20dp"
@@ -107,7 +106,6 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button_elevation"
-                        android:drawableTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/flag"
                         android:gravity="center"
                         android:paddingTop="20dp"
@@ -142,7 +140,6 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button_elevation"
-                        android:drawableTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/hospital"
                         android:gravity="center"
                         android:paddingTop="20dp"
@@ -177,13 +174,12 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:layout_width="85dp"
                         android:id="@+id/btOrientador"
+                        android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button_elevation"
-                        android:drawableTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/book"
                         android:gravity="center"
                         android:paddingTop="20dp"
@@ -220,7 +216,6 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button_elevation"
-                        android:drawableTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/bell"
                         android:gravity="center"
                         android:paddingTop="20dp"
@@ -255,7 +250,6 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button_elevation"
-                        android:drawableTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/frame"
                         android:elevation="10dp"
                         android:gravity="center"
@@ -278,35 +272,59 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!--<View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:alpha="0.2"
-                android:background="@color/black" />-->
-            <!--<View
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:alpha="0.2" />-->
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btEmergencia"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/style_button_elevation"
+
+                        android:drawableTop="@drawable/emergencia"
+                        android:elevation="10dp"
+                        android:gravity="center"
+                        android:paddingTop="20dp"
+                          />
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Emergencia" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
             <com.bcgdv.asia.lib.fanmenu.FanMenuButtons
-                android:background="#CCFFFFFF"
                 android:id="@+id/myFABSubmenu"
-                android:layout_alignBaseline="@+id/myFAB"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignBaseline="@+id/myFAB"
+                android:background="#CCFFFFFF"
                 android:textColor="@android:color/white"
-
                 android:textSize="14sp"
-                app:fanMenuLabels="@array/fan_labels"
+                android:visibility="gone"
                 app:fanButtonColors="@array/button_colors"
                 app:fanLeftDrawable="@array/button_icons"
-                app:fanRememberMovedPosition="true"
-                app:fanMinBounceBackAngle="-30"
                 app:fanMaxBounceBackAngle="50"
-                android:visibility="gone" />
+                app:fanMenuLabels="@array/fan_labels"
+                app:fanMinBounceBackAngle="-30"
+                app:fanRememberMovedPosition="true" />
         </LinearLayout>
     </ScrollView>
 

@@ -21,4 +21,16 @@
     <color name="red_4">#FF5722</color>
 
 
+    <color name="Background">@color/TextColor.White</color>
+
+    <color name="Background.CardView">#DDDDDD</color>
+
+    <color name="TextColor.White">#FFFFFF</color>
+    <color name="TextColor.Gray">#999999</color>
+    <color name="TextColor.DarkGray">#333333</color>
+    <color name="TextColor.Black">#000000</color>
+
+    <color name="Divider">#333333</color>
+
+
 </resources>

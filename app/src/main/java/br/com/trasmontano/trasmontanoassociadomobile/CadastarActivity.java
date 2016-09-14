@@ -31,11 +31,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.AgendaMedicaAssociado;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Associado;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.DadosConsulta;
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.Login;
+import br.com.trasmontano.trasmontanoassociadomobile.network.APIClient;
+import dmax.dialog.SpotsDialog;
 import livroandroid.lib.utils.ImageResizeUtils;
 import livroandroid.lib.utils.SDCardUtils;
 import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import se.emilsjolander.sprinkles.Query;
 
 public class CadastarActivity extends AppCompatActivity {
     private Button btCadastrar;
@@ -54,8 +61,10 @@ public class CadastarActivity extends AppCompatActivity {
     private int day;
     private int month;
     private int year;
-
+    private Callback<String> callbackCallbackLoginAssociado;
+    SpotsDialog spotsDialog;
     private Callback<String> callbackUsuarioExiste;
+    private Callback<Login> callbackUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +75,7 @@ public class CadastarActivity extends AppCompatActivity {
 
         imageView = (CircularImageView) findViewById(R.id.imagem);
         btCadastrar = (Button) findViewById(R.id.btCadastrarAssociado);
-
+        spotsDialog = new SpotsDialog(this, R.style.LoaderCustom);
         tiMatricula = (TextInputLayout) findViewById(R.id.tiMatricula);
 
         tiCPF = (TextInputLayout) findViewById(R.id.tiCPF);
@@ -113,10 +122,32 @@ public class CadastarActivity extends AppCompatActivity {
         btCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                spotsDialog.show();
 
                 if (VaidarDados()) {
-                    Associado a = new Associado();
+                    configureLoginAssociadoCallback();
+
+                    String cdDependente = "00";
+
+                    Associado a = null;
+
+                    if (tiMatricula.getEditText().getText().toString().length() > 6) {
+                        cdDependente = tiMatricula.getEditText().getText().toString().substring(6, 8);
+
+                        a = Query.one(Associado.class, "select * from associado where usuario=?", tiMatricula.getEditText().getText().toString() + cdDependente).get();
+                    } else {
+                        a = Query.one(Associado.class, "select * from associado where usuario=?", tiMatricula.getEditText().getText().toString()).get();
+                    }
+                    if (a == null) {
+                        new APIClient().getRestService().setLoginAssociado(tiSenha.getEditText().getText().toString(), tiRepetirSenha.getEditText().getText().toString(), tiLembrarSenha.getEditText().getText().toString(), tiDataNascimento.getEditText().getText().toString(), tiMatricula.getEditText().getText().toString(), tiEmail.getEditText().getText().toString(), tiRepetirSenha.getEditText().getText().toString(), tiCPF.getEditText().getText().toString(), cdDependente, callbackCallbackLoginAssociado);
+
+                    } else {
+                        spotsDialog.dismiss();
+                        Toast.makeText(CadastarActivity.this, "Usuário já possui cadastro.", Toast.LENGTH_LONG).show();
+                    }
+
+
+                   /* Associado a = new Associado();
                     a.setUsuario(tiMatricula.getEditText().getText().toString());
                     a.setCpf(tiCPF.getEditText().getText().toString());
                     a.setDataNascimento(tiDataNascimento.getEditText().getText().toString());
@@ -125,23 +156,12 @@ public class CadastarActivity extends AppCompatActivity {
 
                     if (file != null && file.exists()) {
                         a.setCaminhoImagem(file.toString());
-                    }
-                    try {
-
-                        if (a.save()) {
-                            Intent i = new Intent(CadastarActivity.this, ListAssociadoActivity.class);
-                            startActivity(i);
-                            finish();
-                        } else {
-                            Toast.makeText(CadastarActivity.this, "Falha ao cadastrar", Toast.LENGTH_LONG).show();
-                        }
-                    } catch (Exception ex) {
-                        Log.d("", ex.getMessage().toString());
-
-                    }
+                    }                   */
                 }
+
             }
         });
+
 
         if (savedInstanceState != null) {
             // Se girou a tela recupera o estado
@@ -153,37 +173,104 @@ public class CadastarActivity extends AppCompatActivity {
 
     }
 
+    private void configureInformacaoAssociadoCallback() {
+        callbackUsuario = new Callback<Login>() {
+
+            @Override
+            public void success(Login login, Response response) {
+
+                Associado a = new Associado();
+                a.setUsuario(tiMatricula.getEditText().getText().toString());
+                a.setCpf(tiCPF.getEditText().getText().toString());
+                a.setDataNascimento(tiDataNascimento.getEditText().getText().toString());
+                a.setEmail(tiEmail.getEditText().getText().toString());
+                a.setLembreteSenha(tiLembrarSenha.getEditText().getText().toString());
+                a.setNome(login.getNomeUsuario());
+
+                if (file != null && file.exists()) {
+                    a.setCaminhoImagem(file.toString());
+                }
+
+                a.save();
+
+                Intent i = new Intent(CadastarActivity.this, LoginActivity.class);
+                startActivity(i);
+
+                spotsDialog.dismiss();
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("ERRO-------->", error.getMessage().toString());
+                //Toast.makeText(LoginActivity.this, "Falha ao conectar no servidor", Toast.LENGTH_LONG).show();
+                spotsDialog.dismiss();
+            }
+        };
+    }
+
+
+    private void configureLoginAssociadoCallback() {
+        callbackCallbackLoginAssociado = new Callback<String>() {
+
+
+            @Override
+            public void success(String s, Response response) {
+                Toast.makeText(CadastarActivity.this, s, Toast.LENGTH_LONG).show();
+                configureInformacaoAssociadoCallback();
+                new APIClient().getRestService().getLoginAssociado(tiMatricula.getEditText().getText().toString(),
+                        tiSenha.getEditText().getText().toString(), callbackUsuario);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(CadastarActivity.this, "Falha ao conectar ao servidor", Toast.LENGTH_LONG).show();
+                spotsDialog.dismiss();
+            }
+        };
+
+    }
+
     public boolean VaidarDados() {
         if (tiDataNascimento.getEditText().getText().equals("")) {
             tiDataNascimento.setError("Campo data nascimento obrigatório");
+            spotsDialog.dismiss();
             return false;
         }
         if (tiEmail.getEditText().getText().equals("")) {
             tiEmail.setError("Campo email obrigatório");
+            spotsDialog.dismiss();
             return false;
         }
         if (tiConfirmaEmail.getEditText().getText().equals("")) {
             tiConfirmaEmail.setError("Campo repetir email obrigatório");
+            spotsDialog.dismiss();
             return false;
         }
-        if (tiEmail.getEditText().getText() != tiConfirmaEmail.getEditText().getText()) {
+
+        if (!tiEmail.getEditText().getText().toString().equals(tiConfirmaEmail.getEditText().getText().toString())) {
             tiConfirmaEmail.setError("Campo email divergente do anterior");
+            spotsDialog.dismiss();
             return false;
         }
         if (tiSenha.getEditText().getText().equals("")) {
             tiSenha.setError("Campo senha obrigatório");
+            spotsDialog.dismiss();
             return false;
         }
         if (tiRepetirSenha.getEditText().getText().equals("")) {
             tiRepetirSenha.setError("Campo repetir senha obrigatório");
+            spotsDialog.dismiss();
             return false;
         }
-        if (tiSenha.getEditText().getText() != tiRepetirSenha.getEditText().getText()) {
+        if (!tiSenha.getEditText().getText().toString().equals(tiRepetirSenha.getEditText().getText().toString())) {
             tiRepetirSenha.setError("Campo repetir senha divergente do anterior");
+            spotsDialog.dismiss();
             return false;
         }
         if (tiLembrarSenha.getEditText().getText().equals("")) {
             tiLembrarSenha.setError("Campo lembrar senha obrigatório");
+            spotsDialog.dismiss();
             return false;
         }
 

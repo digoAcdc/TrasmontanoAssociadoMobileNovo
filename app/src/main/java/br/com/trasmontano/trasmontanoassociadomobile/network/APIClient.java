@@ -192,5 +192,20 @@ public class APIClient {
                 Callback<String> callbackAgendamentoDeConsulta
 
         );
+
+        @GET("/associado/setLoginAssociado")
+        void setLoginAssociado(
+                @Header("senha") String senha ,
+                @Header("repetirSenha") String repetirSenha,
+                @Header("lembrarSenha") String lembrarSenha,
+                @Header("dataNascimento") String dataNascimento,
+                @Header("matricula") String matricula,
+                @Header("email") String email,
+                @Header("repetirEmail") String repetirEmail,
+                @Header("cpf") String cpf,
+                @Header("cdDependente") String cdDependente,
+                Callback<String> callbackLoginAssociado
+
+        );
     }
 }

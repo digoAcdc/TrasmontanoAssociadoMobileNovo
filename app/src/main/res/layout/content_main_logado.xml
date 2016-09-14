@@ -39,7 +39,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:gravity="left"
-                android:src="@drawable/avatar"
+                android:src="@drawable/avatar1"
                 app:civ_border_color="#EEEEEE"
                 app:civ_border_width="8dp"
                 app:civ_shadow="true"

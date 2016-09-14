@@ -99,6 +99,29 @@
         <item name="android:dropDownSelector">@android:color/white</item>
     </style>
 
+    <style name="TextView.Header" parent="TextView.Header">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/Text.VeryLarge</item>
+    </style>
+
+    <style name="Divider.Horizontal" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/Divider.Width</item>
+        <item name="android:background">@color/Divider</item>
+    </style>
+
+    <style name="TextView.Small" parent="TextView.Header">
+        <item name="android:textColor">@color/TextColor.Black</item>
+        <item name="android:textSize">@dimen/Text.Small</item>
+    </style>
+
+    <style name="DeleteButton" parent="AppTheme">
+        <item name="android:textColor">@color/TextColor.DarkGray</item>
+        <item name="android:textSize">@dimen/Text.Standard</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 
 

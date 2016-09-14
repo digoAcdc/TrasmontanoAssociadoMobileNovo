@@ -166,8 +166,6 @@ public class LoginActivity extends AppCompatActivity {
             ValidaExisteSensorBiometrico();
 
 
-
-
     }
 
     public void ValidaExisteSensorBiometrico() {
@@ -244,8 +242,7 @@ public class LoginActivity extends AppCompatActivity {
             if (numTel.equalsIgnoreCase("")) {
                 ivBiometria.setVisibility(View.INVISIBLE);
                 pedirSensor = false;
-            } else
-            {
+            } else {
                 pedirSensor = true;
                 Toast.makeText(this, manager.getLine1Number().toString(), Toast.LENGTH_LONG).show();
             }
@@ -294,32 +291,44 @@ public class LoginActivity extends AppCompatActivity {
             public void success(Login login, Response response) {
 
                 if (login.UsuarioValido == true & login.SenhaValida == true & login.getBloqueado() == 0) {
-                    if (login.getSituacao().equalsIgnoreCase("A") | login.getSituacao().equalsIgnoreCase("S")) {
+                if (login.getSituacao().equalsIgnoreCase("A") || login.getSituacao().equalsIgnoreCase("S")) {
 
-                        Associado a = Query.one(Associado.class, "select * from associado where usuario=?", login.getCodigoUsuario()).get();
-                        if (a == null) {
-                            a = new Associado();
-                            a.setUsuario(login.getCodigoUsuario());
-                            a.save();
-                        }
-
-                        GuardarDadosLoginAssociado(login, redirecionarPara);
-                        finish();
-                        Intent intent = new Intent(LoginActivity.this, MainLogadoActivity.class);
-                        startActivity(intent);
-                    } else {
-                        if (login.UsuarioValido == false) {
-                            Toast.makeText(LoginActivity.this, "Usuario Inválido", Toast.LENGTH_LONG).show();
-                            tiUsuario.setError("Usuário Inválido");
-                        } else if (login.SenhaValida == false) {
-                            Toast.makeText(LoginActivity.this, "Senha Inválida", Toast.LENGTH_LONG).show();
-                            tisenha.setError("Senha Inválida");
+                    if (login.getStatusAcesso() == 1 || login.getStatusAcesso() == 3) {
+                        if (login.getQtdeBloquear() < 0) {
+                            Toast.makeText(LoginActivity.this, "Senha Expirada.", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(LoginActivity.this, "Login/Senha Inválidos", Toast.LENGTH_LONG).show();
-                            tisenha.setError("Usuario/Senha Inválidos");
+
+                            Associado a = Query.one(Associado.class, "select * from associado where usuario=?", login.getCodigoUsuario()).get();
+                            if (a == null) {
+                                a = new Associado();
+                                a.setUsuario(login.getCodigoUsuario());
+                                a.save();
+                            }
+
+                            GuardarDadosLoginAssociado(login, redirecionarPara);
+                            finish();
+                            Intent intent = new Intent(LoginActivity.this, MainLogadoActivity.class);
+                            startActivity(intent);
+
                         }
+                    } else {
+                        if (login.getStatusAcesso() == 2)
+                            Toast.makeText(LoginActivity.this, "Usuário bloqueado temporariamente.", Toast.LENGTH_LONG).show();
+                        else if (login.getStatusAcesso() == 3) {
+                            Toast.makeText(LoginActivity.this, "Senha Expirada.", Toast.LENGTH_LONG).show();
+                        } else if (login.getStatusAcesso() == 4) {
+                            Toast.makeText(LoginActivity.this, "Você possui cadastro? Se sim verifique os dados informados. Senão faça o cadastro em nosso site. Em caso de dúvida Entre em contato Trasmontano Saúde!", Toast.LENGTH_LONG).show();
+
+                        } else if (login.getStatusAcesso() == 5) {
+                            int qtdTentativa = login.getTentativasAcesso() - login.getQtdeBloquear();
+                            Toast.makeText(LoginActivity.this, "Restam " + qtdTentativa + " tentativas Senha incorreta.", Toast.LENGTH_LONG).show();
+
+                        } else if (login.getStatusAcesso() == 6)
+                            Toast.makeText(LoginActivity.this, "Conta não validada, aguardando validação.", Toast.LENGTH_LONG).show();
+
                     }
-                    spotsDialog.dismiss();
+
+
                 } else {
                     if (login.UsuarioValido == false) {
                         Toast.makeText(LoginActivity.this, "Usuario Inválido", Toast.LENGTH_LONG).show();
@@ -331,6 +340,10 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Login/Senha Inválidos", Toast.LENGTH_LONG).show();
                         tisenha.setError("Usuario/Senha Inválidos");
                     }
+                }
+                spotsDialog.dismiss();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Você possui cadastro? Se sim verifique os dados informados. Senão faça o cadastro em nosso site. Em caso de dúvida Entre em contato Trasmontano Saúde!", Toast.LENGTH_LONG).show();
                 }
                 spotsDialog.dismiss();
 
