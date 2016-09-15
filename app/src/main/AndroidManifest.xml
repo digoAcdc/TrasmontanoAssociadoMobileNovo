@@ -14,7 +14,9 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <permission android:name="android.permission.INTERNET" />
+
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!--
@@ -174,7 +176,9 @@
             android:required="true" />
 
         <activity android:name=".OrientadorMedicoInformacoes" />
-        <activity android:name=".ListEmergenciaActivity"></activity>
+        <activity android:name=".ListEmergenciaActivity" />
+        <activity android:name=".UnidadesActivity" />
+        <activity android:name=".UnidadesDetalhesActivity"></activity>
     </application>
 
 </manifest>

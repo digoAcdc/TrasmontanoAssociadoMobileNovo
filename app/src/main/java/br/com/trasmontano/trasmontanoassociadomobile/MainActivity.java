@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity
     private Button btAlarmeMedicamentos;
     private Button btOrientadorMedico;
     private Button btEmergencia;
+    private Button btUnidades;
     SpotsDialog spotsDialog;
     private String redirecionarPara;
 
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity
         btCarteirinhaSemLogin = (Button) findViewById(R.id.btCarteirinhaSemLogin);
         btAgendamentoConsultaSemLogin = (Button) findViewById(R.id.btAgendamentoConsultaSemLogin);
         btEmergencia = (Button) findViewById(R.id.btEmergencia);
+        btUnidades = (Button) findViewById(R.id.btUnidades);
 
         btAgendamentoConsultaSemLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +119,14 @@ public class MainActivity extends AppCompatActivity
                 showInputDialog();
                 //CarteirinhaSemLogin();
 
+            }
+        });
+
+        btUnidades.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, UnidadesActivity.class);
+                startActivity(intent);
             }
         });
 

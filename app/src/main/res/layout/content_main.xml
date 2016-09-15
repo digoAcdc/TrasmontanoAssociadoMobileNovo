@@ -109,7 +109,8 @@
                         android:drawableTop="@drawable/flag"
                         android:gravity="center"
                         android:paddingTop="20dp"
-                        android:textColor="#fff" />
+                        android:textColor="#fff"
+                        android:id="@+id/btUnidades" />
 
                     <TextView
 

@@ -213,5 +213,8 @@ public class APIClient {
                 @Header("longitude") String longitude,
                 Callback<List<Emergencia>> callbackEmergencia
         );
+
+        @GET("/unidademedica/todos")
+        void getUnidadeMedicaTodos(Callback<List<UnidadeMedica>> callbackListaUnidadeMedica);
     }
 }
