@@ -69,6 +69,23 @@ public class PDVAplication extends Application {
                         ")"
                 );
 
+                db.execSQL(
+                        "CREATE TABLE tbLocalidade(" +
+                                "Codigo INTEGER PRIMARY KEY, " +
+                                "Localidade TEXT, " +
+                                "Endereco TEXT, " +
+                                "Numero TEXT, " +
+                                "Complemento TEXT, " +
+                                "Cep TEXT, " +
+                                "Bairro TEXT, " +
+                                "Cidade TEXT, " +
+                                "Estado TEXT, " +
+                                "Imagem TEXT, " +
+                                "Latitude TEXT, " +
+                                "Longitude TEXT " +
+                                ")"
+                );
+
             }
 
             @Override
