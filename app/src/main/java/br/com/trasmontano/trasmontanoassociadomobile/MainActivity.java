@@ -152,11 +152,25 @@ public class MainActivity extends AppCompatActivity
                     // for ActivityCompat#requestPermissions for more details.
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1001);
 
-                } else
-                {
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
-                    if(location != null)
-                    {
+                } else {
+                    Associado a = null;
+                    List<Associado> lst = Query.all(Associado.class).get().asList();
+
+                    if (lst.size() == 0) {
+                        Toast.makeText(MainActivity.this, "Nenhum usuário cadastrado", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    else if (lst.size() == 1) {
+                        a = lst.get(0);
+                        CarregarEmergencia(a.getUsuario());
+                    }
+                    else if (lst.size() > 1) {
+
+                    }
+
+
+                    /*locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
+                    if (location != null) {
                         Intent i = new Intent(MainActivity.this, ListEmergenciaActivity.class);
                         Bundle params = new Bundle();
 
@@ -165,7 +179,7 @@ public class MainActivity extends AppCompatActivity
                         params.putString("longitude", String.valueOf(location.getLongitude()));
                         i.putExtras(params);
                         startActivity(i);
-                    }
+                    }*/
                 }
 
 
@@ -192,6 +206,36 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+    private void CarregarEmergencia(String matricula) {
+
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
+
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
+        if (location != null) {
+            Intent i = new Intent(MainActivity.this, ListEmergenciaActivity.class);
+            Bundle params = new Bundle();
+
+            params.putString("matricula", matricula);
+            params.putString("latitude", String.valueOf(location.getLatitude()));
+            params.putString("longitude", String.valueOf(location.getLongitude()));
+            i.putExtras(params);
+            startActivity(i);
+        }
 
     }
 
