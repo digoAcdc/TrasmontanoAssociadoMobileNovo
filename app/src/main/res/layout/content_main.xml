@@ -292,7 +292,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button_elevation"
-
+android:backgroundTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/emergencia"
                         android:elevation="10dp"
                         android:gravity="center"

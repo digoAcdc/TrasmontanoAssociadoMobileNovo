@@ -36,6 +36,7 @@ import com.synnapps.carouselview.ImageListener;
 import java.util.List;
 
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Associado;
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.Emergencia;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Login;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Preferencias;
 import br.com.trasmontano.trasmontanoassociadomobile.network.APIClient;
@@ -61,9 +62,8 @@ public class MainActivity extends AppCompatActivity
     private LocationListener locationListener;
     private Context context;
     private Location location = null;
-
-
     private Callback<Login> callbackUsuario;
+
 
     CarouselView carouselView;
 
@@ -142,9 +142,7 @@ public class MainActivity extends AppCompatActivity
         btEmergencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:0377778888"));
-                if (ActivityCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
                     // here to request the missing permissions, and then overriding
@@ -152,9 +150,25 @@ public class MainActivity extends AppCompatActivity
                     //                                          int[] grantResults)
                     // to handle the case where the user grants the permission. See the documentation
                     // for ActivityCompat#requestPermissions for more details.
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1001);
 
                 } else
-                    startActivity(callIntent);
+                {
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
+                    if(location != null)
+                    {
+                        Intent i = new Intent(MainActivity.this, ListEmergenciaActivity.class);
+                        Bundle params = new Bundle();
+
+                        params.putString("matricula", "554020");
+                        params.putString("latitude", String.valueOf(location.getLatitude()));
+                        params.putString("longitude", String.valueOf(location.getLongitude()));
+                        i.putExtras(params);
+                        startActivity(i);
+                    }
+                }
+
+
             }
         });
 

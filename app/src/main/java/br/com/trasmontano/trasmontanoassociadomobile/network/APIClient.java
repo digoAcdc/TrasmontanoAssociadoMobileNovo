@@ -205,7 +205,13 @@ public class APIClient {
                 @Header("cpf") String cpf,
                 @Header("cdDependente") String cdDependente,
                 Callback<String> callbackLoginAssociado
-
+        );
+        @GET("/associado/getHospitaisEmergenciaMobile")
+        void getHospitaisEmergenciaMobile(
+                @Header("matricula") String matricula ,
+                @Header("latitude") String latitude,
+                @Header("longitude") String longitude,
+                Callback<List<Emergencia>> callbackEmergencia
         );
     }
 }
