@@ -21,9 +21,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.location.Location;
@@ -33,6 +35,7 @@ import android.location.LocationManager;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Associado;
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity
     private Context context;
     private Location location = null;
     private Callback<Login> callbackUsuario;
+    private List<Associado> lstAssociado;
 
 
     CarouselView carouselView;
@@ -164,18 +168,16 @@ public class MainActivity extends AppCompatActivity
 
                 } else {
                     Associado a = null;
-                    List<Associado> lst = Query.all(Associado.class).get().asList();
+                     lstAssociado = Query.all(Associado.class).get().asList();
 
-                    if (lst.size() == 0) {
+                    if (lstAssociado.size() == 0) {
                         Toast.makeText(MainActivity.this, "Nenhum usuário cadastrado", Toast.LENGTH_LONG).show();
                         return;
-                    }
-                    else if (lst.size() == 1) {
-                        a = lst.get(0);
+                    } else if (lstAssociado.size() == 1) {
+                        a = lstAssociado.get(0);
                         CarregarEmergencia(a.getUsuario());
-                    }
-                    else if (lst.size() > 1) {
-
+                    } else if (lstAssociado.size() > 1) {
+                        showInputDialogEmergencia();
                     }
 
 
@@ -232,7 +234,6 @@ public class MainActivity extends AppCompatActivity
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-
 
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, MainActivity.this);
@@ -325,9 +326,9 @@ public class MainActivity extends AppCompatActivity
 
     public void Logar() {
         spotsDialog.show();
-        List<Associado> lst = Query.all(Associado.class).get().asList();
+        lstAssociado = Query.all(Associado.class).get().asList();
 
-        if (lst.size() > 0) {
+        if (lstAssociado.size() > 0) {
             Intent i = new Intent(MainActivity.this, ListAssociadoActivity.class);
             startActivity(i);
             spotsDialog.dismiss();
@@ -345,6 +346,47 @@ public class MainActivity extends AppCompatActivity
         params.putString("redirecionarPara", "CarteirinhaTemporaria");
         intent.putExtras(params);
         startActivity(intent);
+    }
+
+    protected void showInputDialogEmergencia() {
+
+        LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+        View promptView = layoutInflater.inflate(R.layout.input_dialog_emergencia, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setView(promptView);
+
+        final Spinner spinner = (Spinner) promptView.findViewById(R.id.spinner);
+
+        ArrayList lst = new ArrayList<String>();
+
+        for (Associado item : lstAssociado) {
+            lst.add(item.getUsuario());
+        }
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, lst);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
+
+        alertDialogBuilder.setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //Toast.makeText(MainActivity.this, spinner.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+                        CarregarEmergencia(spinner.getSelectedItem().toString());
+
+                    }
+                })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create an alert dialog
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+
+
     }
 
     protected void showInputDialog() {

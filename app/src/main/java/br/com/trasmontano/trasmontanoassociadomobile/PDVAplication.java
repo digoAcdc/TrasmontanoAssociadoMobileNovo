@@ -71,7 +71,7 @@ public class PDVAplication extends Application {
 
                 db.execSQL(
                         "CREATE TABLE tbLocalidade(" +
-                                "Codigo INTEGER PRIMARY KEY, " +
+                                "Codigo INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                 "Localidade TEXT, " +
                                 "Endereco TEXT, " +
                                 "Numero TEXT, " +
