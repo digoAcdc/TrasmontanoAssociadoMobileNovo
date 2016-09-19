@@ -16,7 +16,26 @@ public class Emergencia {
     public String Telefone;
     public String Ddd1;
     public String Telefone1;
+
+    public String getCodigoCredenciado() {
+        return CodigoCredenciado;
+    }
+
+    public void setCodigoCredenciado(String codigoCredenciado) {
+        CodigoCredenciado = codigoCredenciado;
+    }
+
+    public String getCodigoFilial() {
+        return CodigoFilial;
+    }
+
+    public void setCodigoFilial(String codigoFilial) {
+        CodigoFilial = codigoFilial;
+    }
+
     public String Latitude;
+    public String CodigoCredenciado;
+    public String CodigoFilial;
 
     public String getCep() {
         return Cep;

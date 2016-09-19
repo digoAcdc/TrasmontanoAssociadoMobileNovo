@@ -70,6 +70,15 @@ public class PDVAplication extends Application {
                 );
 
                 db.execSQL(
+                        "CREATE TABLE favoritos (" +
+                                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                "matricula TEXT, " +
+                                "codigoCredenciado TEXT, " +
+                                "codigoFilial TEXT " +
+                                ")"
+                );
+
+                db.execSQL(
                         "CREATE TABLE tbLocalidade(" +
                                 "Codigo INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                 "Localidade TEXT, " +

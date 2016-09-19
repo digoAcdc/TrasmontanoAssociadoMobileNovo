@@ -18,6 +18,11 @@
             android:id="@+id/nav_agendamentoConsulta"
             android:icon="@drawable/hospital"
             android:title="Agendamento de Consulta" />
+        <item
+            android:id="@+id/nav_centralAtendimento"
+            android:icon="@drawable/ic_setting_dark"
+            android:title="Central de Atendimento" />
+
 
     </group>
 

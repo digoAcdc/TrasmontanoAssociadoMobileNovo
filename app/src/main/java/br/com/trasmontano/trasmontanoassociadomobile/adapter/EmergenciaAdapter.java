@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.sackcentury.shinebuttonlib.ShineButton;
+
 import java.util.List;
 
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.DadosConsulta;
@@ -36,6 +38,7 @@ public class EmergenciaAdapter extends RecyclerView.Adapter<EmergenciaAdapter.Em
 
         public void OnClickButtonComoChegar(View view, int index);
         public void OnClickButtonLigar(View view, int index);
+        public void OnClickButtonFavoritos(View view, int index);
     }
 
 
@@ -60,6 +63,8 @@ public class EmergenciaAdapter extends RecyclerView.Adapter<EmergenciaAdapter.Em
         holder.tvTelefone1.setText(e.getDdd1() + " " + e.getTelefone1());
         holder.tvLatitude.setText(e.getLatitude());
         holder.tvLongitude.setText(e.getLongitude());
+        holder.tvCodigoCredenciado.setText(e.getCodigoCredenciado());
+        holder.tvCodigoFilial.setText(e.getCodigoFilial());
 
 
         if (onClickListener != null) {
@@ -76,6 +81,15 @@ public class EmergenciaAdapter extends RecyclerView.Adapter<EmergenciaAdapter.Em
                     onClickListener.OnClickButtonLigar(holder.view, position);
                 }
             });
+            holder.shineButtonFavoritos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickListener.OnClickButtonFavoritos(holder.view, position);
+                }
+            });
+
+
+
 
         }
 
@@ -100,6 +114,9 @@ public class EmergenciaAdapter extends RecyclerView.Adapter<EmergenciaAdapter.Em
         TextView tvLongitude;
         Button btComoChegar;
         Button btLigar;
+        TextView tvCodigoCredenciado;
+        TextView tvCodigoFilial;
+        ShineButton shineButtonFavoritos;
 
 
         private View view;
@@ -119,6 +136,9 @@ public class EmergenciaAdapter extends RecyclerView.Adapter<EmergenciaAdapter.Em
             this.tvLongitude = (TextView) view.findViewById(R.id.tvLongitude);
             this.btComoChegar = (Button) view.findViewById(R.id.btComoChegar);
             this.btLigar = (Button) view.findViewById(R.id.btLigar);
+            this.tvCodigoCredenciado = (TextView) view.findViewById(R.id.tvCodigoCredenciado);
+            this.tvCodigoFilial = (TextView) view.findViewById(R.id.tvCodigoFilial);
+            this.shineButtonFavoritos = (ShineButton) view.findViewById(R.id.shineButtonFavoritos);
 
 
         }

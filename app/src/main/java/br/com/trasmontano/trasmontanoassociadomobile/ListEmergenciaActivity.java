@@ -179,10 +179,15 @@ public class ListEmergenciaActivity extends AppCompatActivity implements GoogleA
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:" + phone));
                 if (ActivityCompat.checkSelfPermission(ListEmergenciaActivity.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(ListEmergenciaActivity.this, "O aplicativo não possui permissao para fazer ligaçoes, favor checar as permissões.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ListEmergenciaActivity.this, "O aplicativo não possui permissão para fazer ligações, favor checar as permissões.", Toast.LENGTH_LONG).show();
                     return;
                 }
                 startActivity(callIntent);
+            }
+
+            @Override
+            public void OnClickButtonFavoritos(View view, int index) {
+                Toast.makeText(ListEmergenciaActivity.this, "Shinebutton", Toast.LENGTH_LONG).show();
             }
         };
 
