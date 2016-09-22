@@ -50,10 +50,10 @@ public class APIClient {
         );
         @GET("/acesso/autenticacaomobilebiometria")
         void getLoginAssociadoBiometria(
-                @Header("usuario") String usuario,
-                @Header("telefone") String telefone,
-                Callback<Login> callbackUsuario
-        );
+                        @Header("usuario") String usuario,
+                        @Header("telefone") String telefone,
+                        Callback<Login> callbackUsuario
+                );
 
 
         @GET("/associado/carencia/{matricula}/{dependente}")
@@ -216,5 +216,12 @@ public class APIClient {
 
         @GET("/unidademedica/todos")
         void getUnidadeMedicaTodos(Callback<List<UnidadeMedica>> callbackListaUnidadeMedica);
+
+        @GET("/associado/getCredenciadosFavoritosMobile")
+        void getCredenciadosFavoritosMobile(
+                @Header("matricula") String matricula ,
+                @Header("credenciadosFavoritos") String credenciadosFavoritos,
+                Callback<List<Emergencia>> callbackEmergencia
+        );
     }
 }

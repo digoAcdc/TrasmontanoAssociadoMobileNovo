@@ -101,6 +101,7 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/btUnidades"
                         android:layout_width="85dp"
                         android:layout_height="85dp"
                         android:layout_marginLeft="5dp"
@@ -109,18 +110,15 @@
                         android:drawableTop="@drawable/flag"
                         android:gravity="center"
                         android:paddingTop="20dp"
-                        android:textColor="#fff"
-                        android:id="@+id/btUnidades" />
+                        android:textColor="#fff" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Unidades" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -187,7 +185,6 @@
                         android:textColor="#fff" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -195,7 +192,6 @@
                         android:text="Orientador" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -223,14 +219,12 @@
                         android:textColor="#fff" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Alarme de" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -241,7 +235,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:orientation="vertical">
 
                     <Button
@@ -258,7 +252,6 @@
                         android:textColor="#fff" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -283,6 +276,38 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btCredenciadosFavoritos"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/style_button_elevation"
+                        android:drawableTop="@drawable/star"
+                        android:elevation="10dp"
+                        android:gravity="center"
+                        android:paddingTop="20dp"
+                        android:textColor="#fff" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Credenciados" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Favoritos" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -293,19 +318,44 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button_elevation"
-android:backgroundTint="@color/colorPrimaryDark"
+                        android:backgroundTint="@color/colorPrimaryDark"
                         android:drawableTop="@drawable/emergencia"
                         android:elevation="10dp"
                         android:gravity="center"
-                        android:paddingTop="20dp"
-                          />
+                        android:paddingTop="20dp" />
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Emergencia" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btNaoSei"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/style_button_elevation"
+                        android:drawableTop="@drawable/star"
+                        android:elevation="10dp"
+                        android:gravity="center"
+                        android:paddingTop="20dp"
+                        android:textColor="#fff" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Não sei oque vai ser" />
 
                 </LinearLayout>
             </LinearLayout>

@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity
     private Button btOrientadorMedico;
     private Button btEmergencia;
     private Button btUnidades;
+    private Button btCredenciadosFavoritos;
     SpotsDialog spotsDialog;
     private String redirecionarPara;
 
@@ -72,7 +73,6 @@ public class MainActivity extends AppCompatActivity
 
     CarouselView carouselView;
 
-    //int[] sampleImages = {R.drawable.agend, R.drawable.bannersantos, R.drawable.igesp, R.drawable.saude_integral};
     int[] sampleImages = {R.drawable.banner_um, R.drawable.banner, R.drawable.banner_quatro, R.drawable.banner_dois};
 
     @Override
@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity
         btAgendamentoConsultaSemLogin = (Button) findViewById(R.id.btAgendamentoConsultaSemLogin);
         btEmergencia = (Button) findViewById(R.id.btEmergencia);
         btUnidades = (Button) findViewById(R.id.btUnidades);
+        btCredenciadosFavoritos = (Button) findViewById(R.id.btCredenciadosFavoritos);
 
         btAgendamentoConsultaSemLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,8 +122,6 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 redirecionarPara = "CarteirinhaTemporaria";
                 showInputDialog();
-                //CarteirinhaSemLogin();
-
             }
         });
 
@@ -194,6 +193,13 @@ public class MainActivity extends AppCompatActivity
                     }*/
                 }
 
+
+            }
+        });
+
+        btCredenciadosFavoritos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
@@ -302,7 +308,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_carteirinha_sem_logar) {
             redirecionarPara = "CarteirinhaTemporaria";
             showInputDialog();
-            //CarteirinhaSemLogin();
         } else if (id == R.id.nav_home) {
 
 
@@ -405,7 +410,6 @@ public class MainActivity extends AppCompatActivity
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //resultText.setText("Hello, " + editText.getText());
                         if (etLogin.getText().toString().equals("") || etLogin.getText().toString().equals("")) {
                             Toast.makeText(MainActivity.this, "Login/Senha Obrigatórios", Toast.LENGTH_LONG).show();
                         } else {
