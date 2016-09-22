@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity
         btCredenciadosFavoritos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showInputDialogFavoritos();
             }
         });
 
@@ -429,6 +429,47 @@ public class MainActivity extends AppCompatActivity
         // create an alert dialog
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
+    }
+
+    protected void showInputDialogFavoritos() {
+
+        LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+        View promptView = layoutInflater.inflate(R.layout.input_dialog_emergencia, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setView(promptView);
+
+        final Spinner spinner = (Spinner) promptView.findViewById(R.id.spinner);
+
+        ArrayList lst = new ArrayList<String>();
+
+        for (Associado item : lstAssociado) {
+            lst.add(item.getUsuario());
+        }
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, lst);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
+
+        alertDialogBuilder.setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(MainActivity.this, spinner.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+
+
+                    }
+                })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create an alert dialog
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+
+
     }
 
     private void configureInformacaoAssociadoCallback() {

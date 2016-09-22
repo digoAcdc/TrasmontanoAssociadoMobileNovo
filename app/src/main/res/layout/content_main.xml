@@ -345,7 +345,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/style_button_elevation"
-                        android:drawableTop="@drawable/star"
+                        android:drawableTop="@drawable/boleto"
                         android:elevation="10dp"
                         android:gravity="center"
                         android:paddingTop="20dp"
@@ -355,7 +355,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Não sei oque vai ser" />
+                        android:text="Boleto" />
 
                 </LinearLayout>
             </LinearLayout>
