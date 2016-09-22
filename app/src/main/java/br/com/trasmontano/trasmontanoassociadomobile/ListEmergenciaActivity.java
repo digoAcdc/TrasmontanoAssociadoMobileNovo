@@ -22,9 +22,11 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
+import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.util.List;
 
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.CredenciadosFavoritos;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Emergencia;
 import br.com.trasmontano.trasmontanoassociadomobile.adapter.AssociadoLoginAdapter;
 import br.com.trasmontano.trasmontanoassociadomobile.adapter.EmergenciaAdapter;
@@ -33,6 +35,8 @@ import dmax.dialog.SpotsDialog;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import se.emilsjolander.sprinkles.Model;
+import se.emilsjolander.sprinkles.Query;
 
 public class ListEmergenciaActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
@@ -187,7 +191,34 @@ public class ListEmergenciaActivity extends AppCompatActivity implements GoogleA
 
             @Override
             public void OnClickButtonFavoritos(View view, int index) {
-                Toast.makeText(ListEmergenciaActivity.this, "Shinebutton", Toast.LENGTH_LONG).show();
+
+                ShineButton s = (ShineButton)view.findViewById(R.id.shineButtonFavoritos);
+                Toast.makeText(ListEmergenciaActivity.this, String.valueOf(s.isChecked()), Toast.LENGTH_LONG).show();
+                TextView tvCodigoCredenciado = (TextView)view.findViewById(R.id.tvCodigoCredenciado);
+                TextView tvCodigoFilial = (TextView)view.findViewById(R.id.tvCodigoFilial);
+                String cdCredenciado = tvCodigoCredenciado.getText().toString();
+                String cdFilial = tvCodigoFilial.getText().toString();
+                CredenciadosFavoritos c = Query.one(CredenciadosFavoritos.class, "select * from favoritos where matricula=? AND codigoCredenciado=? AND codigoFilial=?", matricula, cdCredenciado, cdFilial).get();
+
+                if(c == null)
+                {
+                    c = new CredenciadosFavoritos();
+                    c.setMatricula(matricula);
+                    c.setCodigoCredenciado(tvCodigoCredenciado.getText().toString());
+                    c.setCodigoFilial(tvCodigoFilial.getText().toString());
+                    c.save();
+                }
+                else
+                {
+                    c.deleteAsync(new Model.OnDeletedCallback() {
+                        @Override
+                        public void onDeleted() {
+
+                            Toast.makeText(ListEmergenciaActivity.this, "Excluído com sucesso! ", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
             }
         };
 

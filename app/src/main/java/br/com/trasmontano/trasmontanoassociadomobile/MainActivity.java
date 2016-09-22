@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Associado;
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.CredenciadosFavoritos;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Emergencia;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Login;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Preferencias;
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity
 
                 } else {
                     Associado a = null;
-                     lstAssociado = Query.all(Associado.class).get().asList();
+                    lstAssociado = Query.all(Associado.class).get().asList();
 
                     if (lstAssociado.size() == 0) {
                         Toast.makeText(MainActivity.this, "Nenhum usuário cadastrado", Toast.LENGTH_LONG).show();
@@ -318,8 +319,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_alarme_medicamentos) {
             Intent i = new Intent(MainActivity.this, ListAlarmeActivity.class);
             startActivity(i);
-        }
-         else if (id == R.id.nav_centralAtendimento) {
+        } else if (id == R.id.nav_centralAtendimento) {
             Intent i = new Intent(MainActivity.this, CentralDeAtendimentoActivity.class);
             startActivity(i);
         }
@@ -442,6 +442,7 @@ public class MainActivity extends AppCompatActivity
 
         ArrayList lst = new ArrayList<String>();
 
+        lstAssociado = Query.all(Associado.class).get().asList();
         for (Associado item : lstAssociado) {
             lst.add(item.getUsuario());
         }
@@ -454,6 +455,17 @@ public class MainActivity extends AppCompatActivity
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Toast.makeText(MainActivity.this, spinner.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+                        List<CredenciadosFavoritos> c1 = Query.many(CredenciadosFavoritos.class, "select * from favoritos where matricula=?", spinner.getSelectedItem().toString()).get().asList();
+                        if(c1.size() > 0)
+                        {
+                            Toast.makeText(MainActivity.this, "Maior que 0", Toast.LENGTH_LONG).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(MainActivity.this, "Voce não possui nenhum credenciado favorito", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        //List<CredenciadosFavoritos> c = Query.all(CredenciadosFavoritos.class).get().asList();
 
 
                     }
