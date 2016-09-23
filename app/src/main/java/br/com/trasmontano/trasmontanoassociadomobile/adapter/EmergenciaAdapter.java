@@ -13,9 +13,11 @@ import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.util.List;
 
+import br.com.trasmontano.trasmontanoassociadomobile.DTO.CredenciadosFavoritos;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.DadosConsulta;
 import br.com.trasmontano.trasmontanoassociadomobile.DTO.Emergencia;
 import br.com.trasmontano.trasmontanoassociadomobile.R;
+import se.emilsjolander.sprinkles.Query;
 
 /**
  * Created by rbarbosa on 14/09/2016.
@@ -65,7 +67,16 @@ public class EmergenciaAdapter extends RecyclerView.Adapter<EmergenciaAdapter.Em
         holder.tvLongitude.setText(e.getLongitude());
         holder.tvCodigoCredenciado.setText(e.getCodigoCredenciado());
         holder.tvCodigoFilial.setText(e.getCodigoFilial());
+        holder.tvMatricula.setText(e.getMatriculaAssociado());
 
+        String credenciados = "";
+
+        List<CredenciadosFavoritos> lst = Query.many(CredenciadosFavoritos.class, "select * from favoritos where matricula=?", e.getMatriculaAssociado()).get().asList();
+        for (CredenciadosFavoritos c: lst) {
+            if(c.getCodigoCredenciado().equals(e.getCodigoCredenciado()) && c.getCodigoFilial().equals(e.getCodigoFilial())) {
+                holder.shineButtonFavoritos.setChecked(true);
+            }
+        }
 
         if (onClickListener != null) {
 
@@ -116,6 +127,7 @@ public class EmergenciaAdapter extends RecyclerView.Adapter<EmergenciaAdapter.Em
         Button btLigar;
         TextView tvCodigoCredenciado;
         TextView tvCodigoFilial;
+        TextView tvMatricula;
         ShineButton shineButtonFavoritos;
 
 
@@ -138,6 +150,7 @@ public class EmergenciaAdapter extends RecyclerView.Adapter<EmergenciaAdapter.Em
             this.btLigar = (Button) view.findViewById(R.id.btLigar);
             this.tvCodigoCredenciado = (TextView) view.findViewById(R.id.tvCodigoCredenciado);
             this.tvCodigoFilial = (TextView) view.findViewById(R.id.tvCodigoFilial);
+            this.tvMatricula = (TextView) view.findViewById(R.id.tvMatricula);
             this.shineButtonFavoritos = (ShineButton) view.findViewById(R.id.shineButtonFavoritos);
 
 

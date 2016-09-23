@@ -459,6 +459,13 @@ public class MainActivity extends AppCompatActivity
                         if(c1.size() > 0)
                         {
                             Toast.makeText(MainActivity.this, "Maior que 0", Toast.LENGTH_LONG).show();
+                            Bundle params = new Bundle();
+                            Intent i = new Intent(MainActivity.this, ListEmergenciaActivity.class);
+                            params.putString("matricula", spinner.getSelectedItem().toString());
+                            params.putString("favoritos", "true");
+                            i.putExtras(params);
+
+                            startActivity(i);
                         }
                         else
                         {

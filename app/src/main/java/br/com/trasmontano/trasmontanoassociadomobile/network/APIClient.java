@@ -221,7 +221,7 @@ public class APIClient {
         void getCredenciadosFavoritosMobile(
                 @Header("matricula") String matricula ,
                 @Header("credenciadosFavoritos") String credenciadosFavoritos,
-                Callback<List<Emergencia>> callbackEmergencia
+                Callback<List<Emergencia>> callbackFavoritos
         );
     }
 }

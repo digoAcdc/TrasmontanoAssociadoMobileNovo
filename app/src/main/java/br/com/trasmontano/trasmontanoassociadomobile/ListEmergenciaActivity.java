@@ -43,10 +43,12 @@ public class ListEmergenciaActivity extends AppCompatActivity implements GoogleA
     String matricula;
     String latitude;
     String longitude;
+    String favoritos = null;
     Bundle params;
     private RecyclerView recyclerView;
     SpotsDialog spotsDialog;
     Callback<List<Emergencia>> callbackEmergencia;
+    Callback<List<Emergencia>> callbackFavoritos;
     private GoogleApiClient mGoogleApiClient;
     private Button btLigarPolicia;
     private Button btLigarSamu;
@@ -131,19 +133,54 @@ public class ListEmergenciaActivity extends AppCompatActivity implements GoogleA
 
         if (params != null) {
             matricula = params.getString("matricula");
-            latitude = params.getString("latitude");
-            longitude = params.getString("longitude");
+            favoritos = params.getString("favoritos");
 
-            configureEmergenciaCallback();
+            if(favoritos != null)
+            {
+                configureFavoritosCallback();
+                String credenciados = "";
 
-            new APIClient().getRestService().getHospitaisEmergenciaMobile(matricula,
-                    latitude, longitude ,callbackEmergencia);
+                List<CredenciadosFavoritos> lst = Query.many(CredenciadosFavoritos.class, "select * from favoritos where matricula=?", matricula).get().asList();
+                for (CredenciadosFavoritos c: lst) {
+                    credenciados += c.getCodigoCredenciado() + "-" + c.getCodigoFilial() + ",";
+                }
+
+                new APIClient().getRestService().getCredenciadosFavoritosMobile(matricula,
+                        credenciados ,callbackFavoritos);
+            }
+            else
+            {
+                latitude = params.getString("latitude");
+                longitude = params.getString("longitude");
+
+                configureEmergenciaCallback();
+
+                new APIClient().getRestService().getHospitaisEmergenciaMobile(matricula,
+                        latitude, longitude ,callbackEmergencia);
+            }
+
+
         }
     }
 
 
     private void configureEmergenciaCallback() {
         callbackEmergencia = new Callback<List<Emergencia>>() {
+
+            @Override
+            public void success(List<Emergencia> emergencias, Response response) {
+                recyclerView.setAdapter(new EmergenciaAdapter(ListEmergenciaActivity.this, emergencias, onClickEmergencia()));
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(ListEmergenciaActivity.this, "Falha ao conectar ao servidor", Toast.LENGTH_LONG).show();
+            }
+        };
+    }
+
+    private void configureFavoritosCallback() {
+        callbackFavoritos = new Callback<List<Emergencia>>() {
 
             @Override
             public void success(List<Emergencia> emergencias, Response response) {

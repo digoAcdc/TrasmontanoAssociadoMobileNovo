@@ -17,6 +17,17 @@ public class Emergencia {
     public String Ddd1;
     public String Telefone1;
 
+
+    public String getMatriculaAssociado() {
+        return MatriculaAssociado;
+    }
+
+    public void setMatriculaAssociado(String matriculaAssociado) {
+        MatriculaAssociado = matriculaAssociado;
+    }
+
+    public String MatriculaAssociado;
+
     public String getCodigoCredenciado() {
         return CodigoCredenciado;
     }
